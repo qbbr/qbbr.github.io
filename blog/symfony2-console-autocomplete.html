@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / symfony2 console autocomplete</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/symfony2-console-autocomplete.html">symfony2 console autocomplete</a></h2>
+                <time datetime="2011-09-21">21/09/2011</time>
+
+                <div class="post">
+        <h3 id='install'>install:</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install bash-completion
+</code></pre></div><div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wget https://raw.github.com/qbbr/symfony2-autocomplete/master/symfony2-autocomplete.bash
+<span class='nv'>$ </span>sudo mv symfony2-autocomplete.bash /etc/bash_completion.d/
+</code></pre></div>
+<p>add the following line to your ~/.bashrc:</p>
+<div class='highlight'><pre><code class='bash'><span class='k'>if</span> <span class='o'>[</span> -e ~/symfony2-autocomplete.bash <span class='o'>]</span>; <span class='k'>then</span>
+. ~/symfony2-autocomplete.bash
+<span class='k'>fi</span>
+</code></pre></div>
+<h3 id='see'>see:</h3>
+
+<ul>
+<li><a href='http://youtu.be/kL8A8VwBEog'>youtube video</a></li>
+
+<li><a href='https://github.com/qbbr/symfony2-autocomplete'>github repo</a></li>
+</ul>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / convert .iso.wv to .ogg with split via .cue</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/convert-isowv-to-ogg-with-split-via-cue.html">convert .iso.wv to .ogg with split via .cue</a></h2>
+                <time datetime="2013-07-10">10/07/2013</time>
+
+                <div class="post">
+        <h3 id='install_debian'>install (debian):</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install shntool vorbis-tools wavpack
+</code></pre></div>
+<h3 id='using'>using:</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wvunpack -cc file.iso.wv
+<span class='nv'>$ </span>shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f file.cue -t %t file.wav
+</code></pre></div>
+<p>convert <strong>.iso.wv</strong> to <strong>.ogg</strong> with auto rename <strong>.ogg</strong> files:</p>
+<div class='highlight'><pre><code class='bash'><span class='c'>#!/bin/sh</span>
+<span class='c'># ./isowv2ogg</span>
+
+<span class='nv'>FILE</span><span class='o'>=</span><span class='nv'>$1</span>
+<span class='nv'>TMP_DIR</span><span class='o'>=</span>tmp
+mkdir tmp
+wvunpack -cc <span class='nv'>$1</span> -o <span class='nv'>$TMP_DIR</span>/
+<span class='nb'>cd</span> <span class='nv'>$TMP_DIR</span>
+<span class='nv'>CUE</span><span class='o'>=</span><span class='sb'>`</span>find . -name <span class='s1'>&#39;*.cue&#39;</span><span class='sb'>`</span>
+<span class='nv'>WAV</span><span class='o'>=</span><span class='sb'>`</span>find . -name <span class='s1'>&#39;*.wav&#39;</span><span class='sb'>`</span>
+<span class='nv'>YEAR</span><span class='o'>=</span><span class='sb'>`</span>cat <span class='nv'>$CUE</span> | grep DATE | awk <span class='s1'>&#39;{ print $3 }&#39;</span><span class='sb'>`</span>
+<span class='nv'>ALBUM</span><span class='o'>=</span><span class='sb'>`</span>cat <span class='nv'>$CUE</span> | grep TITLE | head -n 1 | sed <span class='s1'>&#39;s/TITLE //&#39;</span> | sed  <span class='s1'>&#39;s/&quot;//g&#39;</span><span class='sb'>`</span>
+<span class='nb'>echo</span> <span class='nv'>$ALBUM</span>
+shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f <span class='nv'>$CUE</span> -t <span class='s2'>&quot;%n - %p - %a - $YEAR - %t&quot;</span> <span class='nv'>$WAV</span>
+rm -f <span class='nv'>$WAV</span>
+<span class='nb'>cd</span> ..
+mv <span class='nv'>$TMP_DIR</span> <span class='s2'>&quot;$YEAR-$ALBUM&quot;</span>
+<span class='nb'>echo</span> <span class='s1'>&#39;[DONE]&#39;</span>
+</code></pre></div>
+<p>script using:</p>
+<div class='highlight'><pre><code class='bash'>./isowv2ogg file.iso.wv
+</code></pre></div>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / convert .ape to .ogg with split via .cue</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/convert-ape-to-ogg-with-split-via-cue.html">convert .ape to .ogg with split via .cue</a></h2>
+                <time datetime="2011-09-21">21/09/2011</time>
+
+                <div class="post">
+        <h3 id='install_debian'>install (debian):</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude instal shntool vorbis-tools monkeys-audio
+</code></pre></div>
+<h3 id='using'>using:</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>mac file.ape image.wav -d
+<span class='nv'>$ </span>shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f file.cue -t %t image.wav
+</code></pre></div>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+    </body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / set up wifi access point on linux</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/set-up-wifi-access-point-on-linux.html">set up wifi access point on linux</a></h2>
+                <time datetime="2012-01-18">18/01/2012</time>
+
+                <div class="post">
+        <h3 id='1_configure_wireless_adapter'>1) configure wireless adapter</h3>
+
+<p>add to <code>/etc/network/interfaces</code>:</p>
+<div class='highlight'><pre><code class='bash'>auto wlan0
+iface wlan0 inet static
+    address 192.168.13.1
+    network 192.168.13.0
+    netmask 255.255.255.0
+    broadcast 192.168.13.255
+</code></pre></div>
+<h3 id='2_ap_daemon'>2) ap daemon</h3>
+
+<p>install <a href='http://hostap.epitest.fi/hostapd/'>hostapd</a>:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install hostapd
+</code></pre></div>
+<p>edit <code>/etc/hostapd/hostapd.conf</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>interface</span><span class='o'>=</span>wlan0
+<span class='nv'>driver</span><span class='o'>=</span>nl80211
+
+<span class='c'># AP name</span>
+<span class='nv'>ssid</span><span class='o'>=</span>MY_AP
+<span class='nv'>country_code</span><span class='o'>=</span>RU
+<span class='nv'>hw_mode</span><span class='o'>=</span>g
+<span class='nv'>channel</span><span class='o'>=</span>1
+
+<span class='nv'>macaddr_acl</span><span class='o'>=</span>0
+
+<span class='nv'>wpa</span><span class='o'>=</span>3
+<span class='nv'>wpa_key_mgmt</span><span class='o'>=</span>WPA-PSK
+<span class='c'># password</span>
+<span class='nv'>wpa_passphrase</span><span class='o'>=</span>password
+<span class='nv'>wpa_pairwise</span><span class='o'>=</span>TKIP CCMP
+</code></pre></div>
+<p>edit <code>/etc/default/hostapd</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>DAEMON_CONF</span><span class='o'>=</span><span class='s2'>&quot;/etc/hostapd/hostapd.conf&quot;</span>
+</code></pre></div>
+<p>start daemon:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo /etc/init.d/hostapd start
+</code></pre></div>
+<h3 id='3_netfilter'>3) netfilter</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>su
+<span class='nv'>$ </span><span class='nb'>echo </span>1 &gt; /proc/sys/net/ipv4/ip_forward
+<span class='nv'>$ </span>iptables -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
+<span class='nv'>$ </span><span class='nb'>exit</span>
+</code></pre></div>
+<p>for every boot system, edit <code>/etc/network/if-pre-up.d/wifi</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='c'>#!/bin/sh</span>
+/bin/echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+/sbin/iptables -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
+</code></pre></div>
+<p>grant execute permissions:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo chmod +x /etc/network/if-pre-up.d/wifi
+</code></pre></div>
+<p>if use <strong>ppp0</strong>:</p>
+<div class='highlight'><pre><code class='bash'>sudo iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE
+</code></pre></div>
+<p>add line to <code>/etc/network/if-pre-up.d/wifi</code>:</p>
+<div class='highlight'><pre><code class='bash'>/sbin/iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE
+</code></pre></div>
+<h3 id='4_dns__dhcp'>4) DNS &amp; DHCP</h3>
+
+<p>install:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install dnsmasq
+</code></pre></div>
+<p>edit <code>/etc/dnsmasq.conf</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>interface</span><span class='o'>=</span>wlan0
+dhcp-range<span class='o'>=</span>192.168.13.10,192.168.13.50,24h
+</code></pre></div>
+<p>restart deamon:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo /etc/init.d/dnsmasq restart
+</code></pre></div>
+<h3 id='5_enjoy'>5) enjoy!</h3>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / using LESS CSS in symfony2</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/using-less-css-in-symfony2.html">using LESS CSS in symfony2</a></h2>
+                <time datetime="2011-09-23">23/09/2011</time>
+
+                <div class="post">
+        <h3 id='install_nodejs__npm_required'>install (node.js + npm required):</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo npm install -g less
+</code></pre></div>
+<h3 id='configure'>configure:</h3>
+
+<p>add less filter to assetic configuration:</p>
+<div class='highlight'><pre><code class='yaml'><span class='c1'># app/config/config.yml</span>
+<span class='c1'># ...</span>
+<span class='c1'># Assetic Configuration</span>
+<span class='l-Scalar-Plain'>assetic</span><span class='p-Indicator'>:</span>
+    <span class='l-Scalar-Plain'>debug</span><span class='p-Indicator'>:</span>          <span class='err'>%</span><span class='l-Scalar-Plain'>kernel.debug%</span>
+    <span class='l-Scalar-Plain'>use_controller</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>false</span>
+    <span class='l-Scalar-Plain'>filters</span><span class='p-Indicator'>:</span>
+        <span class='l-Scalar-Plain'>cssrewrite</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>~</span>
+        <span class='l-Scalar-Plain'>less</span><span class='p-Indicator'>:</span>
+            <span class='l-Scalar-Plain'>node</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>/usr/bin/node</span>
+            <span class='l-Scalar-Plain'>node_paths</span><span class='p-Indicator'>:</span> <span class='p-Indicator'>[</span><span class='nv'>/usr/lib/node_modules/</span><span class='p-Indicator'>]</span>
+</code></pre></div>
+<h3 id='using'>using:</h3>
+
+<p>twig:</p>
+<div class='highlight'><pre><code class='jinja'><span class='cp'>{%</span> <span class='k'>stylesheets</span> <span class='nv'>filter</span><span class='o'>=</span><span class='s1'>&#39;less&#39;</span>
+    <span class='s1'>&#39;@QcmsAdminBundle/Resources/public/less/layout.less&#39;</span>
+    <span class='s1'>&#39;@QcmsAdminBundle/Resources/public/less/left-menu.less&#39;</span>
+<span class='cp'>%}</span><span class='x' />
+<span class='x'>    &lt;link rel=&quot;stylesheet&quot; href=&quot;</span><span class='cp'>{{</span><span class='o'>{{</span> <span class='nv'>asset_url</span> <span class='cp'>}}</span><span class='x'>}}&quot;&gt;</span>
+<span class='cp'>{%</span> <span class='k'>endstylesheets</span> <span class='cp'>%}</span><span class='x' />
+</code></pre></div>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+    </body>
+</html>

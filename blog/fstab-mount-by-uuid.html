@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / fstab mount by UUID (Universally Unique IDentifier)</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/fstab-mount-by-uuid.html">fstab mount by UUID (Universally Unique IDentifier)</a></h2>
+                <time datetime="2011-09-26">26/09/2011</time>
+
+                <div class="post">
+        <p>get uuid for all device:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>ls -l /dev/disk/by-uuid/
+</code></pre></div>
+<p>result:</p>
+<div class='highlight'><pre><code class='bash'>┌─<span class='o'>[</span>Q:qbbr<span class='o'>][</span>~<span class='o'>]</span>
+└─╼ ls -l /dev/disk/by-uuid/
+итого 0
+lrwxrwxrwx 1 root root 10 Сен 26 05:09 019a28b3-ca4d-4be0-8e72-d8befd2ae936 -&gt; ../../sda5
+lrwxrwxrwx 1 root root 10 Сен 26 05:09 2e782133-1167-495d-b758-f75e3f868b8c -&gt; ../../sda8
+lrwxrwxrwx 1 root root 10 Сен 26 05:09 37edf9f9-0652-45be-a4de-81e44a97e6bc -&gt; ../../sda7
+lrwxrwxrwx 1 root root  9 Сен 26 06:51 5016-9138 -&gt; ../../sdb
+lrwxrwxrwx 1 root root 10 Сен 26 05:09 834bf017-f811-43f5-9ece-626d1c541860 -&gt; ../../sda1
+lrwxrwxrwx 1 root root 10 Сен 26 07:52 86a077d8-3e5b-464b-956c-25bd3da118f6 -&gt; ../../sda6
+lrwxrwxrwx 1 root root 10 Сен 26 05:09 991f208a-efb3-4c79-9030-c63636183256 -&gt; ../../sda3
+lrwxrwxrwx 1 root root 10 Сен 26 05:09 b452b0ba-3488-4802-a4df-39500527e874 -&gt; ../../sda4
+</code></pre></div>
+<p>edit u <code>/etc/fstab</code> and replace <strong>id</strong> to <strong>UUID</strong>, example:</p>
+<div class='highlight'><pre><code class='bash'><span class='c'># &lt;file system&gt;                          &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span>
+<span class='c'># / was on /dev/sda3 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>991f208a-efb3-4c79-9030-c63636183256 /               ext3    <span class='nv'>errors</span><span class='o'>=</span>remount-ro,acl 0       1
+<span class='c'># /boot was on /dev/sda1 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>834bf017-f811-43f5-9ece-626d1c541860 /boot           ext2    nodev           0       2
+<span class='c'># /home was on /dev/sda4 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>b452b0ba-3488-4802-a4df-39500527e874 /home           ext3    defaults        0       2
+<span class='c'># /media/dwnlds was on /dev/sda6 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>86a077d8-3e5b-464b-956c-25bd3da118f6 /media/dwnlds   ext4    nodev,noexec    0       2
+<span class='c'># /media/strg1 was on /dev/sda7 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>37edf9f9-0652-45be-a4de-81e44a97e6bc /media/strg1    ext3    nodev           0       2
+<span class='c'># /media/strg2 was on /dev/sda8 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>2e782133-1167-495d-b758-f75e3f868b8c /media/strg2    ext3    nodev           0       2
+<span class='c'># swap was on /dev/sda5 during installation</span>
+<span class='nv'>UUID</span><span class='o'>=</span>019a28b3-ca4d-4be0-8e72-d8befd2ae936 none            swap    sw              0       0
+</code></pre></div>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+    </body>
+</html>

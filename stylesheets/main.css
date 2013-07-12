@@ -1,0 +1,176 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+body {
+  font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+header {
+  line-height: normal;
+  margin-bottom: 15px;
+  text-align: left;
+  padding: 0;
+}
+
+h1 {
+  border-bottom: 1px dotted #bbb;
+  margin-bottom: 15px;
+  margin-top: 0;
+  padding: 0;
+  padding-bottom: 5px;
+  font-size: 60px;
+}
+
+span {
+  color: #224488;
+}
+
+a {
+  text-decoration: none;
+  border: 0;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #224488;
+}
+
+a:hover:before,
+a:hover:after {
+  color: black;
+}
+
+a:before,
+a:after {
+  color: white;
+  border: 0;
+}
+
+a:before {
+  content: "{ ";
+}
+
+a:after {
+  content: " }";
+}
+
+/*body {
+  background: url(/images/background.png) no-repeat;
+}*/
+
+section.index {
+  position: fixed;
+  -webkit-padding-start: 0;
+  bottom: 170px;
+  right: 45px;
+  text-align: right;
+}
+
+section.index ul {
+  margin-top: 15px;
+  padding-left: 0;
+}
+
+section.index ul,
+section.index li {
+  display: inline;
+}
+
+section.index li {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+section.index a {
+  font-size: 28px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+/* blog */
+
+section.blog {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+article {
+  margin: 1em 0;
+}
+
+article:hover time {
+  color: #224488;
+  border-bottom: 1px dotted #bbb;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  padding: 50px 0 60px 0;
+}
+
+h2 {
+  display: inline-block;
+  margin: 0;
+  font-weight: 300;
+}
+
+time {
+  display: inline-block;
+  float: right;
+  font-size: 21px;
+  font-variant: 1.5;
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+}
+
+pre {
+  margin: 1em 0;
+  background-color: #eee;
+  border: 1px dotted #bbb;
+  overflow: auto;
+  padding: 5px;
+  -webkit-box-shadow: rgba(0,0,0,0.07) 0 1px 2px inset;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* blog post */
+
+section.blog-post {
+  padding-bottom: 50px;
+}
+
+section.blog-post h2 {
+  display: block;
+  text-align: center;
+  font-size: 46px;
+}
+
+section.blog-post time {
+  display: block;
+  float: none;
+  text-align: center;
+}
+
+section.blog-post article:hover time {
+  border: none;
+  color: inherit;
+}
+
+section.blog-post div.post a {
+  border-bottom: 1px dotted #bbb;
+}
