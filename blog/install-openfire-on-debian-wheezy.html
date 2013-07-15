@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / install openfire on debian wheezy</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/install-openfire-on-debian-wheezy.html">install openfire on debian wheezy</a></h2>
+                <time datetime="2013-07-15">15/07/2013</time>
+
+                <div class="post">
+        <h3 id='install_java'>install java:</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install openjdk-6-jre
+</code></pre></div>
+<h3 id='install_openfire'>install openfire:</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wget http://download.igniterealtime.org/openfire/openfire_3.8.2_all.deb
+<span class='nv'>$ </span>sudo dpkg -i openfire_3.8.2_all.deb
+</code></pre></div>
+<h3 id='java_home_bugfix'>JAVA_HOME bugfix:</h3>
+
+<p>add to top in <code>/etc/init.d/openfire</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>JAVA_HOME</span><span class='o'>=</span><span class='k'>$(</span>readlink -f /usr/bin/java | sed <span class='s2'>&quot;s:bin/java::&quot;</span><span class='k'>)</span>
+</code></pre></div>
+<h3 id='configure'>configure:</h3>
+
+<p>start daemon</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo /etc/init.d/openfire start
+</code></pre></div>
+<p>open <code>127.0.0.1:9090</code> in browser and follow instructions</p>
+
+<h3 id='reboot__enjoy'>reboot &amp;&amp; enjoy</h3>
+            </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-42421652-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <!--<img src="https://cruel-carlota.pagodabox.com/d1311c411b7965c7b6cda26d772bd34d" alt="githalytics.com alpha" title="githalytics.com">-->
+    </body>
+</html>
