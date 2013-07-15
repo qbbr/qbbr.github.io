@@ -174,3 +174,9 @@ section.blog-post article:hover time {
 section.blog-post div.post a {
   border-bottom: 1px dotted #bbb;
 }
+
+#disqus_thread {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
