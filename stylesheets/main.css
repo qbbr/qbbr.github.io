@@ -180,3 +180,28 @@ section.blog-post div.post a {
   margin: 0 auto;
   padding-bottom: 50px;
 }
+
+.set-1 {
+    font-size: 100%;
+    color: #999;
+}
+
+.set-2 {
+    font-size: 120%;
+    color: #888;
+}
+
+.set-3 {
+    font-size: 140%;
+    color: #777;
+}
+
+.set-4 {
+    font-size: 160%;
+    color: #666;
+}
+
+.set-5 {
+    font-size: 180%;
+    color: #555;
+}

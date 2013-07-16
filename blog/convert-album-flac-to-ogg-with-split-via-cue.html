@@ -22,6 +22,10 @@
                 <h2><a href="/blog/convert-album-flac-to-ogg-with-split-via-cue.html">convert album .flac to .ogg with split via .cue</a></h2>
                 <time datetime="2011-10-03">03/10/2011</time>
 
+                <div class="tags">
+                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/multimedia.html" rel="tag">multimedia</a>, <a href="/blog/tag/flac.html" rel="tag">flac</a>, <a href="/blog/tag/ogg.html" rel="tag">ogg</a>, <a href="/blog/tag/cue.html" rel="tag">cue</a>
+                </div>
+
                 <div class="post">
         <h3 id='install_debian'>install (debian):</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo apt-get install cuetools shntool vorbis-tools
@@ -37,7 +41,7 @@
 <p>and convert splited <strong>.flac</strong> to <strong>.ogg</strong></p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>find . -name <span class='s1'>&#39;split-track*.flac&#39;</span> -exec oggenc -q9 <span class='o'>{}</span> <span class='se'>\;</span>
 </code></pre></div>
-            </div>
+                </div>
             </article>
 
         </section>

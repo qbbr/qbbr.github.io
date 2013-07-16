@@ -22,6 +22,10 @@
                 <h2><a href="/blog/anti-brute-force-delay-for-ssh-server.html">anti brute-force delay for ssh server</a></h2>
                 <time datetime="2011-09-21">21/09/2011</time>
 
+                <div class="tags">
+                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/iptables.html" rel="tag">iptables</a>, <a href="/blog/tag/ssh.html" rel="tag">ssh</a>
+                </div>
+
                 <div class="post">
         <h3 id='configure'>configure:</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo iptables -A INPUT -p tcp --dport 22 -m recent --rcheck --seconds 60 --hitcount 2 --name SSH -j LOG --log-prefix <span class='s2'>&quot;SH &quot;</span>
@@ -29,7 +33,7 @@
 <span class='nv'>$ </span>sudo iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH -j ACCEPT
 </code></pre></div>
 <p>2 try, 60 sec delay</p>
-            </div>
+                </div>
             </article>
 
         </section>
