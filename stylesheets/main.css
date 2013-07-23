@@ -208,17 +208,33 @@ section.blog-post div.post a {
 
 /* animation */
 
-@-webkit-keyframes shadow
-{
+@-webkit-keyframes shadow {
   from {
-    text-shadow: 0 0 0 #224488;
+    text-shadow: 0 0 0 #555;
   }
   to {
-    text-shadow: 0 0 10px #224488;
+    text-shadow: 0 0 10px #555;
+  }
+}
+
+@-webkit-keyframes animate {
+  from {
+    -webkit-transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(1.1);
   }
 }
 
 a:hover:before,
 a:hover:after {
   -webkit-animation: shadow 1s infinite alternate;
+}
+
+a {
+  display: inline-block;
+}
+
+a:hover {
+  -webkit-animation: shadow,animate 1s infinite alternate;
 }
