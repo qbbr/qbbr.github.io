@@ -182,26 +182,43 @@ section.blog-post div.post a {
 }
 
 .set-1 {
-    font-size: 100%;
-    color: #999;
+  font-size: 100%;
+  color: #999;
 }
 
 .set-2 {
-    font-size: 120%;
-    color: #888;
+  font-size: 120%;
+  color: #888;
 }
 
 .set-3 {
-    font-size: 140%;
-    color: #777;
+  font-size: 140%;
+  color: #777;
 }
 
 .set-4 {
-    font-size: 160%;
-    color: #666;
+  font-size: 160%;
+  color: #666;
 }
 
 .set-5 {
-    font-size: 180%;
-    color: #555;
+  font-size: 180%;
+  color: #555;
+}
+
+/* animation */
+
+@-webkit-keyframes shadow
+{
+  from {
+    text-shadow: 0 0 0 #224488;
+  }
+  to {
+    text-shadow: 0 0 10px #224488;
+  }
+}
+
+a:hover:before,
+a:hover:after {
+  -webkit-animation: shadow 1s infinite alternate;
 }
