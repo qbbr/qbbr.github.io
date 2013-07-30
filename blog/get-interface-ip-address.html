@@ -32,6 +32,9 @@
 <p>or</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>/sbin/ifconfig eth0 | grep <span class='s1'>&#39;inet addr:&#39;</span> | cut -d: -f2 | awk <span class='s1'>&#39;{ print $1}&#39;</span>
 </code></pre></div>
+<p>for ipv6:</p>
+<div class='highlight'><pre><code class='bash'>ip -o -6 addr list eth0 | awk <span class='s1'>&#39;{ print $4 }&#39;</span> | head -n 1 | cut -d <span class='s1'>&#39;/&#39;</span> -f 1
+</code></pre></div>
 <p>where <strong>eth0</strong> - interface</p>
                 </div>
             </article>
