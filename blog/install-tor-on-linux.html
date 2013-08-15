@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>qbbr.github.io / install tor on linux</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article>
+                <h2><a href="/blog/install-tor-on-linux.html">install tor on linux</a></h2>
+                <time datetime="2013-08-15">15/08/2013</time>
+
+                <div class="tags">
+                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/tor.html" rel="tag">tor</a>
+                </div>
+
+                <div class="post">
+        <h3 id='install_tor'>install tor</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install tor
+</code></pre></div>
+<h3 id='install_caching_web_proxy'>install caching web proxy</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install polipo
+</code></pre></div>
+<h3 id='configure'>configure</h3>
+
+<p>edit config <code>/etc/polipo/config</code></p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>proxyAddress</span> <span class='o'>=</span> <span class='s2'>&quot;127.0.0.1&quot;</span>
+<span class='nv'>proxyPort</span> <span class='o'>=</span> 8118
+<span class='nv'>allowedClients</span> <span class='o'>=</span> 127.0.0.1
+<span class='nv'>allowedPorts</span> <span class='o'>=</span> 1-65535
+<span class='nv'>proxyName</span> <span class='o'>=</span> <span class='s2'>&quot;localhost&quot;</span>
+<span class='nv'>cacheIsShared</span> <span class='o'>=</span> <span class='nb'>false</span>
+<span class='nv'>socksParentProxy</span> <span class='o'>=</span> <span class='s2'>&quot;localhost:9050&quot;</span>
+<span class='nv'>socksProxyType</span> <span class='o'>=</span> socks5
+<span class='nv'>chunkHighMark</span> <span class='o'>=</span> 67108864
+<span class='nv'>diskCacheRoot</span> <span class='o'>=</span> <span class='s2'>&quot;&quot;</span>
+<span class='nv'>localDocumentRoot</span> <span class='o'>=</span> <span class='s2'>&quot;&quot;</span>
+<span class='nv'>disableLocalInterface</span> <span class='o'>=</span> <span class='nb'>true</span>
+<span class='nv'>disableConfiguration</span> <span class='o'>=</span> <span class='nb'>true</span>
+<span class='nv'>dnsUseGethostbyname</span> <span class='o'>=</span> yes
+<span class='nv'>disableVia</span> <span class='o'>=</span> <span class='nb'>true</span>
+<span class='nv'>censoredHeaders</span> <span class='o'>=</span> from,accept-language,x-pad,link
+<span class='nv'>censorReferer</span> <span class='o'>=</span> maybe
+<span class='nv'>maxConnectionAge</span> <span class='o'>=</span> 5m
+<span class='nv'>maxConnectionRequests</span> <span class='o'>=</span> 120
+<span class='nv'>serverMaxSlots</span> <span class='o'>=</span> 8
+<span class='nv'>serverSlots</span> <span class='o'>=</span> 2
+<span class='nv'>tunnelAllowedPorts</span> <span class='o'>=</span> 1-65535
+</code></pre></div>
+<p>restart daemon</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo /etc/init.d/polipo restart
+</code></pre></div>
+<h3 id='using'>using</h3>
+
+<p>set proxy <code>127.0.0.1:8118</code> in your browser or using <code>iceweasel-torbutton</code></p>
+
+<p><a href='https://check.torproject.org/'>tor checker</a></p>
+                </div>
+            </article>
+
+        </section>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'qbbr'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-42421652-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <!--<img src="https://cruel-carlota.pagodabox.com/d1311c411b7965c7b6cda26d772bd34d" alt="githalytics.com alpha" title="githalytics.com">-->
+    </body>
+</html>
