@@ -23,16 +23,25 @@
                 <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
             </header>
 
-            <article>
-                <h2><a href="/blog/set-up-wifi-access-point-on-linux.html">set up wifi access point on linux</a></h2>
-                <time datetime="2012-01-18">18/01/2012</time>
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/set-up-wifi-access-point-on-linux.html">
+                        <span itemprop="name">set up wifi access point on linux</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2012-01-18" datetime="2012-01-18">18/01/2012</time>
 
                 <div class="tags">
-                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/network.html" rel="tag">network</a>, <a href="/blog/tag/wireless.html" rel="tag">wireless</a>, <a href="/blog/tag/iptables.html" rel="tag">iptables</a>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/network.html" rel="tag">network</a>, <a href="/blog/tag/wireless.html" rel="tag">wireless</a>, <a href="/blog/tag/iptables.html" rel="tag">iptables</a></span>
                 </div>
 
-                <div class="post">
-        <h3 id='1_configure_wireless_adapter'>1) configure wireless adapter</h3>
+                <div>
+                    Author: <a href="https://plus.google.com/105554940339555472321" rel="author">qbbr</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<h3 id='1_configure_wireless_adapter'>1) configure wireless adapter</h3>
 
 <p>add to <code>/etc/network/interfaces</code>:</p>
 <div class='highlight'><pre><code class='bash'>auto wlan0

@@ -23,16 +23,25 @@
                 <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
             </header>
 
-            <article>
-                <h2><a href="/blog/fstab-mount-by-uuid.html">fstab mount by UUID (Universally Unique IDentifier)</a></h2>
-                <time datetime="2011-09-26">26/09/2011</time>
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/fstab-mount-by-uuid.html">
+                        <span itemprop="name">fstab mount by UUID (Universally Unique IDentifier)</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2011-09-26" datetime="2011-09-26">26/09/2011</time>
 
                 <div class="tags">
-                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/mount.html" rel="tag">mount</a>, <a href="/blog/tag/uuid.html" rel="tag">uuid</a>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/mount.html" rel="tag">mount</a>, <a href="/blog/tag/uuid.html" rel="tag">uuid</a></span>
                 </div>
 
-                <div class="post">
-        <p>get uuid for all device:</p>
+                <div>
+                    Author: <a href="https://plus.google.com/105554940339555472321" rel="author">qbbr</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<p>get uuid for all device:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>ls -l /dev/disk/by-uuid/
 </code></pre></div>
 <p>result:</p>

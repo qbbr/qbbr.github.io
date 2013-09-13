@@ -23,16 +23,25 @@
                 <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
             </header>
 
-            <article>
-                <h2><a href="/blog/add-ubuntu-ppa-repositories-in-debian.html">add ubuntu ppa repositories in debian</a></h2>
-                <time datetime="2011-09-27">27/09/2011</time>
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/add-ubuntu-ppa-repositories-in-debian.html">
+                        <span itemprop="name">add ubuntu ppa repositories in debian</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2011-09-27" datetime="2011-09-27">27/09/2011</time>
 
                 <div class="tags">
-                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/ppa.html" rel="tag">ppa</a>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/ppa.html" rel="tag">ppa</a></span>
                 </div>
 
-                <div class="post">
-        <h3 id='install'>install:</h3>
+                <div>
+                    Author: <a href="https://plus.google.com/105554940339555472321" rel="author">qbbr</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<h3 id='install'>install:</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wget https://raw.github.com/qbbr/debian/master/home/sokolov/scrpts/add-apt-repository
 <span class='nv'>$ </span>chmod +x add-apt-repository
 <span class='nv'>$ </span>sudo mv add-apt-repository /usr/sbin/

@@ -23,16 +23,25 @@
                 <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
             </header>
 
-            <article>
-                <h2><a href="/blog/using-less-css-in-symfony2.html">using LESS CSS in symfony2</a></h2>
-                <time datetime="2011-09-23">23/09/2011</time>
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/using-less-css-in-symfony2.html">
+                        <span itemprop="name">using LESS CSS in symfony2</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2011-09-23" datetime="2011-09-23">23/09/2011</time>
 
                 <div class="tags">
-                    Tags: <a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/php.html" rel="tag">php</a>, <a href="/blog/tag/symfony2.html" rel="tag">symfony2</a>, <a href="/blog/tag/less.html" rel="tag">less</a>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/php.html" rel="tag">php</a>, <a href="/blog/tag/symfony2.html" rel="tag">symfony2</a>, <a href="/blog/tag/less.html" rel="tag">less</a></span>
                 </div>
 
-                <div class="post">
-        <h3 id='install_nodejs__npm_required'>install (node.js + npm required):</h3>
+                <div>
+                    Author: <a href="https://plus.google.com/105554940339555472321" rel="author">qbbr</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<h3 id='install_nodejs__npm_required'>install (node.js + npm required):</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo npm install -g less
 </code></pre></div>
 <h3 id='configure'>configure:</h3>
