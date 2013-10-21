@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        <meta name="robots" content="index,follow">
+        <meta name="author" content="Sokolov Innokenty">
+        <meta name="generator" content="jekyll">
+        <meta name="keywords" content="php, symfony2, twig">
+        <meta name="description" content="personal blog about linux (debian)">
+        <title>qbbr.github.io / symfony2 set default number_format in twig</title>
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr.github<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/symfony2-set-default-number_format-in-twig.html">
+                        <span itemprop="name">symfony2 set default number_format in twig</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2013-10-21" datetime="2013-10-21">21/10/2013</time>
+
+                <div class="tags">
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/php.html" rel="tag">php</a>, <a href="/blog/tag/symfony2.html" rel="tag">symfony2</a>, <a href="/blog/tag/twig.html" rel="tag">twig</a></span>
+                </div>
+
+                <div>
+                    Author: <a href="https://plus.google.com/105554940339555472321" rel="author">qbbr</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<p>1) <a href='/blog/symfony2-create-kernel-event-listener.html'>create kernel event listener</a></p>
+
+<p>2) modify onKernelRequest:</p>
+<div class='highlight'><pre><code class='php'><span class='cp'>&lt;?php</span>
+
+<span class='k'>namespace</span> <span class='nx'>Acme\DemoBundle\EventListener</span><span class='p'>;</span>
+
+<span class='k'>use</span> <span class='nx'>Symfony\Component\DependencyInjection\ContainerInterface</span><span class='p'>;</span>
+<span class='k'>use</span> <span class='nx'>Symfony\Component\HttpKernel\Event\GetResponseEvent</span><span class='p'>;</span>
+
+<span class='k'>class</span> <span class='nc'>AcmeKernelListener</span>
+<span class='p'>{</span>
+    <span class='k'>protected</span> <span class='nv'>$container</span><span class='p'>;</span>
+
+    <span class='k'>public</span> <span class='k'>function</span> <span class='nf'>__construct</span><span class='p'>(</span><span class='nx'>ContainerInterface</span> <span class='nv'>$container</span><span class='p'>)</span>
+    <span class='p'>{</span>
+        <span class='nv'>$this</span><span class='o'>-&gt;</span><span class='na'>container</span> <span class='o'>=</span> <span class='nv'>$container</span><span class='p'>;</span>
+    <span class='p'>}</span>
+
+    <span class='k'>public</span> <span class='k'>function</span> <span class='nf'>onKernelRequest</span><span class='p'>(</span><span class='nx'>GetResponseEvent</span> <span class='nv'>$event</span><span class='p'>)</span>
+    <span class='p'>{</span>
+        <span class='nv'>$this</span><span class='o'>-&gt;</span><span class='na'>container</span><span class='o'>-&gt;</span><span class='na'>get</span><span class='p'>(</span><span class='s1'>&#39;twig&#39;</span><span class='p'>)</span><span class='o'>-&gt;</span><span class='na'>getExtension</span><span class='p'>(</span><span class='s1'>&#39;core&#39;</span><span class='p'>)</span><span class='o'>-&gt;</span><span class='na'>setNumberFormat</span><span class='p'>(</span><span class='mi'>2</span><span class='p'>,</span> <span class='s1'>&#39;.&#39;</span><span class='p'>,</span> <span class='s1'>&#39;&#39;</span><span class='p'>);</span>
+    <span class='p'>}</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>3) using <a href='http://twig.sensiolabs.org/doc/filters/number_format.html'>number_format</a> in twig</p>
+                </div>
+            </article>
+
+        </section>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'qbbr'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="/javascripts/scale.fix.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-42421652-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <!--<img src="https://cruel-carlota.pagodabox.com/d1311c411b7965c7b6cda26d772bd34d" alt="githalytics.com alpha" title="githalytics.com">-->
+    </body>
+</html>
