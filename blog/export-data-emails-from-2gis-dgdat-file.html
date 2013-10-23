@@ -7,9 +7,9 @@
         <meta name="robots" content="index,follow">
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
-        <meta name="keywords" content="php, symfony2, twig">
+        <meta name="keywords" content="2gis, dgdat, xor, hacking">
         <meta name="description" content="personal blog about linux (debian)">
-        <title>qbbr.io / symfony2 set default number_format in twig</title>
+        <title>qbbr.io / export data (emails) from 2gis .dgdat file</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
         <!--[if lt IE 9]>
@@ -25,15 +25,15 @@
 
             <article itemscope itemtype="http://schema.org/Article">
                 <h2>
-                    <a href="/blog/symfony2-set-default-number_format-in-twig.html">
-                        <span itemprop="name">symfony2 set default number_format in twig</span>
+                    <a href="/blog/export-data-emails-from-2gis-dgdat-file.html">
+                        <span itemprop="name">export data (emails) from 2gis .dgdat file</span>
                     </a>
                 </h2>
 
-                <time itemprop="datePublished" content="2013-10-21" datetime="2013-10-21">21/10/2013</time>
+                <time itemprop="datePublished" content="2013-10-23" datetime="2013-10-23">23/10/2013</time>
 
                 <div class="tags">
-                    Tags: <span itemprop="keywords"><a href="/blog/tag/php.html" rel="tag">php</a>, <a href="/blog/tag/symfony2.html" rel="tag">symfony2</a>, <a href="/blog/tag/twig.html" rel="tag">twig</a></span>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/2gis.html" rel="tag">2gis</a>, <a href="/blog/tag/dgdat.html" rel="tag">dgdat</a>, <a href="/blog/tag/xor.html" rel="tag">xor</a>, <a href="/blog/tag/hacking.html" rel="tag">hacking</a></span>
                 </div>
 
                 <div>
@@ -42,32 +42,39 @@
 
                 <div class="post" itemprop="articleBody">
 
-<p>1) <a href="/blog/symfony2-create-kernel-event-listener.html">create kernel event listener</a></p>
+<h3 id="download_latest_2gis_db_for_ur_city">download latest 2gis db for ur city</h3>
 
-<p>2) modify onKernelRequest:</p>
-<div class='highlight'><pre><code class='php'><span class='cp'>&lt;?php</span>
+<ul>
+<li>from web <a href="http://2gis.ru/how-get/linux/">site</a></li>
 
-<span class='k'>namespace</span> <span class='nx'>Acme\DemoBundle\EventListener</span><span class='p'>;</span>
+<li>or use u local db (path/to/2gis/3.0/Data_Novosibirsk.dgdat)</li>
+</ul>
 
-<span class='k'>use</span> <span class='nx'>Symfony\Component\DependencyInjection\ContainerInterface</span><span class='p'>;</span>
-<span class='k'>use</span> <span class='nx'>Symfony\Component\HttpKernel\Event\GetResponseEvent</span><span class='p'>;</span>
-
-<span class='k'>class</span> <span class='nc'>AcmeKernelListener</span>
-<span class='p'>{</span>
-    <span class='k'>protected</span> <span class='nv'>$container</span><span class='p'>;</span>
-
-    <span class='k'>public</span> <span class='k'>function</span> <span class='nf'>__construct</span><span class='p'>(</span><span class='nx'>ContainerInterface</span> <span class='nv'>$container</span><span class='p'>)</span>
-    <span class='p'>{</span>
-        <span class='nv'>$this</span><span class='o'>-&gt;</span><span class='na'>container</span> <span class='o'>=</span> <span class='nv'>$container</span><span class='p'>;</span>
-    <span class='p'>}</span>
-
-    <span class='k'>public</span> <span class='k'>function</span> <span class='nf'>onKernelRequest</span><span class='p'>(</span><span class='nx'>GetResponseEvent</span> <span class='nv'>$event</span><span class='p'>)</span>
-    <span class='p'>{</span>
-        <span class='nv'>$this</span><span class='o'>-&gt;</span><span class='na'>container</span><span class='o'>-&gt;</span><span class='na'>get</span><span class='p'>(</span><span class='s1'>&#39;twig&#39;</span><span class='p'>)</span><span class='o'>-&gt;</span><span class='na'>getExtension</span><span class='p'>(</span><span class='s1'>&#39;core&#39;</span><span class='p'>)</span><span class='o'>-&gt;</span><span class='na'>setNumberFormat</span><span class='p'>(</span><span class='mi'>2</span><span class='p'>,</span> <span class='s1'>&#39;.&#39;</span><span class='p'>,</span> <span class='s1'>&#39;&#39;</span><span class='p'>);</span>
-    <span class='p'>}</span>
-<span class='p'>}</span>
+<h3 id="for_decrypt_the_file_use_bitwise_exclusive_or_operation_xor">for decrypt the file, use bitwise Exclusive OR operation (xor)</h3>
+<div class='highlight'><pre><code class='c++'><span class='p'>[</span><span class='n'>file</span><span class='p'>]</span> <span class='o'>^</span> <span class='mh'>0xC5</span> <span class='c1'>// pattern 11000101</span>
 </code></pre></div>
-<p>3) using <a href="http://twig.sensiolabs.org/doc/filters/number_format.html">number_format</a> in twig</p>
+<ol>
+<li>open u .dgdat file in hexeditor</li>
+
+<li>xor file by pattern 11000101</li>
+
+<li>save as (file.dump)</li>
+</ol>
+
+<h3 id="after_decrypt_use_a_regular_expression_to_get_mail_addresses">after decrypt use a regular expression to get mail addresses</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>grep -E -o -a <span class='s2'>&quot;[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.(ru|ua|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)&quot;</span> file.dump &gt; emails.txt
+</code></pre></div>
+<h3 id="enjoy">enjoy</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wc -l emails.txt
+34864 emails.txt <span class='c'># (&gt;^_^)&gt; Prank Gone Right</span>
+</code></pre></div>
+<h3 id="hex_editors_for_linux">hex editors for linux</h3>
+
+<ul>
+<li><a href="http://www.wxhexeditor.org/">wxHexEditor</a></li>
+
+<li><a href="http://home.gna.org/bless/">Bless</a></li>
+</ul>
 
                 </div>
             </article>
