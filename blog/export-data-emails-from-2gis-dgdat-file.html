@@ -7,9 +7,9 @@
         <meta name="robots" content="index,follow">
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
-        <meta name="keywords" content="linux, debian, multimedia, ape, ogg, cue">
+        <meta name="keywords" content="2gis, dgdat, xor, hacking">
         <meta name="description" content="personal blog about linux (debian)">
-        <title>qbbr.io / convert .ape to .ogg with split via .cue</title>
+        <title>qbbr.io / export data (emails) from 2gis .dgdat file</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
         <!--[if lt IE 9]>
@@ -25,15 +25,15 @@
 
             <article itemscope itemtype="http://schema.org/Article">
                 <h2>
-                    <a href="/blog/convert-ape-to-ogg-with-split-via-cue.html">
-                        <span itemprop="name">convert .ape to .ogg with split via .cue</span>
+                    <a href="/blog/export-data-emails-from-2gis-dgdat-file.html">
+                        <span itemprop="name">export data (emails) from 2gis .dgdat file</span>
                     </a>
                 </h2>
 
-                <time itemprop="datePublished" content="2011-09-21" datetime="2011-09-21">21/09/2011</time>
+                <time itemprop="datePublished" content="2013-10-23" datetime="2013-10-23">23/10/2013</time>
 
                 <div class="tags">
-                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/multimedia.html" rel="tag">multimedia</a>, <a href="/blog/tag/ape.html" rel="tag">ape</a>, <a href="/blog/tag/ogg.html" rel="tag">ogg</a>, <a href="/blog/tag/cue.html" rel="tag">cue</a></span>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/2gis.html" rel="tag">2gis</a>, <a href="/blog/tag/dgdat.html" rel="tag">dgdat</a>, <a href="/blog/tag/xor.html" rel="tag">xor</a>, <a href="/blog/tag/hacking.html" rel="tag">hacking</a></span>
                 </div>
 
                 <div>
@@ -41,15 +41,41 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-<h3 id='install_debian'>install (debian):</h3>
+<h3 id='download_latest_2gis_db_for_ur_city'>download latest 2gis db for ur city</h3>
 
-<p><a href='/blog/add-multimedia-repository-on-debian.html'>add multimedia repository</a></p>
-<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install shntool vorbis-tools monkeys-audio
+<ul>
+<li>from web <a href='http://2gis.ru/how-get/linux/'>site</a></li>
+
+<li>or use u local db (path/to/2gis/3.0/Data_Novosibirsk.dgdat)</li>
+</ul>
+
+<h3 id='for_decrypt_the_file_use_bitwise_exclusive_or_operation_xor'>for decrypt the file, use bitwise Exclusive OR operation (xor)</h3>
+<div class='highlight'><pre><code class='c++'><span class='p'>[</span><span class='n'>file</span><span class='p'>]</span> <span class='o'>^</span> <span class='mh'>0xC5</span> <span class='c1'>// pattern 11000101</span>
 </code></pre></div>
-<h3 id='using'>using:</h3>
-<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>mac file.ape image.wav -d
-<span class='nv'>$ </span>shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f file.cue -t %t image.wav
+<ol>
+<li>open u .dgdat file in hexeditor</li>
+
+<li>xor file by pattern 11000101</li>
+
+<li>save as (file.dump)</li>
+</ol>
+
+<h3 id='after_decrypt_use_a_regular_expression_to_get_mail_addresses'>after decrypt use a regular expression to get mail addresses</h3>
+
+<p><div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>grep -E -o -a <span class='s2'>&quot;[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.(ru|ua|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)&quot;</span> file.dump &gt; emails.txt
+</code></pre></div></p>
+
+<h3 id='enjoy'>enjoy</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wc -l emails.txt
+34864 emails.txt <span class='c'># (&gt;^_^)&gt; Prank Gone Right</span>
 </code></pre></div>
+<h3 id='hex_editors_for_linux'>hex editors for linux</h3>
+
+<ul>
+<li><a href='http://www.wxhexeditor.org/'>wxHexEditor</a></li>
+
+<li><a href='http://home.gna.org/bless/'>Bless</a></li>
+</ul>
                 </div>
             </article>
 

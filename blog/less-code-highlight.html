@@ -7,9 +7,9 @@
         <meta name="robots" content="index,follow">
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
-        <meta name="keywords" content="linux, debian, multimedia, ape, ogg, cue">
+        <meta name="keywords" content="linux, less">
         <meta name="description" content="personal blog about linux (debian)">
-        <title>qbbr.io / convert .ape to .ogg with split via .cue</title>
+        <title>qbbr.io / less code highlight</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
         <!--[if lt IE 9]>
@@ -25,15 +25,15 @@
 
             <article itemscope itemtype="http://schema.org/Article">
                 <h2>
-                    <a href="/blog/convert-ape-to-ogg-with-split-via-cue.html">
-                        <span itemprop="name">convert .ape to .ogg with split via .cue</span>
+                    <a href="/blog/less-code-highlight.html">
+                        <span itemprop="name">less code highlight</span>
                     </a>
                 </h2>
 
-                <time itemprop="datePublished" content="2011-09-21" datetime="2011-09-21">21/09/2011</time>
+                <time itemprop="datePublished" content="2013-11-05" datetime="2013-11-05">05/11/2013</time>
 
                 <div class="tags">
-                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/multimedia.html" rel="tag">multimedia</a>, <a href="/blog/tag/ape.html" rel="tag">ape</a>, <a href="/blog/tag/ogg.html" rel="tag">ogg</a>, <a href="/blog/tag/cue.html" rel="tag">cue</a></span>
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/less.html" rel="tag">less</a></span>
                 </div>
 
                 <div>
@@ -41,14 +41,14 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-<h3 id='install_debian'>install (debian):</h3>
-
-<p><a href='/blog/add-multimedia-repository-on-debian.html'>add multimedia repository</a></p>
-<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install shntool vorbis-tools monkeys-audio
+<h3 id='install'>install</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install <span class='nb'>source</span>-highlight
 </code></pre></div>
-<h3 id='using'>using:</h3>
-<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>mac file.ape image.wav -d
-<span class='nv'>$ </span>shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f file.cue -t %t image.wav
+<h3 id='configure'>configure</h3>
+
+<p>add to .bashrc:</p>
+<div class='highlight'><pre><code class='bash'><span class='nb'>export </span><span class='nv'>LESSOPEN</span><span class='o'>=</span><span class='s1'>&#39;| /usr/share/source-highlight/src-hilite-lesspipe.sh %s&#39;</span>
+<span class='nb'>export </span><span class='nv'>LESS</span><span class='o'>=</span><span class='s1'>&#39; -R &#39;</span>
 </code></pre></div>
                 </div>
             </article>

@@ -96,7 +96,7 @@ footer {
 /* blog */
 
 section.blog {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
   padding-bottom: 50px;
 }
@@ -176,7 +176,7 @@ section.blog-post div.post a {
 }
 
 #disqus_thread {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
   padding-bottom: 50px;
 }
