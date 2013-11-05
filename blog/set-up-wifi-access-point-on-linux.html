@@ -41,7 +41,8 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-<h3 id='1_configure_wireless_adapter'>1) configure wireless adapter</h3>
+
+<h3 id="1_configure_wireless_adapter">1) configure wireless adapter</h3>
 
 <p>add to <code>/etc/network/interfaces</code>:</p>
 <div class='highlight'><pre><code class='bash'>auto wlan0
@@ -51,9 +52,9 @@ iface wlan0 inet static
     netmask 255.255.255.0
     broadcast 192.168.13.255
 </code></pre></div>
-<h3 id='2_ap_daemon'>2) ap daemon</h3>
+<h3 id="2_ap_daemon">2) ap daemon</h3>
 
-<p>install <a href='http://hostap.epitest.fi/hostapd/'>hostapd</a>:</p>
+<p>install <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install hostapd
 </code></pre></div>
 <p>edit <code>/etc/hostapd/hostapd.conf</code>:</p>
@@ -80,7 +81,7 @@ iface wlan0 inet static
 <p>start daemon:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo /etc/init.d/hostapd start
 </code></pre></div>
-<h3 id='3_netfilter'>3) netfilter</h3>
+<h3 id="3_netfilter">3) netfilter</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>su
 <span class='nv'>$ </span><span class='nb'>echo </span>1 &gt; /proc/sys/net/ipv4/ip_forward
 <span class='nv'>$ </span>iptables -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
@@ -100,7 +101,7 @@ iface wlan0 inet static
 <p>add line to <code>/etc/network/if-pre-up.d/wifi</code>:</p>
 <div class='highlight'><pre><code class='bash'>/sbin/iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE
 </code></pre></div>
-<h3 id='4_dns__dhcp'>4) DNS &amp; DHCP</h3>
+<h3 id="4_dns__dhcp">4) DNS &amp; DHCP</h3>
 
 <p>install:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install dnsmasq
@@ -112,7 +113,8 @@ dhcp-range<span class='o'>=</span>192.168.13.10,192.168.13.50,24h
 <p>restart deamon:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo /etc/init.d/dnsmasq restart
 </code></pre></div>
-<h3 id='5_enjoy'>5) enjoy!</h3>
+<h3 id="5_enjoy">5) enjoy!</h3>
+
                 </div>
             </article>
 

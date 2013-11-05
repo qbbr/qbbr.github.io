@@ -41,12 +41,14 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-<h3 id='configure'>configure:</h3>
+
+<h3 id="configure">configure:</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo iptables -A INPUT -p tcp --dport 22 -m recent --rcheck --seconds 60 --hitcount 2 --name SSH -j LOG --log-prefix <span class='s2'>&quot;SH &quot;</span>
 <span class='nv'>$ </span>sudo iptables -A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 2 --name SSH -j DROP
 <span class='nv'>$ </span>sudo iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH -j ACCEPT
 </code></pre></div>
 <p>2 try, 60 sec delay</p>
+
                 </div>
             </article>
 
