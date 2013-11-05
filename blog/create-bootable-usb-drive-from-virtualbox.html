@@ -41,8 +41,7 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-
-<h3 id="configure">configure</h3>
+<h3 id='configure'>configure</h3>
 
 <p>add to <code>/etc/initramfs-tools/modules</code> in your virtual machine:</p>
 <div class='highlight'><pre><code class='bash'>usbcore
@@ -56,14 +55,13 @@ scsi_mod
 <p>update initrd:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo update-initramfs -u
 </code></pre></div>
-<h3 id="burn_to_usb">burn to usb</h3>
+<h3 id='burn_to_usb'>burn to usb</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>VBoxManage clonehd --format RAW you-virtualbox-linux-disc.vdi linux.img
 <span class='nv'>$ </span>sudo dd <span class='nv'>bs</span><span class='o'>=</span>4M <span class='k'>if</span><span class='o'>=</span>linux.img <span class='nv'>of</span><span class='o'>=</span>/dev/sdX
 </code></pre></div>
 <p>where <code>/dev/sdX</code> is your flash drive (do not write in partition <code>/dev/sdX1</code>)</p>
 
-<h3 id="thats_all_boot_from_usb_">thats all, boot from usb =)</h3>
-
+<h3 id='thats_all_boot_from_usb_'>thats all, boot from usb =)</h3>
                 </div>
             </article>
 

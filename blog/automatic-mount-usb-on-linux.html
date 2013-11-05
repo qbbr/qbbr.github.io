@@ -41,17 +41,16 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-
-<h3 id="install">install</h3>
+<h3 id='install'>install</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install usbmount
 </code></pre></div>
-<h3 id="configure">configure</h3>
+<h3 id='configure'>configure</h3>
 
 <p>edit <code>/etc/usbmount/usbmount.conf</code>:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>FILESYSTEMS</span><span class='o'>=</span><span class='s2'>&quot;vfat ext2 ext3 ext4 hfsplus ntfs&quot;</span>
 <span class='nv'>MOUNTOPTIONS</span><span class='o'>=</span><span class='s2'>&quot;noexec,nodev,noatime,nodiratime,defaults&quot;</span>
 </code></pre></div>
-<h3 id="connect_u_usb__profit">connect u usb &amp;&amp; PROFIT!</h3>
+<h3 id='connect_u_usb__profit'>connect u usb &amp;&amp; PROFIT!</h3>
 
 <p>umount:</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo umount /media/usbX
