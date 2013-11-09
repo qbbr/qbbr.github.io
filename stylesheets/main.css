@@ -68,6 +68,10 @@ section.index {
   text-align: right;
 }
 
+section.index h1 {
+  letter-spacing: 10px;
+}
+
 section.index ul {
   margin-top: 15px;
   padding-left: 0;
