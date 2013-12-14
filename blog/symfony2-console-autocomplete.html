@@ -41,14 +41,13 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-
 <h3 id="install">install:</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install bash-completion
 </code></pre></div><div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>wget https://raw.github.com/qbbr/symfony2-autocomplete/master/symfony2-autocomplete.bash
 <span class='nv'>$ </span>sudo mv symfony2-autocomplete.bash /etc/bash_completion.d/
 </code></pre></div>
 <p>add the following line to your ~/.bashrc:</p>
-<div class='highlight'><pre><code class='bash'><span class='k'>if</span> <span class='o'>[</span> -e ~/symfony2-autocomplete.bash <span class='o'>]</span>; <span class='k'>then</span>
+<div class='highlight'><pre><code class='bash'><span class='k'>if</span> <span class='o'>[</span> -e ~/symfony2-autocomplete.bash <span class='o'>]</span><span class='p'>;</span> <span class='k'>then</span>
 . ~/symfony2-autocomplete.bash
 <span class='k'>fi</span>
 </code></pre></div>
@@ -59,7 +58,6 @@
 
 <li><a href="https://github.com/qbbr/symfony2-autocomplete">github repo</a></li>
 </ul>
-
                 </div>
             </article>
 

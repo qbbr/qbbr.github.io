@@ -41,7 +41,6 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-
 <h3 id="install_debian">install (debian):</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install rungetty
 </code></pre></div>
@@ -52,7 +51,7 @@
 1:2345:respawn:/sbin/rungetty tty1 --autologin YOUR_USER
 </code></pre></div>
 <p>for startx on login, edit <code>~/.bash_profile</code> and at the bottom add:</p>
-<div class='highlight'><pre><code class='bash'><span class='k'>if</span> <span class='o'>[</span> -z <span class='s2'>&quot;$DISPLAY&quot;</span> <span class='o'>]</span> <span class='o'>&amp;&amp;</span> <span class='o'>[</span> <span class='k'>$(</span>tty<span class='k'>)</span> <span class='o'>=</span> /dev/tty1 <span class='o'>]</span>; <span class='k'>then</span>
+<div class='highlight'><pre><code class='bash'><span class='k'>if</span> <span class='o'>[</span> -z <span class='s2'>&quot;$DISPLAY&quot;</span> <span class='o'>]</span> <span class='o'>&amp;&amp;</span> <span class='o'>[</span> <span class='k'>$(</span>tty<span class='k'>)</span> <span class='o'>=</span> /dev/tty1 <span class='o'>]</span><span class='p'>;</span> <span class='k'>then</span>
 <span class='k'>	</span>startx
 <span class='k'>fi</span>
 </code></pre></div>

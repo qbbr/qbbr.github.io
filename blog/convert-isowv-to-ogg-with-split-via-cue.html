@@ -41,7 +41,6 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-
 <h3 id="install_debian">install (debian):</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install shntool vorbis-tools wavpack
 </code></pre></div>
@@ -60,8 +59,8 @@ wvunpack -cc <span class='nv'>$1</span> -o <span class='nv'>$TMP_DIR</span>/
 <span class='nb'>cd</span> <span class='nv'>$TMP_DIR</span>
 <span class='nv'>CUE</span><span class='o'>=</span><span class='sb'>`</span>find . -name <span class='s1'>&#39;*.cue&#39;</span><span class='sb'>`</span>
 <span class='nv'>WAV</span><span class='o'>=</span><span class='sb'>`</span>find . -name <span class='s1'>&#39;*.wav&#39;</span><span class='sb'>`</span>
-<span class='nv'>YEAR</span><span class='o'>=</span><span class='sb'>`</span>cat <span class='nv'>$CUE</span> | grep DATE | awk <span class='s1'>&#39;{ print $3 }&#39;</span><span class='sb'>`</span>
-<span class='nv'>ALBUM</span><span class='o'>=</span><span class='sb'>`</span>cat <span class='nv'>$CUE</span> | grep TITLE | head -n 1 | sed <span class='s1'>&#39;s/TITLE //&#39;</span> | sed  <span class='s1'>&#39;s/&quot;//g&#39;</span><span class='sb'>`</span>
+<span class='nv'>YEAR</span><span class='o'>=</span><span class='sb'>`</span>cat <span class='nv'>$CUE</span> <span class='p'>|</span> grep DATE <span class='p'>|</span> awk <span class='s1'>&#39;{ print $3 }&#39;</span><span class='sb'>`</span>
+<span class='nv'>ALBUM</span><span class='o'>=</span><span class='sb'>`</span>cat <span class='nv'>$CUE</span> <span class='p'>|</span> grep TITLE <span class='p'>|</span> head -n 1 <span class='p'>|</span> sed <span class='s1'>&#39;s/TITLE //&#39;</span> <span class='p'>|</span> sed  <span class='s1'>&#39;s/&quot;//g&#39;</span><span class='sb'>`</span>
 <span class='nb'>echo</span> <span class='nv'>$ALBUM</span>
 shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f <span class='nv'>$CUE</span> -t <span class='s2'>&quot;%n - %p - %a - $YEAR - %t&quot;</span> <span class='nv'>$WAV</span>
 rm -f <span class='nv'>$WAV</span>

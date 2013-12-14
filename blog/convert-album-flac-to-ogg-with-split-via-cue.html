@@ -41,14 +41,13 @@
                 </div>
 
                 <div class="post" itemprop="articleBody">
-
 <h3 id="install_debian">install (debian):</h3>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo apt-get install cuetools shntool vorbis-tools
 </code></pre></div>
 <h3 id="using">using:</h3>
 
 <p>split album <strong>.flac</strong> file into separate tracks:</p>
-<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>cuebreakpoints sample.cue | shnsplit -o flac sample.flac
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>cuebreakpoints sample.cue <span class='p'>|</span> shnsplit -o flac sample.flac
 </code></pre></div>
 <p>fill flac tags (if present):</p>
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>cuetag sample.cue split-track*.flac
