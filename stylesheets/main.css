@@ -30,6 +30,7 @@ a {
   text-decoration: none;
   border: 0;
   color: black;
+  display: inline-block;
 }
 
 a:hover {
@@ -56,9 +57,9 @@ a:after {
   content: " }";
 }
 
-/*body {
+body.index {
   background: url(/images/background.png) no-repeat;
-}*/
+}
 
 section.index {
   position: fixed;
@@ -230,16 +231,12 @@ section.blog-post div.post a {
   }
 }
 
-a:hover:before,
-a:hover:after {
+section.index a:hover:before,
+section.index a:hover:after {
   -webkit-animation: shadow 1s infinite alternate;
 }
 
-a {
-  display: inline-block;
-}
-
-a:hover {
+section.index a:hover {
   -webkit-animation: shadow,animate 1s infinite alternate;
 }
 
@@ -279,7 +276,9 @@ section.qbbr img {
 
 }
 
-.roll-link:hover {text-decoration:none;}
+.roll-link:hover {
+    text-decoration:none;
+}
 
 .roll-link span {
   display: inline-block;
@@ -301,13 +300,14 @@ section.qbbr img {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
+
 .roll-link:hover span {
   background: #224488;
 
-  -webkit-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
-  -moz-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
-  -ms-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
-  transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+  -webkit-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
+  -moz-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
+  -ms-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
+  transform: translate3d(0px, 0px, -30px) rotateX(90deg);
 }
 
 .roll-link span:after {
@@ -327,8 +327,8 @@ section.qbbr img {
   -ms-transform-origin: 50% 0%;
   transform-origin: 50% 0%;
 
-  -webkit-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
-  -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
-  -ms-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
-  transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+  -webkit-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
+  -moz-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
+  -ms-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
+  transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
 }
