@@ -8,7 +8,7 @@
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
         <meta name="keywords" content="php, symfony2">
-        <meta name="description" content="personal blog about linux (debian)">
+        <meta name="description" content="personal blog about linux (debian), hacking and programming">
         <title>qbbr.io / blog / symfony2 create kernel event listener</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
@@ -42,7 +42,40 @@
 
                 <div class="post" itemprop="articleBody">
 <p>src/Acme/DemoBundle/EventListener/AcmeKernelListener.php:</p>
-<div class='highlight'><pre><code class='php'><span class='cp'>&lt;?php</span>
+<table class='highlighttable'><tr><td class='linenos'><div class='linenodiv'><pre><code class='php'> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</code></pre></div></td><td class='code'><div class='highlight'><pre><span class='cp'>&lt;?php</span>
 
 <span class='k'>namespace</span> <span class='nx'>Acme\DemoBundle\EventListener</span><span class='p'>;</span>
 
@@ -76,16 +109,24 @@
         <span class='c1'>// u code</span>
     <span class='p'>}</span>
 <span class='p'>}</span>
-</code></pre></div>
+</pre></div>
+</td></tr></table>
 <p>app/config/config.yml:</p>
-<div class='highlight'><pre><code class='yaml'><span class='l-Scalar-Plain'>services</span><span class='p-Indicator'>:</span>
+<table class='highlighttable'><tr><td class='linenos'><div class='linenodiv'><pre><code class='yaml'>1
+2
+3
+4
+5
+6
+7</code></pre></div></td><td class='code'><div class='highlight'><pre><span class='l-Scalar-Plain'>services</span><span class='p-Indicator'>:</span>
     <span class='l-Scalar-Plain'>listener.requestresponse</span><span class='p-Indicator'>:</span>
         <span class='l-Scalar-Plain'>class</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>Acme\DemoBundle\EventListener\AcmeKernelListener</span>
         <span class='l-Scalar-Plain'>arguments</span><span class='p-Indicator'>:</span> <span class='p-Indicator'>[</span> <span class='err'>@</span><span class='nv'>service_container</span> <span class='p-Indicator'>]</span>
         <span class='l-Scalar-Plain'>tags</span><span class='p-Indicator'>:</span>
             <span class='p-Indicator'>-</span> <span class='p-Indicator'>{</span> <span class='nv'>name</span><span class='p-Indicator'>:</span> <span class='nv'>kernel.event_listener</span><span class='p-Indicator'>,</span> <span class='nv'>event</span><span class='p-Indicator'>:</span> <span class='nv'>kernel.request</span><span class='p-Indicator'>,</span> <span class='nv'>method</span><span class='p-Indicator'>:</span> <span class='nv'>onKernelRequest</span> <span class='p-Indicator'>}</span>
             <span class='p-Indicator'>-</span> <span class='p-Indicator'>{</span> <span class='nv'>name</span><span class='p-Indicator'>:</span> <span class='nv'>kernel.event_listener</span><span class='p-Indicator'>,</span> <span class='nv'>event</span><span class='p-Indicator'>:</span> <span class='nv'>kernel.response</span><span class='p-Indicator'>,</span> <span class='nv'>method</span><span class='p-Indicator'>:</span> <span class='nv'>onKernelResponse</span> <span class='p-Indicator'>}</span>
-</code></pre></div>
+</pre></div>
+</td></tr></table>
                 </div>
             </article>
 
@@ -105,7 +146,6 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
 
         <footer>
             <small>Hosted on GitHub Pages</small>

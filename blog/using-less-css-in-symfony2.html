@@ -8,7 +8,7 @@
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
         <meta name="keywords" content="linux, php, symfony2, less">
-        <meta name="description" content="personal blog about linux (debian)">
+        <meta name="description" content="personal blog about linux (debian), hacking and programming">
         <title>qbbr.io / blog / using LESS CSS in symfony2</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
@@ -47,7 +47,17 @@
 <h3 id="configure">configure:</h3>
 
 <p>add less filter to assetic configuration:</p>
-<div class='highlight'><pre><code class='yaml'><span class='c1'># app/config/config.yml</span>
+<table class='highlighttable'><tr><td class='linenos'><div class='linenodiv'><pre><code class='yaml'> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</code></pre></div></td><td class='code'><div class='highlight'><pre><span class='c1'># app/config/config.yml</span>
 <span class='c1'># ...</span>
 <span class='c1'># Assetic Configuration</span>
 <span class='l-Scalar-Plain'>assetic</span><span class='p-Indicator'>:</span>
@@ -58,17 +68,24 @@
         <span class='l-Scalar-Plain'>less</span><span class='p-Indicator'>:</span>
             <span class='l-Scalar-Plain'>node</span><span class='p-Indicator'>:</span> <span class='l-Scalar-Plain'>/usr/bin/node</span>
             <span class='l-Scalar-Plain'>node_paths</span><span class='p-Indicator'>:</span> <span class='p-Indicator'>[</span><span class='nv'>/usr/lib/node_modules/</span><span class='p-Indicator'>]</span>
-</code></pre></div>
+</pre></div>
+</td></tr></table>
 <h3 id="using">using:</h3>
 
 <p>twig:</p>
-<div class='highlight'><pre><code class='jinja'><span class='cp'>{%</span> <span class='k'>stylesheets</span> <span class='nv'>filter</span><span class='o'>=</span><span class='s1'>&#39;less&#39;</span>
+<table class='highlighttable'><tr><td class='linenos'><div class='linenodiv'><pre><code class='jinja'>1
+2
+3
+4
+5
+6</code></pre></div></td><td class='code'><div class='highlight'><pre><span class='cp'>{%</span> <span class='k'>stylesheets</span> <span class='nv'>filter</span><span class='o'>=</span><span class='s1'>&#39;less&#39;</span>
     <span class='s1'>&#39;@QcmsAdminBundle/Resources/public/less/layout.less&#39;</span>
     <span class='s1'>&#39;@QcmsAdminBundle/Resources/public/less/left-menu.less&#39;</span>
 <span class='cp'>%}</span><span class='x' />
 <span class='x'>    &lt;link rel=&quot;stylesheet&quot; href=&quot;</span><span class='cp'>{{</span><span class='o'>{{</span> <span class='nv'>asset_url</span> <span class='cp'>}}</span><span class='x'>}}&quot;&gt;</span>
 <span class='cp'>{%</span> <span class='k'>endstylesheets</span> <span class='cp'>%}</span><span class='x' />
-</code></pre></div>
+</pre></div>
+</td></tr></table>
                 </div>
             </article>
 
@@ -88,7 +105,6 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
 
         <footer>
             <small>Hosted on GitHub Pages</small>

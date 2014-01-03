@@ -8,7 +8,7 @@
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
         <meta name="keywords" content="linux, debian, multimedia, iso.wv, ogg, cue">
-        <meta name="description" content="personal blog about linux (debian)">
+        <meta name="description" content="personal blog about linux (debian), hacking and programming">
         <title>qbbr.io / blog / convert .iso.wv to .ogg with split via .cue</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
@@ -49,7 +49,24 @@
 <span class='nv'>$ </span>shnsplit -o <span class='s1'>&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f file.cue -t %t file.wav
 </code></pre></div>
 <p>convert <strong>.iso.wv</strong> to <strong>.ogg</strong> with auto rename <strong>.ogg</strong> files:</p>
-<div class='highlight'><pre><code class='bash'><span class='c'>#!/bin/sh</span>
+<table class='highlighttable'><tr><td class='linenos'><div class='linenodiv'><pre><code class='bash'> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</code></pre></div></td><td class='code'><div class='highlight'><pre><span class='c'>#!/bin/sh</span>
 <span class='c'># ./isowv2ogg</span>
 
 <span class='nv'>FILE</span><span class='o'>=</span><span class='nv'>$1</span>
@@ -67,7 +84,8 @@ rm -f <span class='nv'>$WAV</span>
 <span class='nb'>cd</span> ..
 mv <span class='nv'>$TMP_DIR</span> <span class='s2'>&quot;$YEAR-$ALBUM&quot;</span>
 <span class='nb'>echo</span> <span class='s1'>&#39;[DONE]&#39;</span>
-</code></pre></div>
+</pre></div>
+</td></tr></table>
 <p>script using:</p>
 <div class='highlight'><pre><code class='bash'>./isowv2ogg file.iso.wv
 </code></pre></div>
@@ -90,7 +108,6 @@ mv <span class='nv'>$TMP_DIR</span> <span class='s2'>&quot;$YEAR-$ALBUM&quot;</s
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
 
         <footer>
             <small>Hosted on GitHub Pages</small>
