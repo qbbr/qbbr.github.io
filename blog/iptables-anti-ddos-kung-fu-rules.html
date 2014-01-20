@@ -46,9 +46,16 @@
 <p>Дропаем нахрен весь ICMP echo:</p>
 <div class='highlight'><pre><code class='bash'>-A INPUT -p icmp -j DROP --icmp-type 8
 </code></pre></div>
+<h3 id="syn_flood_atack">SYN flood atack</h3>
+
+<p>SYN-флуд — одна из разновидностей сетевых атак типа отказ от обслуживания, которая заключается в отправке большого количества SYN-запросов (запросов на подключение по протоколу TCP) в достаточно короткий срок.</p>
+
+<p>Рабочий пример атаки:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo hping3 -i u1 -S -p 80 &lt;IP&gt;
+</code></pre></div>
 <h3 id="syn_flood_protection">SYN flood protection</h3>
 
-<p>SYN-флуд — одна из разновидностей сетевых атак типа отказ от обслуживания, которая заключается в отправке большого количества SYN-запросов (запросов на подключение по протоколу TCP) в достаточно короткий срок.<br />Ограничиваем плохих парней, пусть нервно курят.</p>
+<p>Ограничиваем плохих парней, пусть нервно курят.</p>
 <div class='highlight'><pre><code class='bash'><span class='c'># новая ветка syn_flood</span>
 -N syn_flood
 <span class='c'># блокируем на 60 сек плохих парней</span>
