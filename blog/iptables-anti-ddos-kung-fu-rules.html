@@ -51,12 +51,10 @@
 <p>SYN-флуд — одна из разновидностей сетевых атак типа отказ от обслуживания, которая заключается в отправке большого количества SYN-запросов (запросов на подключение по протоколу TCP) в достаточно короткий срок.<br />Ограничиваем плохих парней, пусть нервно курят.</p>
 <div class='highlight'><pre><code class='bash'><span class='c'># новая ветка syn_flood</span>
 -N syn_flood
-
 <span class='c'># блокируем на 60 сек плохих парней</span>
 -A INPUT -m recent --update --seconds 60 --name bad_guys --rsource -j DROP
 <span class='c'># tcp трафик через интерфейс eth0 отправляем на проверку SYN флуда (syn_flood)</span>
 -A INPUT -i eth0 -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j syn_flood
-
 <span class='c'># максимум 30 соединений в секунду, но не более 300 раз подряд</span>
 -A syn_flood -m limit --limit 30/sec --limit-burst 300 -j RETURN
 <span class='c'># логируем флуд</span>
