@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <!--<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5">-->
+        <meta name="robots" content="index,follow">
+        <meta name="author" content="Sokolov Innokenty">
+        <meta name="generator" content="jekyll">
+        <meta name="keywords" content="firefox, anonymous, security">
+        <meta name="description" content="personal blog about linux (debian), hacking and programming">
+        <title>qbbr.io / blog / ultimate firefox configuration</title>
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/ultimate-firefox-configuration.html">
+                        <span itemprop="name">ultimate firefox configuration</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2014-01-28" datetime="2014-01-28">28/01/2014</time>
+
+                <div class="tags">
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/firefox.html" rel="tag">firefox</a>, <a href="/blog/tag/anonymous.html" rel="tag">anonymous</a>, <a href="/blog/tag/security.html" rel="tag">security</a></span>
+                </div>
+
+                <div>
+                    Author: <a href="https://plus.google.com/117527695094688709244?rel=author" rel="author">Innokenty Sokolov</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<h3 id="plugins">plugins</h3>
+
+<ul>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/">Adblock Plus</a></li>
+
+<li><a href="http://noscript.net/">NoScript</a></li>
+
+<li><a href="https://www.eff.org/https-everywhere">HTTPS-Everywhere</a></li>
+
+<li><a href="https://www.ghostery.com/">Ghostery</a></li>
+
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/flashblock/">Flashblock</a></li>
+
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/betterprivacy/">Better Privacy</a></li>
+</ul>
+
+<h3 id="aboutconfig">about:config</h3>
+<div class='highlight'><pre><code class='bash'><span class='c'># private mode by default</span>
+browser.privatebrowsing.autostart<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># what? u crazy...</span>
+browser.send_pings<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># blank page on start</span>
+browser.startup.page<span class='p'>;</span>0
+<span class='c'># homepage is blank</span>
+browser.startup.homepage<span class='p'>;</span>about:blank
+<span class='c'># no page on newtab</span>
+browser.newtabpage.enabled<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># newtab page is blank</span>
+browser.newtab.url<span class='p'>;</span>about:blank
+<span class='c'># no tab animation</span>
+browser.tabs.animate<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># don&#39;t save thumbnails</span>
+browser.pagethumbnails.storage_version<span class='p'>;</span>0
+<span class='c'># no thumbnails on drag tab</span>
+nglayout.enable_drag_images<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># no smooth scroll</span>
+general.smoothScroll<span class='p'>;</span><span class='nb'>false</span>
+
+<span class='c'># disable auto update</span>
+app.update.enabled<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># disable search engine update</span>
+browser.search.update<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># default search engine</span>
+browser.search.defaultenginename<span class='p'>;</span>DuckDuckGo
+<span class='c'># override useragent</span>
+general.useragent.override<span class='p'>;</span>Mozilla/5.0 <span class='o'>(</span>Macintosh<span class='p'>;</span> Intel Mac OS X 10_9_0<span class='o'>)</span> AppleWebKit/537.36 <span class='o'>(</span>KHTML, like Gecko<span class='o'>)</span> Chrome/32.0.1664.3 Safari/537.36
+<span class='c'># disable geo location</span>
+geo.enabled<span class='p'>;</span><span class='nb'>false</span>
+
+<span class='c'># disable fucking zond</span>
+browser.safebrowsing.remoteLookups<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># wow, wow... zond...</span>
+browser.safebrowsing.malware.enabled<span class='p'>;</span><span class='nb'>false</span>
+
+<span class='c'># do not track me plz</span>
+privacy.donottrackheader.enabled<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># cleanup pass on close</span>
+privacy.clearOnShutdown.passwords<span class='p'>;</span><span class='nb'>true</span>
+
+<span class='c'># turn off js access to resize w</span>
+dom.disable_window_move_resize<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># f u dom storage</span>
+dom.storage.enabled<span class='p'>;</span><span class='nb'>false</span>
+
+<span class='c'># no history</span>
+browser.sessionhistory.max_total_viewers<span class='p'>;</span>0
+<span class='c'># max urls in address panel</span>
+browser.sessionhistory.max_entries<span class='p'>;</span>10
+<span class='c'># no offline cache</span>
+browser.cache.offline.enable<span class='p'>;</span><span class='nb'>false</span>
+browser.cache.offline.capacity<span class='p'>;</span>0
+<span class='c'># no cache on disk (if RAM &gt;= 4096Mb)</span>
+browser.cache.disk.enable<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># cache to mem</span>
+browser.cache.memory.enable<span class='p'>;</span><span class='nb'>true</span>
+
+<span class='c'># oh, fuck off websockets</span>
+network.websocket.enabled<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># warn me if external prot/url</span>
+network.protocol-handler.warn-external-default<span class='p'>;</span><span class='nb'>true</span>
+network.protocol-handler.warn-external.file<span class='p'>;</span><span class='nb'>true</span>
+network.protocol-handler.warn-external.mailto<span class='p'>;</span><span class='nb'>true</span>
+network.protocol-handler.warn-external.news<span class='p'>;</span><span class='nb'>true</span>
+network.protocol-handler.warn-external.nntp<span class='p'>;</span><span class='nb'>true</span>
+network.protocol-handler.warn-external.snews<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># don&#39;t send referrer in header</span>
+network.http.sendRefererHeader<span class='p'>;</span>0
+network.http.sendSecureXSiteReferrer<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># if use proxy, dns must be wrapped</span>
+network.proxy.socks_remote_dns<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># don&#39;t use prefetch url (rel=&quot;prefetch&quot;)</span>
+network.prefetch-next<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># enable pipelining (~+80% performans)</span>
+network.http.pipelining<span class='p'>;</span><span class='nb'>true</span>
+network.http.proxy.pipelining<span class='p'>;</span><span class='nb'>true</span>
+network.http.pipelining.maxrequests<span class='p'>;</span>32
+
+<span class='c'># no auto refresh page</span>
+accessibility.blockautorefresh<span class='p'>;</span><span class='nb'>true</span>
+
+<span class='c'># don&#39;t remember password for sites</span>
+signon.rememberSignons<span class='p'>;</span><span class='nb'>false</span>
+
+<span class='c'># disable default inspector if using firebug</span>
+devtools.inspector.enabled<span class='p'>;</span><span class='nb'>false</span>
+extensions.firebug.hideDefaultInspector<span class='p'>;</span><span class='nb'>true</span>
+
+<span class='c'># disable missing plugin notification</span>
+plugins.hide_infobar_for_missing_plugin<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># no scan plugins</span>
+plugin.scan.plid.all<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># start plugin after click</span>
+plugins.click_to_play<span class='p'>;</span><span class='nb'>true</span>
+</code></pre></div>
+                </div>
+            </article>
+
+        </section>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'qbbr'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        <!--<script src="/javascripts/scale.fix.js"></script>-->
+        <script>
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-42421652-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
+</html>
