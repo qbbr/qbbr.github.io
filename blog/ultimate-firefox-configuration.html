@@ -72,7 +72,7 @@ browser.newtabpage.enabled<span class='p'>;</span><span class='nb'>false</span>
 browser.newtab.url<span class='p'>;</span>about:blank
 <span class='c'># no tab animation</span>
 browser.tabs.animate<span class='p'>;</span><span class='nb'>false</span>
-<span class='c'># don&#39;t save thumbnails</span>
+<span class='c'># don`t save thumbnails</span>
 browser.pagethumbnails.storage_version<span class='p'>;</span>0
 <span class='c'># no thumbnails on drag tab</span>
 nglayout.enable_drag_images<span class='p'>;</span><span class='nb'>false</span>
@@ -99,6 +99,8 @@ browser.safebrowsing.malware.enabled<span class='p'>;</span><span class='nb'>fal
 privacy.donottrackheader.enabled<span class='p'>;</span><span class='nb'>true</span>
 <span class='c'># cleanup pass on close</span>
 privacy.clearOnShutdown.passwords<span class='p'>;</span><span class='nb'>true</span>
+<span class='c'># clear cookie on close</span>
+privacy.clearOnShutdown.cookies<span class='p'>;</span><span class='nb'>true</span>
 
 <span class='c'># turn off js access to resize w</span>
 dom.disable_window_move_resize<span class='p'>;</span><span class='nb'>true</span>
@@ -117,6 +119,16 @@ browser.cache.disk.enable<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># cache to mem</span>
 browser.cache.memory.enable<span class='p'>;</span><span class='nb'>true</span>
 
+<span class='c'># cookie only for current session</span>
+network.cookie.lifetimePolicy<span class='p'>;</span>2
+<span class='c'># cookie lifetime</span>
+network.cookie.lifetime.days<span class='p'>;</span>0
+<span class='c'># don`t save cookie on change ff version</span>
+network.cookie.prefsMigrated<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># for more secure cookie</span>
+network.cookie.cookieBehavior<span class='p'>;</span>3
+<span class='c'># 3rd party cookie only for current session</span>
+network.cookie.thirdparty.sessionOnly<span class='p'>;</span><span class='nb'>true</span>
 <span class='c'># oh, fuck off websockets</span>
 network.websocket.enabled<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># warn me if external prot/url</span>
@@ -126,12 +138,12 @@ network.protocol-handler.warn-external.mailto<span class='p'>;</span><span class
 network.protocol-handler.warn-external.news<span class='p'>;</span><span class='nb'>true</span>
 network.protocol-handler.warn-external.nntp<span class='p'>;</span><span class='nb'>true</span>
 network.protocol-handler.warn-external.snews<span class='p'>;</span><span class='nb'>true</span>
-<span class='c'># don&#39;t send referrer in header</span>
+<span class='c'># don`t send referrer in header</span>
 network.http.sendRefererHeader<span class='p'>;</span>0
 network.http.sendSecureXSiteReferrer<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># if use proxy, dns must be wrapped</span>
 network.proxy.socks_remote_dns<span class='p'>;</span><span class='nb'>true</span>
-<span class='c'># don&#39;t use prefetch url (rel=&quot;prefetch&quot;)</span>
+<span class='c'># don`t use prefetch url (rel=&quot;prefetch&quot;)</span>
 network.prefetch-next<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># enable pipelining (~+80% performans)</span>
 network.http.pipelining<span class='p'>;</span><span class='nb'>true</span>
@@ -141,8 +153,10 @@ network.http.pipelining.maxrequests<span class='p'>;</span>32
 <span class='c'># no auto refresh page</span>
 accessibility.blockautorefresh<span class='p'>;</span><span class='nb'>true</span>
 
-<span class='c'># don&#39;t remember password for sites</span>
+<span class='c'># don`t remember password for sites</span>
 signon.rememberSignons<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># autofill</span>
+signon.autofillForms<span class='p'>;</span><span class='nb'>false</span>
 
 <span class='c'># disable default inspector if using firebug</span>
 devtools.inspector.enabled<span class='p'>;</span><span class='nb'>false</span>
