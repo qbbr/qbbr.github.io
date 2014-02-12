@@ -5,7 +5,7 @@ body {
   margin: 0;
 }
 body.index {
-  background: url(/images/background.png) no-repeat;
+  background: url(/images/background.png) fixed no-repeat 10% 50%;
 }
 header {
   line-height: normal;
@@ -160,8 +160,8 @@ section.qbbr {
   border: 1px solid #999;
   overflow: hidden;
   position: absolute;
-  left: 50px;
-  top: 50px;
+  right: 45px;
+  top: 45px;
 }
 section.qbbr img {
   width: 100px;
