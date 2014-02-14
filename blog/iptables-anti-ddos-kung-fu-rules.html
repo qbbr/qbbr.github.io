@@ -160,6 +160,7 @@ net.ipv4.conf.default.rp_filter<span class='o'>=</span>1
 <div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>netstat -n --tcp <span class='p'>|</span> grep SYN_RECV <span class='p'>|</span> wc -l
 <span class='nv'>$ </span>netstat -plan <span class='p'>|</span> grep :80 <span class='p'>|</span> awk <span class='s1'>&#39;{print $5}&#39;</span> <span class='p'>|</span> awk -F: <span class='s1'>&#39;{print $1}&#39;</span> <span class='p'>|</span> sort <span class='p'>|</span> uniq -c
 <span class='nv'>$ </span>netstat -ntu <span class='p'>|</span> awk <span class='s1'>&#39;{print $5}&#39;</span> <span class='p'>|</span> cut -d: -f1 <span class='p'>|</span> sort <span class='p'>|</span> uniq -c <span class='p'>|</span> sort -n
+<span class='nv'>$ </span>watch -n1 -d -t <span class='s1'>&#39;netstat -plan | grep :80 | awk &quot;{print \$5}&quot; | awk -F: &quot;{print \$1}&quot; | sort | uniq -c | sort -rg&#39;</span>
 </code></pre></div>
 <h3 id="enjoy">Enjoy!</h3>
                 </div>
