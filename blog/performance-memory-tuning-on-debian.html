@@ -82,13 +82,13 @@
 <span class='c'># дисковую запись самостоятельно начнёт обратную запись.</span>
 <span class='c'># Если dirty_bytes установлено, dirty_ratio становится функцией к этому значению</span>
 <span class='c'># (dirty_bytes / размер &quot;загрязняемой&quot; системной памяти).</span>
-<span class='nb'>echo </span>4194304 &gt; /proc/sys/vm/dirty_bytes
+vm.dirty_bytes <span class='o'>=</span> 4194304
 <span class='c'># Содержит количество &quot;грязной&quot; памяти при котором фоновый демон</span>
 <span class='c'># обратной записи pdflush начнёт обратную запись.</span>
 <span class='c'># Eсли dirty_background_bytes указан, то dirty_background_ratio становится</span>
 <span class='c'># функцией к этому значению т.е.</span>
 <span class='c'># (dirty_background_bytes / размер &quot;загрязняемой&quot; системной памяти).</span>
-<span class='nb'>echo </span>4194304 &gt; /proc/sys/vm/dirty_background_bytes
+vm.dirty_background_bytes <span class='o'>=</span> 4194304
 
 <span class='c'># Отвечает за стратегию overcommit.</span>
 <span class='c'># Параметр overcommit_memory указывает стратегию выделения памяти:</span>
@@ -108,19 +108,25 @@
 <span class='c'>#   выделять память только если она подкреплена реальными страницами</span>
 <span class='c'>#   в ОЗУ или свопе. При overcommit_ratio &gt; 100 мы получаем режим,</span>
 <span class='c'>#   схожий с OVERCOMMIT_GUESS, но с явно установленным «ограничителем».</span>
-<span class='nb'>echo </span>2 &gt; /proc/sys/vm/overcommit_memory
+vm.overcommit_memory <span class='o'>=</span> 2
 
 <span class='c'># Отвечает за уровень (в процентах) overcommit-а.</span>
-<span class='nb'>echo </span>80 &gt;  /proc/sys/vm/overcommit_ratio
+vm.overcommit_ratio <span class='o'>=</span> 80
 
 <span class='c'># Уровень выделяемой памяти под кэш. Значение по умолчанию: 100.</span>
 <span class='c'># vfs_cache_pressure = 1000 mb?</span>
-<span class='nb'>echo </span>50 &gt; /proc/sys/vm/vfs_cache_pressure
+vm.vfs_cache_pressure <span class='o'>=</span> 50
 
 <span class='c'># Значение (в целых процентах), это уровень свободной памяти,</span>
 <span class='c'># при котором система начнет активно сбрасывать память в своп.</span>
 <span class='c'># Значение по умолчанию: 60.</span>
-<span class='nb'>echo </span>30 &gt; /proc/sys/vm/swappiness
+vm.swappiness <span class='o'>=</span> 30
+
+<span class='c'># Сколько миллисекунд должно пройти, чтобы ядро посчитало незаписанные</span>
+<span class='c'># в ФС данные достаточно устаревшими для их записи</span>
+vm.dirty_expire_centisecs <span class='o'>=</span> 6000
+<span class='c'># Как часто ядро должно находить незаписанные в ФС данные и писать их</span>
+vm.dirty_writeback_centisecs <span class='o'>=</span> 2000
 </code></pre></div>
                 </div>
             </article>
