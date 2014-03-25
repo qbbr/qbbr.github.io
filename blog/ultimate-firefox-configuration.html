@@ -41,8 +41,8 @@
         <title>qbbr.io / blog / ultimate firefox configuration</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
-        <!--[if lt IE 9]>
-        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/fucking-ie.css">
         <![endif]-->
     </head>
     <body>
@@ -127,6 +127,19 @@ geo.enabled<span class='p'>;</span><span class='nb'>false</span>
 browser.safebrowsing.remoteLookups<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># wow, wow... zond...</span>
 browser.safebrowsing.malware.enabled<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># http://safebrowsing.clients.google.com/? O_o fuck u google!</span>
+<span class='c'># fucking_google -&gt; localhost</span>
+browser.safebrowsing.malware.reportURL<span class='p'>;</span>http://localhost/fucking_google/
+browser.safebrowsing.reportMalwareURL<span class='p'>;</span>http://localhost/fucking_google/
+browser.safebrowsing.reportMalwareErrorURL<span class='p'>;</span>http://localhost/fucking_google/
+browser.safebrowsing.keyURL<span class='p'>;</span>https://localhost//fucking_google/
+browser.safebrowsing.gethashURL<span class='p'>;</span>http://localhost/fucking_google/
+browser.safebrowsing.updateURL<span class='p'>;</span>http://localhost/fucking_google/
+browser.safebrowsing.reportURL<span class='p'>;</span>http://localhost/fucking_google/
+<span class='c'># reports to localhost</span>
+browser.safebrowsing.reportErrorURL<span class='p'>;</span>http://localhost/
+browser.safebrowsing.reportGenericURL<span class='p'>;</span>http://localhost/
+browser.safebrowsing.reportPhishURL<span class='p'>;</span>http://localhost/
 
 <span class='c'># do not track me plz</span>
 privacy.donottrackheader.enabled<span class='p'>;</span><span class='nb'>true</span>
@@ -137,7 +150,7 @@ privacy.clearOnShutdown.cookies<span class='p'>;</span><span class='nb'>true</sp
 
 <span class='c'># turn off js access to resize w</span>
 dom.disable_window_move_resize<span class='p'>;</span><span class='nb'>true</span>
-<span class='c'># f u dom storage</span>
+<span class='c'># f u dom storage ([INFO]: n for feedly.com)</span>
 dom.storage.enabled<span class='p'>;</span><span class='nb'>false</span>
 
 <span class='c'># no history</span>
@@ -180,8 +193,12 @@ network.proxy.socks_remote_dns<span class='p'>;</span><span class='nb'>true</spa
 network.prefetch-next<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># enable pipelining (~+80% performans)</span>
 network.http.pipelining<span class='p'>;</span><span class='nb'>true</span>
+network.http.pipelining.ssl<span class='p'>;</span><span class='nb'>true</span>
 network.http.proxy.pipelining<span class='p'>;</span><span class='nb'>true</span>
 network.http.pipelining.maxrequests<span class='p'>;</span>32
+
+<span class='c'># disable IPv6</span>
+network.dns.disableIPv6<span class='p'>;</span><span class='nb'>true</span>
 
 <span class='c'># no auto refresh page</span>
 accessibility.blockautorefresh<span class='p'>;</span><span class='nb'>true</span>
@@ -237,5 +254,24 @@ plugins.click_to_play<span class='p'>;</span><span class='nb'>true</span>
             ga('send', 'pageview');
         </script>
         
+
+        <!--noindex-->
+        <div class="fucking-ie">
+            <div class="content">
+                On your computer does not found Web Browser!<br>
+                Plz install it.
+                <br>
+                <a href="https://www.mozilla.org/firefox/" rel="nofollow">Firefox</a>
+                <br>
+                <a href="https://download-chromium.appspot.com/" rel="nofollow">Chromium</a>
+                <br>
+                <a href="https://www.google.ru/chrome/" rel="nofollow">Google Chrome</a>
+                <br>
+                <a href="https://www.apple.com/safari/" rel="nofollow">Safari</a>
+                <br>
+                <a href="https://www.opera.com/">Opera</a>
+            </div>
+        </div>
+        <!--/noindex-->
     </body>
 </html>

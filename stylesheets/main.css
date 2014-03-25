@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+.fucking-ie {
+  display: none;
+}
 body {
   font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -29,7 +32,6 @@ a {
   color: black;
   display: inline-block;
   /* roll link */
-
 }
 a:before,
 a:after {
@@ -161,6 +163,7 @@ section.qbbr {
   position: absolute;
   right: 45px;
   top: 45px;
+  overflow: hidden;
 }
 section.qbbr .avatar-wrapper {
   width: 100px;
