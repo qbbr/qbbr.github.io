@@ -105,6 +105,10 @@ browser.newtabpage.enabled<span class='p'>;</span><span class='nb'>false</span>
 browser.newtab.url<span class='p'>;</span>about:blank
 <span class='c'># no tab animation</span>
 browser.tabs.animate<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># no fullscreen animation</span>
+browser.fullscreen.animateUp<span class='p'>;</span>0
+<span class='c'># no animation in panorama mode</span>
+browser.panorama.animate_zoom<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># don`t save thumbnails</span>
 browser.pagethumbnails.storage_version<span class='p'>;</span>0
 <span class='c'># no thumbnails on drag tab</span>
@@ -177,7 +181,18 @@ network.cookie.cookieBehavior<span class='p'>;</span>3
 network.cookie.thirdparty.sessionOnly<span class='p'>;</span><span class='nb'>true</span>
 <span class='c'># oh, fuck off websockets</span>
 network.websocket.enabled<span class='p'>;</span><span class='nb'>false</span>
-<span class='c'># warn me if external prot/url</span>
+<span class='c'># disable expose protocol handler</span>
+network.protocol-handler.expose.mailto<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.expose.news<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.expose.nntp<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.expose.nntp<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># disable external protocol handler</span>
+network.protocol-handler.external-default<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.external.mailto<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.external.news<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.external.nntp<span class='p'>;</span><span class='nb'>false</span>
+network.protocol-handler.external.snews<span class='p'>;</span><span class='nb'>false</span>
+<span class='c'># warn me if external protocol has been used</span>
 network.protocol-handler.warn-external-default<span class='p'>;</span><span class='nb'>true</span>
 network.protocol-handler.warn-external.file<span class='p'>;</span><span class='nb'>true</span>
 network.protocol-handler.warn-external.mailto<span class='p'>;</span><span class='nb'>true</span>
@@ -218,6 +233,9 @@ plugins.hide_infobar_for_missing_plugin<span class='p'>;</span><span class='nb'>
 plugin.scan.plid.all<span class='p'>;</span><span class='nb'>false</span>
 <span class='c'># start plugin after click</span>
 plugins.click_to_play<span class='p'>;</span><span class='nb'>true</span>
+
+<span class='c'># always show http(s):// in urlbar</span>
+browser.urlbar.trimURLs<span class='p'>;</span><span class='nb'>false</span>
 </code></pre></div>
                 </div>
             </article>
