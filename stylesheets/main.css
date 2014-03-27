@@ -10,6 +10,9 @@ body {
 body.index {
   background: url(/images/background.png) fixed no-repeat 10% 50%;
 }
+:focus {
+  outline: 0;
+}
 header {
   line-height: normal;
   margin-bottom: 15px;
