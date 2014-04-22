@@ -36,9 +36,9 @@
         <meta name="robots" content="index,follow">
         <meta name="author" content="Sokolov Innokenty">
         <meta name="generator" content="jekyll">
-        <meta name="keywords" content="blog, linux, debian, hacking, programming">
+        <meta name="keywords" content="linux, bash, android, adb">
         <meta name="description" content="personal blog about linux (debian), hacking and programming">
-        <title>qbbr.io / blog / tag / clockworkmod</title>
+        <title>qbbr.io / blog / send sms via adb shell from bash</title>
         <link rel="stylesheet" href="/stylesheets/syntax.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
         <!--[if IE]>
@@ -47,27 +47,75 @@
     </head>
     <body>
 
-        <section class="blog blog-post tag">
+        <section class="blog blog-post">
             <header>
                 <h1><a href="/">qbbr<span>.io</span></a> / <a href="/blog/">blog</a></h1>
             </header>
 
-            <article>
-                <h2>clockworkmod</h2>
-                <ul>
-                
-                    <li><a href="/blog/install-clockworkmod-recovery-on-nexus-7-2013.html">install ClockWorkMod recovery on Nexus 7 (2013)</a> (16/01/2014)</li>
-                
-                    <li><a href="/blog/install-clockworkmod-recovery-on-zte-open.html">install ClockWorkMod recovery on ZTE Open</a> (14/12/2013)</li>
-                
-                </ul>
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/send-sms-via-adb-shell-from-bash.html">
+                        <span itemprop="name">send sms via adb shell from bash</span>
+                    </a>
+                </h2>
 
-                <h3>Tag cloud:</h3>
+                <time itemprop="datePublished" content="2014-04-22" datetime="2014-04-22">22/04/2014</time>
+
+                <div class="tags">
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/bash.html" rel="tag">bash</a>, <a href="/blog/tag/android.html" rel="tag">android</a>, <a href="/blog/tag/adb.html" rel="tag">adb</a></span>
+                </div>
+
                 <div>
-                    <a href="/blog/tag/1c-bitrix.html" class="set-1">1c-bitrix</a> <a href="/blog/tag/2gis.html" class="set-1">2gis</a> <a href="/blog/tag/adb.html" class="set-1">adb</a> <a href="/blog/tag/android.html" class="set-1">android</a> <a href="/blog/tag/anonymous.html" class="set-1">anonymous</a> <a href="/blog/tag/ape.html" class="set-1">ape</a> <a href="/blog/tag/bash.html" class="set-1">bash</a> <a href="/blog/tag/chromium.html" class="set-1">chromium</a> <a href="/blog/tag/clockworkmod.html" class="set-1">clockworkmod</a> <a href="/blog/tag/coffeescript.html" class="set-1">coffeescript</a> <a href="/blog/tag/cue.html" class="set-1">cue</a> <a href="/blog/tag/ddos.html" class="set-1">ddos</a> <a href="/blog/tag/debian.html" class="set-3">debian</a> <a href="/blog/tag/dgdat.html" class="set-1">dgdat</a> <a href="/blog/tag/firefox.html" class="set-1">firefox</a> <a href="/blog/tag/firefoxos.html" class="set-1">firefoxos</a> <a href="/blog/tag/flac.html" class="set-1">flac</a> <a href="/blog/tag/getty.html" class="set-1">getty</a> <a href="/blog/tag/git.html" class="set-1">git</a> <a href="/blog/tag/hacking.html" class="set-1">hacking</a> <a href="/blog/tag/ifconfig.html" class="set-1">ifconfig</a> <a href="/blog/tag/iptables.html" class="set-1">iptables</a> <a href="/blog/tag/iso.wv.html" class="set-1">iso.wv</a> <a href="/blog/tag/java.html" class="set-1">java</a> <a href="/blog/tag/less.html" class="set-1">less</a> <a href="/blog/tag/linux.html" class="set-5">linux</a> <a href="/blog/tag/md5.html" class="set-1">md5</a> <a href="/blog/tag/mount.html" class="set-1">mount</a> <a href="/blog/tag/multimedia.html" class="set-1">multimedia</a> <a href="/blog/tag/network.html" class="set-1">network</a> <a href="/blog/tag/nexus_7.html" class="set-1">nexus_7</a> <a href="/blog/tag/ogg.html" class="set-1">ogg</a> <a href="/blog/tag/openfire.html" class="set-1">openfire</a> <a href="/blog/tag/php.html" class="set-2">php</a> <a href="/blog/tag/ppa.html" class="set-1">ppa</a> <a href="/blog/tag/security.html" class="set-1">security</a> <a href="/blog/tag/ssh.html" class="set-1">ssh</a> <a href="/blog/tag/symfony2.html" class="set-1">symfony2</a> <a href="/blog/tag/sysctl.html" class="set-1">sysctl</a> <a href="/blog/tag/tor.html" class="set-1">tor</a> <a href="/blog/tag/tty.html" class="set-1">tty</a> <a href="/blog/tag/twig.html" class="set-1">twig</a> <a href="/blog/tag/usb.html" class="set-1">usb</a> <a href="/blog/tag/uuid.html" class="set-1">uuid</a> <a href="/blog/tag/virtualbox.html" class="set-1">virtualbox</a> <a href="/blog/tag/wireless.html" class="set-1">wireless</a> <a href="/blog/tag/xmpp.html" class="set-1">xmpp</a> <a href="/blog/tag/xor.html" class="set-1">xor</a> <a href="/blog/tag/zte_open.html" class="set-1">zte_open</a>
+                    Author: <a href="https://plus.google.com/117527695094688709244?rel=author" rel="author">Innokenty Sokolov</a>
+                </div>
+
+                <div>
+                    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2014-04-22-send-sms-via-adb-shell-from-bash.md">markdown</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<h3 id="install_adb">install adb</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo aptitude install android-tools-adb
+</code></pre></div>
+<h3 id="enable_usb_debugging_mode">enable USB debugging mode</h3>
+
+<p>Settings -&gt; Developer options -&gt; USB debugging (x)</p>
+
+<h3 id="sendsmssh">sendsms.sh</h3>
+<div class='highlight'><pre><code class='bash'><span class='c'>#!/bin/bash</span>
+<span class='c'># using: ./sendsms.sh 89999999999 &quot;Hello, im SMS from bash&quot;</span>
+<span class='nv'>ADB</span><span class='o'>=</span>/usr/bin/adb
+<span class='c'># KEYCODE_HOME</span>
+<span class='nv'>$ADB</span> shell input keyevent 3
+<span class='c'># open form and fill them</span>
+<span class='nv'>$ADB</span> shell am start -a android.intent.action.SENDTO -d sms:<span class='nv'>$1</span> --es sms_body <span class='s2'>&quot;$2&quot;</span> --ez exit_on_sent <span class='nb'>true</span>
+<span class='c'># sleep 1 sec</span>
+sleep 1
+<span class='c'># KEYCODE_DPAD_RIGHT</span>
+<span class='nv'>$ADB</span> shell input keyevent 22
+<span class='c'># KEYCODE_ENTER</span>
+<span class='nv'>$ADB</span> shell input keyevent 66
+</code></pre></div>
+<h3 id="enjoy">enjoy!</h3>
                 </div>
             </article>
+
         </section>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'qbbr'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
         <footer>
             <small>Hosted on GitHub Pages</small>
