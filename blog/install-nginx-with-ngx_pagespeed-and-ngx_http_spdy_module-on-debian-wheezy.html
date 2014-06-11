@@ -1,0 +1,194 @@
+<!--
+                    ;,_            ,
+                  _uP~"b          d"u,
+                 dP'   "b       ,d"  "o
+                d"    , `b     d"'    "b
+               l] [    " `l,  d"       lb
+               Ol ?     "  "b`"=uoqo,_  "l
+             ,dBb "b        "b,    `"~~TObup,_
+           ,d" (db.`"         ""     "tbc,_ `~"Yuu,_
+         .d" l`T'  '=                      ~     `""Yu,
+       ,dO` gP,                           `u,   b,_  "b7
+      d?' ,d" l,                           `"b,_ `~b  "1
+    ,8i' dl   `l                 ,ggQOV",dbgq,._"  `l  lb
+   .df' (O,    "             ,ggQY"~  , @@@@@d"bd~  `b "1
+  .df'   `"           -=@QgpOY""     (b  @@@@P db    `Lp"b,
+ .d(                  _               "ko "=d_,Q`  ,_  "  "b,
+ Ql         .         `"qo,._          "tQo,_`""bo ;tb,    `"b,
+(qQ         |L           ~"QQQgggc,_.,dObc,opooO  `"~~";.   __,7,
+`qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
+ `qp        `Q["tQQQo,_                          ,pl{QOP"'   7AFR`
+   `         `tb  '""tQQQg,_             p" "b   `       .;-.`Vl'
+              "Yb      `"tQOOo,__    _,edb    ` .__   /`/'|  |b;=;.__
+                            `"tQQQOOOOP""        `"\QV;qQObob"`-._`\_~~-._
+                                 """"    ._        /   | |oP"\_   ~\ ~\_  ~\
+                                         `~"\ic,qggddOOP"|  |  ~\   `\  ~-._
+                                           ,qP`"""|"   | `\ `;   `\   `\
+                                _        _,p"     |    |   `\`;    |    |
+                                 "boo,._dP"       `\_  `\    `\|   `\   ;
+                                  `"7tY~'            `\  `\    `|_   |
+                                                           `~\  |
+-->
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="index,follow">
+        <meta name="author" content="Sokolov Innokenty">
+        <meta name="generator" content="jekyll">
+        <meta name="keywords" content="linux, debian, nginx, spdy, pagespeed">
+        <meta name="description" content="personal blog about linux (debian), hacking and programming">
+        <title>qbbr.io / blog / install nginx with ngx_pagespeed and ngx_http_spdy_module on debian wheezy</title>
+        <link rel="stylesheet" href="/stylesheets/syntax.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/fucking-ie.css">
+        <![endif]-->
+    </head>
+    <body>
+
+        <section class="blog blog-post">
+            <header>
+                <h1><a href="/">qbbr<span>.io</span></a> / <a href="/blog/">blog</a></h1>
+            </header>
+
+            <article itemscope itemtype="http://schema.org/Article">
+                <h2>
+                    <a href="/blog/install-nginx-with-ngx_pagespeed-and-ngx_http_spdy_module-on-debian-wheezy.html">
+                        <span itemprop="name">install nginx with ngx_pagespeed and ngx_http_spdy_module on debian wheezy</span>
+                    </a>
+                </h2>
+
+                <time itemprop="datePublished" content="2014-06-11" datetime="2014-06-11">11/06/2014</time>
+
+                <div class="tags">
+                    Tags: <span itemprop="keywords"><a href="/blog/tag/linux.html" rel="tag">linux</a>, <a href="/blog/tag/debian.html" rel="tag">debian</a>, <a href="/blog/tag/nginx.html" rel="tag">nginx</a>, <a href="/blog/tag/spdy.html" rel="tag">spdy</a>, <a href="/blog/tag/pagespeed.html" rel="tag">pagespeed</a></span>
+                </div>
+
+                <div>
+                    Author: <a href="https://google.com/+InnokentySokolov/?rel=author" rel="author">Innokenty Sokolov</a>
+                </div>
+
+                <div>
+                    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2014-06-11-install-nginx-with-ngx_pagespeed-and-ngx_http_spdy_module-on-debian-wheezy.md">markdown</a>
+                </div>
+
+                <div class="post" itemprop="articleBody">
+<h3 id="install_dependencies">install dependencies</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>aptitude install build-essential zlib1g-dev libpcre3 libpcre3-dev openssl libssl-dev checkinstall
+</code></pre></div>
+<h3 id="download_nginx_and_ngx_pagespeed_sources">download nginx and ngx_pagespeed sources</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span><span class='nb'>export </span><span class='nv'>nginx_build_dir</span><span class='o'>=</span><span class='nv'>$HOME</span>/src
+<span class='nv'>$ </span>mkdir -p <span class='nv'>$nginx_build_dir</span> <span class='o'>&amp;&amp;</span> <span class='nb'>cd</span> <span class='nv'>$_</span>
+<span class='c'># dl ngx_pagespeed</span>
+<span class='nv'>$ </span>wget https://github.com/pagespeed/ngx_pagespeed/archive/v1.8.31.3-beta.zip -O ngx_pagespeed.zip <span class='o'>&amp;&amp;</span> unzip ngx_pagespeed.zip <span class='o'>&amp;&amp;</span> rm -f ngx_pagespeed.zip
+<span class='c'># dl psol</span>
+<span class='nv'>$ </span><span class='nb'>cd </span>ngx_pagespeed-*/ <span class='o'>&amp;&amp;</span> wget https://dl.google.com/dl/page-speed/psol/1.8.31.3.tar.gz -O psol.tar.gz <span class='o'>&amp;&amp;</span> tar -xzvf psol.tar.gz <span class='o'>&amp;&amp;</span> rm -f psol.tar.gz
+<span class='c'># dl nginx (http://nginx.org/en/download.html)</span>
+<span class='nv'>$ </span><span class='nb'>cd</span> <span class='nv'>$nginx_build_dir</span> <span class='o'>&amp;&amp;</span> wget http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz <span class='o'>&amp;&amp;</span> tar -xvzf nginx.tar.gz <span class='o'>&amp;&amp;</span> rm -f nginx.tar.gz
+</code></pre></div>
+<h3 id="change_server_name_if_n">change server name if n</h3>
+
+<p><code>src/http/ngx_http_header_filter_module.c</code>:</p>
+<div class='highlight'><pre><code class='diff'><span class='gd'>--- src/http/ngx_http_header_filter_module.c.orig       2014-06-11 13:29:45.940360480 +0900</span>
+<span class='gi'>+++ src/http/ngx_http_header_filter_module.c    2014-06-11 13:31:01.572361703 +0900</span>
+<span class='gu'>@@ -49,2 +49,2 @@</span>
+<span class='gd'>-static char ngx_http_server_string[] = &quot;Server: nginx&quot; CRLF;</span>
+<span class='gd'>-static char ngx_http_server_full_string[] = &quot;Server: &quot; NGINX_VER CRLF;</span>
+<span class='gi'>+static char ngx_http_server_string[] = &quot;Server: custom name&quot; CRLF;</span>
+<span class='gi'>+static char ngx_http_server_full_string[] = &quot;Server: custom name/1.1500.0&quot; CRLF;</span>
+</code></pre></div>
+<h3 id="build">build</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span><span class='nb'>cd</span> <span class='nv'>$nginx_build_dir</span>/nginx-*
+<span class='nv'>$ </span>./configure <span class='se'>\</span>
+	--prefix<span class='o'>=</span>/etc/nginx <span class='se'>\</span>
+	--conf-path<span class='o'>=</span>/etc/nginx/nginx.conf <span class='se'>\</span>
+	--sbin-path<span class='o'>=</span>/usr/sbin/nginx <span class='se'>\</span>
+	--pid-path<span class='o'>=</span>/var/run/nginx.pid <span class='se'>\</span>
+	--lock-path<span class='o'>=</span>/var/lock/nginx.lock <span class='se'>\</span>
+	--http-log-path<span class='o'>=</span>/var/log/nginx/access.log <span class='se'>\</span>
+	--error-log-path<span class='o'>=</span>/var/log/nginx/error.log <span class='se'>\</span>
+	--http-client-body-temp-path<span class='o'>=</span>/var/lib/nginx/body <span class='se'>\</span>
+	--http-fastcgi-temp-path<span class='o'>=</span>/var/lib/nginx/fastcgi <span class='se'>\</span>
+	--http-scgi-temp-path<span class='o'>=</span>/var/lib/nginx/scgi <span class='se'>\</span>
+	--http-uwsgi-temp-path<span class='o'>=</span>/var/lib/nginx/uwsgi <span class='se'>\</span>
+	--http-proxy-temp-path<span class='o'>=</span>/var/lib/nginx/proxy <span class='se'>\</span>
+	--with-http_ssl_module <span class='se'>\</span>
+	--with-http_spdy_module <span class='se'>\</span>
+	--with-http_realip_module <span class='se'>\</span>
+	--with-http_gzip_static_module <span class='se'>\</span>
+	--with-http_gunzip_module <span class='se'>\</span>
+	--with-http_stub_status_module <span class='se'>\</span>
+	--with-http_sub_module <span class='se'>\</span>
+	--with-http_secure_link_module <span class='se'>\</span>
+	--with-http_addition_module <span class='se'>\</span>
+	--with-http_random_index_module <span class='se'>\</span>
+	--add-module<span class='o'>=</span><span class='nv'>$nginx_build_dir</span>/ngx_pagespeed-*/
+<span class='nv'>$ </span>make
+<span class='nv'>$ </span>checkinstall
+<span class='nv'>$ </span>nginx –V
+</code></pre></div>
+<h3 id="install_init_script">install init script</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span><span class='nb'>cd</span> <span class='nv'>$nginx_build_dir</span>
+<span class='nv'>$ </span>wget http://http.us.debian.org/debian/pool/main/n/nginx/nginx-common_1.6.0-1_all.deb -O nginx-common.deb <span class='o'>&amp;&amp;</span> dpkg -x nginx-common.deb nginx-common <span class='o'>&amp;&amp;</span> cp nginx-common/etc/init.d/nginx . <span class='o'>&amp;&amp;</span> rm -rf nginx-common nginx-common.deb
+<span class='nv'>$ </span>cp nginx /etc/init.d/nginx
+</code></pre></div>
+<h3 id="use">use</h3>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>/etc/init.d/nginx start
+</code></pre></div>
+                </div>
+            </article>
+
+        </section>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'qbbr'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        <footer>
+            <small>Hosted on GitHub Pages</small>
+        </footer>
+
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-42421652-1', 'qbbr.io');
+            ga('send', 'pageview');
+        </script>
+        
+
+        <!--noindex-->
+        <div class="fucking-ie">
+            <div class="content">
+                On your computer does not found Web Browser!<br>
+                Plz install it.
+                <br>
+                <a href="https://www.mozilla.org/firefox/" rel="nofollow">Firefox</a>
+                <br>
+                <a href="https://download-chromium.appspot.com/" rel="nofollow">Chromium</a>
+                <br>
+                <a href="https://www.google.ru/chrome/" rel="nofollow">Google Chrome</a>
+                <br>
+                <a href="https://www.apple.com/safari/" rel="nofollow">Safari</a>
+                <br>
+                <a href="https://www.opera.com/">Opera</a>
+            </div>
+        </div>
+        <!--/noindex-->
+    </body>
+</html>
