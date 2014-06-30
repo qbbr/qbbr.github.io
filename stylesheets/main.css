@@ -19,6 +19,9 @@ h3 {
 h4 {
   font-size: 16px;
 }
+strong {
+  font-weight: bold;
+}
 header {
   line-height: normal;
   margin-bottom: 15px;
@@ -302,11 +305,13 @@ section.blog-post div.post pre {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  line-height: 1;
 }
 section.blog-post div.post pre code {
   background-color: transparent;
   border: none;
   padding: 0;
+  line-height: 1;
 }
 section.blog-post div.post a {
   border-bottom: 1px dotted #bbb;
