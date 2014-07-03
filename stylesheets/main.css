@@ -295,6 +295,7 @@ section.blog-post div.post code {
   border-radius: 3px;
 }
 section.blog-post div.post pre {
+  font-family: terminus, "Lucida Console", Monaco, monospace;
   margin: 1em 0;
   background-color: #eee;
   border: 1px dotted #bbb;
