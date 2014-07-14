@@ -160,13 +160,14 @@ section.index a:hover:after {
   animation: shadow 1s infinite alternate;
 }
 footer {
-  text-align: center;
   position: fixed;
   bottom: 0;
   right: 0;
 }
 footer small {
+  font: 13px Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-right: 5px;
+  color: #aaa;
 }
 /* avatar index page */
 section.qbbr {
@@ -350,6 +351,9 @@ table.highlighttable .linenos {
   width: 30px;
 }
 /* comments */
+a.dsq-brlink {
+  display: none;
+}
 #disqus_thread {
   max-width: 950px;
   margin: 0 auto;
