@@ -32,7 +32,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>qbbr.io</title>
+        <title>qbbr.io / blog / </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
@@ -45,23 +45,42 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/main.css">
-        
+        <link rel="stylesheet" href="/css/highlight.css">
     </head>
     <body>
         <header>
-            <h1><a href="/">qbbr<span>.io</span></a></h1>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
         </header>
 
         <main role="main">
             <!-- content base.html -->
-            <div class="index">
-                <h2><a href="/blog/">blog</a></h2>
-                <h2><a href="/about/">about</a></h2>
-                <br>
-                <h2><a href="https://github.com/qbbr" rel="external">#gthb</a></h2>
-                <h2><a href="https://twitter.com/qbbr" rel="external">#twttr</a></h2>
-                <h2><a href="https://t.me/imqbbr" rel="external">#tlgrm</a></h2>
-            </div>
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2011/09/21/git-color.html">
+                        <b>#</b> <span itemprop="name">git color</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2011-09-21" datetime="2011-09-21">21/09/2011</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="configure">configure:</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> config color.branch auto</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="fu">git</span> config color.diff auto</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="fu">git</span> config color.interactive auto</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="fu">git</span> config color.status auto</a></code></pre></div>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
             <!-- /content base.html -->
         </main>
 

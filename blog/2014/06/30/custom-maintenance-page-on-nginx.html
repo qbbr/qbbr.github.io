@@ -32,7 +32,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>qbbr.io</title>
+        <title>qbbr.io / blog / </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
@@ -45,23 +45,68 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/main.css">
-        
+        <link rel="stylesheet" href="/css/highlight.css">
     </head>
     <body>
         <header>
-            <h1><a href="/">qbbr<span>.io</span></a></h1>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
         </header>
 
         <main role="main">
             <!-- content base.html -->
-            <div class="index">
-                <h2><a href="/blog/">blog</a></h2>
-                <h2><a href="/about/">about</a></h2>
-                <br>
-                <h2><a href="https://github.com/qbbr" rel="external">#gthb</a></h2>
-                <h2><a href="https://twitter.com/qbbr" rel="external">#twttr</a></h2>
-                <h2><a href="https://t.me/imqbbr" rel="external">#tlgrm</a></h2>
-            </div>
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2014/06/30/custom-maintenance-page-on-nginx.html">
+                        <b>#</b> <span itemprop="name">custom maintenance page on nginx</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2014-06-30" datetime="2014-06-30">30/06/2014</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="configure">configure</h3>
+<p><strong>module <a href="http://nginx.org/ru/docs/http/ngx_http_geo_module.html">ngx_http_geo_module</a> can be installed!!!</strong></p>
+<pre class="nginx"><code>geo $maintenance {
+    default yes;
+    # ip white list
+    127.0.0.1 no;
+    192.168.100.0/24 no;
+}
+
+server {
+    # ...
+
+    location / {
+        if (-f /etc/nginx/maintenance.file) {
+            set $tmp clo;
+        }
+        if ($maintenance = yes) {
+            set $action &quot;${tmp}se&quot;;
+        }
+        if ($action = close) {
+            return 503;
+        }
+
+        # ...
+    }
+
+    error_page 503 /503.html;
+}</code></pre>
+<h3 id="use">use</h3>
+<p><code>touch /etc/nginx/maintenance.file</code> - close site<br />
+<code>rm /etc/nginx/maintenance.file</code> - open site</p>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
             <!-- /content base.html -->
         </main>
 

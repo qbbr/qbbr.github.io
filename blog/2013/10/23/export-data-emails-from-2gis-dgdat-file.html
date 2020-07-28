@@ -32,7 +32,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>qbbr.io</title>
+        <title>qbbr.io / blog / </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
@@ -45,23 +45,59 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/main.css">
-        
+        <link rel="stylesheet" href="/css/highlight.css">
     </head>
     <body>
         <header>
-            <h1><a href="/">qbbr<span>.io</span></a></h1>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
         </header>
 
         <main role="main">
             <!-- content base.html -->
-            <div class="index">
-                <h2><a href="/blog/">blog</a></h2>
-                <h2><a href="/about/">about</a></h2>
-                <br>
-                <h2><a href="https://github.com/qbbr" rel="external">#gthb</a></h2>
-                <h2><a href="https://twitter.com/qbbr" rel="external">#twttr</a></h2>
-                <h2><a href="https://t.me/imqbbr" rel="external">#tlgrm</a></h2>
-            </div>
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2013/10/23/export-data-emails-from-2gis-dgdat-file.html">
+                        <b>#</b> <span itemprop="name">export data emails from 2gis dgdat file</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2013-10-23" datetime="2013-10-23">23/10/2013</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="download-latest-2gis-db-for-ur-city">download latest 2gis db for ur city</h3>
+<ul>
+<li>from web <a href="http://2gis.ru/how-get/linux/">site</a></li>
+<li>or use u local db (path/to/2gis/3.0/Data_Novosibirsk.dgdat)</li>
+</ul>
+<h3 id="for-decrypt-the-file-use-bitwise-exclusive-or-operation-xor">for decrypt the file, use bitwise Exclusive OR operation (xor)</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1">[file] ^ <span class="bn">0xC5</span> <span class="co">// pattern 11000101</span></a></code></pre></div>
+<ol type="1">
+<li>open u .dgdat file in hexeditor</li>
+<li>xor file by pattern 11000101</li>
+<li>save as (file.dump)</li>
+</ol>
+<h3 id="after-decrypt-use-a-regular-expression-to-get-mail-addresses">after decrypt use a regular expression to get mail addresses</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">grep</span> -E -o -a <span class="st">&quot;[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.(ru|ua|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)&quot;</span> file.dump <span class="op">&gt;</span> emails.txt</a></code></pre></div>
+<h3 id="enjoy">enjoy</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="fu">wc</span> -l emails.txt</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="ex">34864</span> emails.txt <span class="co"># (&gt;^_^)&gt; Prank Gone Right</span></a></code></pre></div>
+<h3 id="hex-editors-for-linux">hex editors for linux</h3>
+<ul>
+<li><a href="http://www.wxhexeditor.org/">wxHexEditor</a></li>
+<li><a href="http://home.gna.org/bless/">Bless</a></li>
+</ul>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
             <!-- /content base.html -->
         </main>
 

@@ -32,7 +32,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>qbbr.io</title>
+        <title>qbbr.io / blog / </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
@@ -45,23 +45,53 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/main.css">
-        
+        <link rel="stylesheet" href="/css/highlight.css">
     </head>
     <body>
         <header>
-            <h1><a href="/">qbbr<span>.io</span></a></h1>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
         </header>
 
         <main role="main">
             <!-- content base.html -->
-            <div class="index">
-                <h2><a href="/blog/">blog</a></h2>
-                <h2><a href="/about/">about</a></h2>
-                <br>
-                <h2><a href="https://github.com/qbbr" rel="external">#gthb</a></h2>
-                <h2><a href="https://twitter.com/qbbr" rel="external">#twttr</a></h2>
-                <h2><a href="https://t.me/imqbbr" rel="external">#tlgrm</a></h2>
-            </div>
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2013/07/18/create-bootable-usb-drive-from-virtualbox.html">
+                        <b>#</b> <span itemprop="name">create bootable usb drive from virtualbox</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2013-07-18" datetime="2013-07-18">18/07/2013</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="configure">configure</h3>
+<p>add to <code>/etc/initramfs-tools/modules</code> in your virtual machine:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">usbcore</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="ex">sd_mod</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="ex">ehci_hcd</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="ex">uhci_hcd</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="ex">ohci_hcd</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="ex">usb_storage</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="ex">scsi_mod</span></a></code></pre></div>
+<p>update initrd:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">sudo</span> update-initramfs -u</a></code></pre></div>
+<h3 id="burn-to-usb">burn to usb</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">VBoxManage</span> clonehd --format RAW you-virtualbox-linux-disc.vdi linux.img</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="fu">sudo</span> dd bs=4M if=linux.img of=/dev/sdX</a></code></pre></div>
+<p>where <code>/dev/sdX</code> is your flash drive (do not write in partition <code>/dev/sdX1</code>)</p>
+<h3 id="thats-all-boot-from-usb">thats all, boot from usb =)</h3>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
             <!-- /content base.html -->
         </main>
 

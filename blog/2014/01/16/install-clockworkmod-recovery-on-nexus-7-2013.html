@@ -32,7 +32,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>qbbr.io</title>
+        <title>qbbr.io / blog / </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
@@ -45,23 +45,54 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/main.css">
-        
+        <link rel="stylesheet" href="/css/highlight.css">
     </head>
     <body>
         <header>
-            <h1><a href="/">qbbr<span>.io</span></a></h1>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
         </header>
 
         <main role="main">
             <!-- content base.html -->
-            <div class="index">
-                <h2><a href="/blog/">blog</a></h2>
-                <h2><a href="/about/">about</a></h2>
-                <br>
-                <h2><a href="https://github.com/qbbr" rel="external">#gthb</a></h2>
-                <h2><a href="https://twitter.com/qbbr" rel="external">#twttr</a></h2>
-                <h2><a href="https://t.me/imqbbr" rel="external">#tlgrm</a></h2>
-            </div>
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2014/01/16/install-clockworkmod-recovery-on-nexus-7-2013.html">
+                        <b>#</b> <span itemprop="name">install clockworkmod recovery on nexus 7 2013</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2014-01-16" datetime="2014-01-16">16/01/2014</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="install-fastboot-tool">install fastboot tool</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">sudo</span> apt-get install android-tools-fastboot</a></code></pre></div>
+<h3 id="unlock-the-bootloader">unlock the bootloader</h3>
+<p>Press volume down + power button to boot into bootloader mode<br />
+or:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="ex">adb</span> reboot bootloader</a></code></pre></div>
+<p>unlock (ALL DATA WILL BE REMOVED!):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="fu">sudo</span> fastboot oem unlock</a></code></pre></div>
+<h3 id="download-cwm-6.0.4.3">download CWM (6.0.4.3)</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="fu">wget</span> -O /tmp/clockworkmod.img https://www.dropbox.com/s/73llj8n6g2vat3o/recovery-clockwork-touch-6.0.4.3-flo.img</a></code></pre></div>
+<h3 id="install-cwm">install CWM</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="fu">sudo</span> fastboot flash recovery /tmp/clockworkmod.img</a></code></pre></div>
+<h3 id="fix-loop-loading-animations">fix loop loading animations</h3>
+<p>in bootloader mode:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="fu">sudo</span> fastboot format userdata</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="fu">sudo</span> fastboot format cache</a></code></pre></div>
+<h3 id="wow-wow-wow">wow, wow, wow =)</h3>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
             <!-- /content base.html -->
         </main>
 

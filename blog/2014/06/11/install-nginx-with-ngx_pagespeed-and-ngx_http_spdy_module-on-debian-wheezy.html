@@ -1,0 +1,151 @@
+<!--
+                    ;,_            ,
+                  _uP~"b          d"u,
+                 dP'   "b       ,d"  "o
+                d"    , `b     d"'    "b
+               l] [    " `l,  d"       lb
+               Ol ?     "  "b`"=uoqo,_  "l
+             ,dBb "b        "b,    `"~~TObup,_
+           ,d" (db.`"         ""     "tbc,_ `~"Yuu,_
+         .d" l`T'  '=                      ~     `""Yu,
+       ,dO` gP,                           `u,   b,_  "b7
+      d?' ,d" l,                           `"b,_ `~b  "1
+    ,8i' dl   `l                 ,ggQOV",dbgq,._"  `l  lb
+   .df' (O,    "             ,ggQY"~  , @@@@@d"bd~  `b "1
+  .df'   `"           -=@QgpOY""     (b  @@@@P db    `Lp"b,
+ .d(                  _               "ko "=d_,Q`  ,_  "  "b,
+ Ql         .         `"qo,._          "tQo,_`""bo ;tb,    `"b,
+(qQ         |L           ~"QQQgggc,_.,dObc,opooO  `"~~";.   __,7,
+`qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
+ `qp        `Q["tQQQo,_                          ,pl{QOP"'   7AFR`
+   `         `tb  '""tQQQg,_             p" "b   `       .;-.`Vl'
+              "Yb      `"tQOOo,__    _,edb    ` .__   /`/'|  |b;=;.__
+                            `"tQQQOOOOP""        `"\QV;qQObob"`-._`\_~~-._
+                                 """"    ._        /   | |oP"\_   ~\ ~\_  ~\
+                                         `~"\ic,qggddOOP"|  |  ~\   `\  ~-._
+                                           ,qP`"""|"   | `\ `;   `\   `\
+                                _        _,p"     |    |   `\`;    |    |
+                                 "boo,._dP"       `\_  `\    `\|   `\   ;
+                                  `"7tY~'            `\  `\    `|_   |
+                                                           `~\  |
+-->
+<!doctype html>
+<html>
+    <head>
+        <title>qbbr.io / blog / </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+        <meta name="description" content="a personal blog about linux, hacking and programming">
+        <meta name="robots" content="index, follow">
+        <meta name="generator" content="bash">
+        <meta name="author" content="qbbr">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/highlight.css">
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
+        </header>
+
+        <main role="main">
+            <!-- content base.html -->
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2014/06/11/install-nginx-with-ngx_pagespeed-and-ngx_http_spdy_module-on-debian-wheezy.html">
+                        <b>#</b> <span itemprop="name">install nginx with ngx_pagespeed and ngx_http_spdy_module on debian wheezy</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2014-06-11" datetime="2014-06-11">11/06/2014</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="install-dependencies">install dependencies</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">aptitude</span> install build-essential zlib1g-dev libpcre3 libpcre3-dev openssl libssl-dev checkinstall</a></code></pre></div>
+<h3 id="download-nginx-and-ngx_pagespeed-sources">download nginx and ngx_pagespeed sources</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="bu">export</span> <span class="va">nginx_build_dir=$HOME</span>/src</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="fu">mkdir</span> -p <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> <span class="va">$_</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co"># dl ngx_pagespeed</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="fu">wget</span> https://github.com/pagespeed/ngx_pagespeed/archive/v1.8.31.3-beta.zip -O ngx_pagespeed.zip <span class="kw">&amp;&amp;</span> <span class="fu">unzip</span> ngx_pagespeed.zip <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f ngx_pagespeed.zip</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co"># dl psol</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="bu">cd</span> ngx_pagespeed-*/ <span class="kw">&amp;&amp;</span> <span class="fu">wget</span> https://dl.google.com/dl/page-speed/psol/1.8.31.3.tar.gz -O psol.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">tar</span> -xzvf psol.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f psol.tar.gz</a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co"># dl nginx (http://nginx.org/en/download.html)</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&amp;</span> <span class="fu">wget</span> http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">tar</span> -xvzf nginx.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f nginx.tar.gz</a></code></pre></div>
+<h3 id="change-server-name-if-n">change server name if n</h3>
+<p><code>src/http/ngx_http_header_filter_module.c</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">--- src/http/ngx_http_header_filter_module.c.orig       2014-06-11 13:29:45.940360480 +0900</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="dt">+++ src/http/ngx_http_header_filter_module.c    2014-06-11 13:31:01.572361703 +0900</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="dt">@@ -49,2 +49,2 @@</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="st">-static char ngx_http_server_string[] = &quot;Server: nginx&quot; CRLF;</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="st">-static char ngx_http_server_full_string[] = &quot;Server: &quot; NGINX_VER CRLF;</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="va">+static char ngx_http_server_string[] = &quot;Server: custom name&quot; CRLF;</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="va">+static char ngx_http_server_full_string[] = &quot;Server: custom name/1.1500.0&quot; CRLF;</span></a></code></pre></div>
+<h3 id="build">build</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>/nginx-*</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="ex">./configure</span> \</a>
+<a class="sourceLine" id="cb4-3" title="3">    --prefix=/etc/nginx \</a>
+<a class="sourceLine" id="cb4-4" title="4">    --conf-path=/etc/nginx/nginx.conf \</a>
+<a class="sourceLine" id="cb4-5" title="5">    --sbin-path=/usr/sbin/nginx \</a>
+<a class="sourceLine" id="cb4-6" title="6">    --pid-path=/var/run/nginx.pid \</a>
+<a class="sourceLine" id="cb4-7" title="7">    --lock-path=/var/lock/nginx.lock \</a>
+<a class="sourceLine" id="cb4-8" title="8">    --http-log-path=/var/log/nginx/access.log \</a>
+<a class="sourceLine" id="cb4-9" title="9">    --error-log-path=/var/log/nginx/error.log \</a>
+<a class="sourceLine" id="cb4-10" title="10">    --http-client-body-temp-path=/var/lib/nginx/body \</a>
+<a class="sourceLine" id="cb4-11" title="11">    --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \</a>
+<a class="sourceLine" id="cb4-12" title="12">    --http-scgi-temp-path=/var/lib/nginx/scgi \</a>
+<a class="sourceLine" id="cb4-13" title="13">    --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \</a>
+<a class="sourceLine" id="cb4-14" title="14">    --http-proxy-temp-path=/var/lib/nginx/proxy \</a>
+<a class="sourceLine" id="cb4-15" title="15">    --with-http_ssl_module \</a>
+<a class="sourceLine" id="cb4-16" title="16">    --with-http_spdy_module \</a>
+<a class="sourceLine" id="cb4-17" title="17">    --with-http_realip_module \</a>
+<a class="sourceLine" id="cb4-18" title="18">    --with-http_gzip_static_module \</a>
+<a class="sourceLine" id="cb4-19" title="19">    --with-http_gunzip_module \</a>
+<a class="sourceLine" id="cb4-20" title="20">    --with-http_stub_status_module \</a>
+<a class="sourceLine" id="cb4-21" title="21">    --with-http_sub_module \</a>
+<a class="sourceLine" id="cb4-22" title="22">    --with-http_secure_link_module \</a>
+<a class="sourceLine" id="cb4-23" title="23">    --with-http_addition_module \</a>
+<a class="sourceLine" id="cb4-24" title="24">    --with-http_random_index_module \</a>
+<a class="sourceLine" id="cb4-25" title="25">    --add-module=<span class="va">$nginx_build_dir</span>/ngx_pagespeed-*/</a>
+<a class="sourceLine" id="cb4-26" title="26"><span class="fu">make</span></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="ex">checkinstall</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="ex">nginx</span> –V</a></code></pre></div>
+<h3 id="install-init-script">install init script</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="fu">wget</span> http://http.us.debian.org/debian/pool/main/n/nginx/nginx-common_1.6.0-1_all.deb -O nginx-common.deb <span class="kw">&amp;&amp;</span> <span class="ex">dpkg</span> -x nginx-common.deb nginx-common <span class="kw">&amp;&amp;</span> <span class="fu">cp</span> nginx-common/etc/init.d/nginx . <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf nginx-common nginx-common.deb</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="fu">cp</span> nginx /etc/init.d/nginx</a></code></pre></div>
+<h3 id="use">use</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="ex">/etc/init.d/nginx</span> start</a></code></pre></div>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
+            <!-- /content base.html -->
+        </main>
+
+        <footer>
+            <small>&copy; 2020 <a href="/">qbbr.io</a></small>
+        </footer>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-42421652-1', 'qbbr.io');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

@@ -32,7 +32,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>qbbr.io</title>
+        <title>qbbr.io / blog / </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
@@ -45,23 +45,56 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/main.css">
-        
+        <link rel="stylesheet" href="/css/highlight.css">
     </head>
     <body>
         <header>
-            <h1><a href="/">qbbr<span>.io</span></a></h1>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
         </header>
 
         <main role="main">
             <!-- content base.html -->
-            <div class="index">
-                <h2><a href="/blog/">blog</a></h2>
-                <h2><a href="/about/">about</a></h2>
-                <br>
-                <h2><a href="https://github.com/qbbr" rel="external">#gthb</a></h2>
-                <h2><a href="https://twitter.com/qbbr" rel="external">#twttr</a></h2>
-                <h2><a href="https://t.me/imqbbr" rel="external">#tlgrm</a></h2>
-            </div>
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2014/04/22/send-sms-via-adb-shell-from-bash.html">
+                        <b>#</b> <span itemprop="name">send sms via adb shell from bash</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2014-04-22" datetime="2014-04-22">22/04/2014</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="install-adb">install adb</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">sudo</span> aptitude install android-tools-adb</a></code></pre></div>
+<h3 id="enable-usb-debugging-mode">enable USB debugging mode</h3>
+<p>Settings -&gt; Developer options -&gt; USB debugging (x)</p>
+<h3 id="sendsms.sh">sendsms.sh</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co"># using: ./sendsms.sh 89999999999 &quot;Hello, im SMS from bash&quot;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="va">ADB=</span>/usr/bin/adb</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co"># KEYCODE_HOME</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="va">$ADB</span> <span class="ex">shell</span> input keyevent 3</a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co"># open form and fill them</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="va">$ADB</span> <span class="ex">shell</span> am start -a android.intent.action.SENDTO -d sms:<span class="va">$1</span> --es sms_body <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span> --ez exit_on_sent true</a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co"># sleep 1 sec</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="fu">sleep</span> 1</a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co"># KEYCODE_DPAD_RIGHT</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="va">$ADB</span> <span class="ex">shell</span> input keyevent 22</a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co"># KEYCODE_ENTER</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="va">$ADB</span> <span class="ex">shell</span> input keyevent 66</a></code></pre></div>
+<h3 id="enjoy">enjoy!</h3>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
             <!-- /content base.html -->
         </main>
 

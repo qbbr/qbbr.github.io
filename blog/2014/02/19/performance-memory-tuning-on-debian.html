@@ -1,0 +1,149 @@
+<!--
+                    ;,_            ,
+                  _uP~"b          d"u,
+                 dP'   "b       ,d"  "o
+                d"    , `b     d"'    "b
+               l] [    " `l,  d"       lb
+               Ol ?     "  "b`"=uoqo,_  "l
+             ,dBb "b        "b,    `"~~TObup,_
+           ,d" (db.`"         ""     "tbc,_ `~"Yuu,_
+         .d" l`T'  '=                      ~     `""Yu,
+       ,dO` gP,                           `u,   b,_  "b7
+      d?' ,d" l,                           `"b,_ `~b  "1
+    ,8i' dl   `l                 ,ggQOV",dbgq,._"  `l  lb
+   .df' (O,    "             ,ggQY"~  , @@@@@d"bd~  `b "1
+  .df'   `"           -=@QgpOY""     (b  @@@@P db    `Lp"b,
+ .d(                  _               "ko "=d_,Q`  ,_  "  "b,
+ Ql         .         `"qo,._          "tQo,_`""bo ;tb,    `"b,
+(qQ         |L           ~"QQQgggc,_.,dObc,opooO  `"~~";.   __,7,
+`qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
+ `qp        `Q["tQQQo,_                          ,pl{QOP"'   7AFR`
+   `         `tb  '""tQQQg,_             p" "b   `       .;-.`Vl'
+              "Yb      `"tQOOo,__    _,edb    ` .__   /`/'|  |b;=;.__
+                            `"tQQQOOOOP""        `"\QV;qQObob"`-._`\_~~-._
+                                 """"    ._        /   | |oP"\_   ~\ ~\_  ~\
+                                         `~"\ic,qggddOOP"|  |  ~\   `\  ~-._
+                                           ,qP`"""|"   | `\ `;   `\   `\
+                                _        _,p"     |    |   `\`;    |    |
+                                 "boo,._dP"       `\_  `\    `\|   `\   ;
+                                  `"7tY~'            `\  `\    `|_   |
+                                                           `~\  |
+-->
+<!doctype html>
+<html>
+    <head>
+        <title>qbbr.io / blog / </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+        <meta name="description" content="a personal blog about linux, hacking and programming">
+        <meta name="robots" content="index, follow">
+        <meta name="generator" content="bash">
+        <meta name="author" content="qbbr">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/highlight.css">
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
+        </header>
+
+        <main role="main">
+            <!-- content base.html -->
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <h2 itemprop="headline">
+                    <a itemprop="url" href="/blog/2014/02/19/performance-memory-tuning-on-debian.html">
+                        <b>#</b> <span itemprop="name">performance memory tuning on debian</span>
+                    </a>
+                </h2>
+
+                <div class="date">
+                    <time itemprop="datePublished" content="2014-02-19" datetime="2014-02-19">19/02/2014</time>
+                </div>
+
+                <!--<div>-->
+                <!--    Source: <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/_posts/2013-07-10-convert-isowv-to-ogg-with-split-via-cue.md">markdown</a>-->
+                <!--</div>-->
+
+                <div class="post" itemprop="articleBody">
+                    <!-- content post.html -->
+
+<h3 id="cat-etcsysctl.dmemory.conf">cat /etc/sysctl.d/memory.conf</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Ограничение размера буфера.</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co"># По умолчанию: 0</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">#</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Содержит количество &quot;грязной&quot; памяти при котором процесс генерирующий</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co"># дисковую запись самостоятельно начнёт обратную запись.</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Если dirty_bytes установлено, dirty_ratio становится функцией к этому значению</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co"># (dirty_bytes / размер &quot;загрязняемой&quot; системной памяти).</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="ex">vm.dirty_bytes</span> = 4194304</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co"># Содержит количество &quot;грязной&quot; памяти при котором фоновый демон</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co"># обратной записи pdflush начнёт обратную запись.</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co"># Eсли dirty_background_bytes указан, то dirty_background_ratio становится</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co"># функцией к этому значению т.е.</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co"># (dirty_background_bytes / размер &quot;загрязняемой&quot; системной памяти).</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="ex">vm.dirty_background_bytes</span> = 4194304</a>
+<a class="sourceLine" id="cb1-15" title="15"></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co"># Отвечает за стратегию overcommit.</span></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="co"># Параметр overcommit_memory указывает стратегию выделения памяти:</span></a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="co"># OVERCOMMIT_ALWAYS (1) — ядро всегда удовлетворяет любые запросы</span></a>
+<a class="sourceLine" id="cb1-19" title="19"><span class="co">#   на выделение памяти. Реально страницы памяти будут выделяться при</span></a>
+<a class="sourceLine" id="cb1-20" title="20"><span class="co">#   первом обращении к ним.</span></a>
+<a class="sourceLine" id="cb1-21" title="21"><span class="co"># OVERCOMMIT_GUESS (0) — эвристический подход к распределению памяти.</span></a>
+<a class="sourceLine" id="cb1-22" title="22"><span class="co">#   Используется по умолчанию. Система будет отвергать только запросы,</span></a>
+<a class="sourceLine" id="cb1-23" title="23"><span class="co">#   которые в принципе не могут быть удовлетворены, остальные — удовлетворять</span></a>
+<a class="sourceLine" id="cb1-24" title="24"><span class="co">#   вне зависимости от наличия свободной памяти.</span></a>
+<a class="sourceLine" id="cb1-25" title="25"><span class="co">#   На деле практически не отличим о OVERCOMMIT_ALWAYS.</span></a>
+<a class="sourceLine" id="cb1-26" title="26"><span class="co"># OVERCOMMIT_NEVER (2) — работа без overcommit. Полный объём памяти,</span></a>
+<a class="sourceLine" id="cb1-27" title="27"><span class="co">#   исходя из которого будут удовлетворяться или отвергаться запросы</span></a>
+<a class="sourceLine" id="cb1-28" title="28"><span class="co">#   на выделение памяти,</span></a>
+<a class="sourceLine" id="cb1-29" title="29"><span class="co">#   вычисляется как total_swap + total_ram * overcommit_ratio / 100.</span></a>
+<a class="sourceLine" id="cb1-30" title="30"><span class="co">#   Таким образом, при overcommit_ratio &lt; 100, система всегда будет</span></a>
+<a class="sourceLine" id="cb1-31" title="31"><span class="co">#   выделять память только если она подкреплена реальными страницами</span></a>
+<a class="sourceLine" id="cb1-32" title="32"><span class="co">#   в ОЗУ или свопе. При overcommit_ratio &gt; 100 мы получаем режим,</span></a>
+<a class="sourceLine" id="cb1-33" title="33"><span class="co">#   схожий с OVERCOMMIT_GUESS, но с явно установленным «ограничителем».</span></a>
+<a class="sourceLine" id="cb1-34" title="34"><span class="ex">vm.overcommit_memory</span> = 2</a>
+<a class="sourceLine" id="cb1-35" title="35"></a>
+<a class="sourceLine" id="cb1-36" title="36"><span class="co"># Отвечает за уровень (в процентах) overcommit-а.</span></a>
+<a class="sourceLine" id="cb1-37" title="37"><span class="ex">vm.overcommit_ratio</span> = 80</a>
+<a class="sourceLine" id="cb1-38" title="38"></a>
+<a class="sourceLine" id="cb1-39" title="39"><span class="co"># Уровень выделяемой памяти под кэш. Значение по умолчанию: 100.</span></a>
+<a class="sourceLine" id="cb1-40" title="40"><span class="co"># vfs_cache_pressure = 1000 mb?</span></a>
+<a class="sourceLine" id="cb1-41" title="41"><span class="ex">vm.vfs_cache_pressure</span> = 50</a>
+<a class="sourceLine" id="cb1-42" title="42"></a>
+<a class="sourceLine" id="cb1-43" title="43"><span class="co"># Значение (в целых процентах), это уровень свободной памяти,</span></a>
+<a class="sourceLine" id="cb1-44" title="44"><span class="co"># при котором система начнет активно сбрасывать память в своп.</span></a>
+<a class="sourceLine" id="cb1-45" title="45"><span class="co"># Значение по умолчанию: 60.</span></a>
+<a class="sourceLine" id="cb1-46" title="46"><span class="ex">vm.swappiness</span> = 30</a>
+<a class="sourceLine" id="cb1-47" title="47"></a>
+<a class="sourceLine" id="cb1-48" title="48"><span class="co"># Сколько миллисекунд должно пройти, чтобы ядро посчитало незаписанные</span></a>
+<a class="sourceLine" id="cb1-49" title="49"><span class="co"># в ФС данные достаточно устаревшими для их записи</span></a>
+<a class="sourceLine" id="cb1-50" title="50"><span class="ex">vm.dirty_expire_centisecs</span> = 6000</a>
+<a class="sourceLine" id="cb1-51" title="51"><span class="co"># Как часто ядро должно находить незаписанные в ФС данные и писать их</span></a>
+<a class="sourceLine" id="cb1-52" title="52"><span class="ex">vm.dirty_writeback_centisecs</span> = 2000</a></code></pre></div>
+
+                    <!-- /content post.html -->
+                </div>
+            </article>
+            <!-- /content base.html -->
+        </main>
+
+        <footer>
+            <small>&copy; 2020 <a href="/">qbbr.io</a></small>
+        </footer>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-42421652-1', 'qbbr.io');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
