@@ -80,7 +80,7 @@
 <p>file <code>~/.config/php/autoload.php</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">&lt;?php</span></a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">require</span> <span class="kw">$_SERVER</span><span class="ot">[</span><span class="st">&#39;HOME&#39;</span><span class="ot">]</span>.<span class="st">&#39;/.config/composer/vendor/autoload.php&#39;</span><span class="ot">;</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">require</span> <span class="fu">getenv</span><span class="ot">(</span><span class="st">&#39;HOME&#39;</span><span class="ot">)</span>.<span class="st">&#39;/.config/composer/vendor/autoload.php&#39;</span><span class="ot">;</span></a>
 <a class="sourceLine" id="cb3-4" title="4"><span class="kw">require</span> <span class="kw">__DIR__</span>.<span class="st">&#39;/var_dumper_server.php&#39;</span><span class="ot">;</span></a></code></pre></div>
 <p>file <code>~/.config/php/var_dumper_server.php</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">&lt;?php</span></a>
