@@ -72,7 +72,23 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install-fastboot-tool">install fastboot tool</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install android-tools-fastboot</code></pre></div>
+<h3 id="unlock-the-bootloader">unlock the bootloader</h3>
+<p>Press volume down + power button to boot into bootloader mode<br />
+or:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">adb</span> reboot bootloader</code></pre></div>
+<p>unlock (ALL DATA WILL BE REMOVED!):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot oem unlock</code></pre></div>
+<h3 id="download-cwm-6.0.4.3">download CWM (6.0.4.3)</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wget</span> -O /tmp/clockworkmod.img https://www.dropbox.com/s/73llj8n6g2vat3o/recovery-clockwork-touch-6.0.4.3-flo.img</code></pre></div>
+<h3 id="install-cwm">install CWM</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot flash recovery /tmp/clockworkmod.img</code></pre></div>
+<h3 id="fix-loop-loading-animations">fix loop loading animations</h3>
+<p>in bootloader mode:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot format userdata
+<span class="fu">sudo</span> fastboot format cache</code></pre></div>
+<h3 id="wow-wow-wow">wow, wow, wow =)</h3>
 
                     <!-- /content post.html -->
                 </div>

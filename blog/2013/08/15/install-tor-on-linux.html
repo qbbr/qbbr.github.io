@@ -72,7 +72,40 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install-tor">install tor</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install tor</code></pre></div>
+<h3 id="install-caching-web-proxy">install caching web proxy</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install polipo</code></pre></div>
+<h3 id="configure">configure</h3>
+<p>edit config <code>/etc/polipo/config</code></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">proxyAddress</span> = <span class="st">&quot;127.0.0.1&quot;</span>
+<span class="ex">proxyPort</span> = 8118
+<span class="ex">allowedClients</span> = 127.0.0.1
+<span class="ex">allowedPorts</span> = 1-65535
+<span class="ex">proxyName</span> = <span class="st">&quot;localhost&quot;</span>
+<span class="ex">cacheIsShared</span> = false
+<span class="ex">socksParentProxy</span> = <span class="st">&quot;localhost:9050&quot;</span>
+<span class="ex">socksProxyType</span> = socks5
+<span class="ex">chunkHighMark</span> = 67108864
+<span class="ex">diskCacheRoot</span> = <span class="st">&quot;&quot;</span>
+<span class="ex">localDocumentRoot</span> = <span class="st">&quot;&quot;</span>
+<span class="ex">disableLocalInterface</span> = true
+<span class="ex">disableConfiguration</span> = true
+<span class="ex">dnsUseGethostbyname</span> = yes
+<span class="ex">disableVia</span> = true
+<span class="ex">censoredHeaders</span> = from,accept-language,x-pad,link
+<span class="ex">censorReferer</span> = maybe
+<span class="ex">maxConnectionAge</span> = 5m
+<span class="ex">maxConnectionRequests</span> = 120
+<span class="ex">serverMaxSlots</span> = 8
+<span class="ex">serverSlots</span> = 2
+<span class="ex">tunnelAllowedPorts</span> = 1-65535</code></pre></div>
+<p>restart daemon</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/polipo restart</code></pre></div>
+<h3 id="using">using</h3>
+<p>set proxy <code>127.0.0.1:8118</code> in your browser or using <code>iceweasel-torbutton</code></p>
+<p>for application use <code>usewithtor &lt;app&gt;</code></p>
+<p><a href="https://check.torproject.org/">tor checker</a></p>
 
                     <!-- /content post.html -->
                 </div>

@@ -72,7 +72,11 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="configure">configure:</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> iptables -A INPUT -p tcp --dport 22 -m recent --rcheck --seconds 60 --hitcount 2 --name SSH -j LOG --log-prefix <span class="st">&quot;SH &quot;</span>
+<span class="fu">sudo</span> iptables -A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 2 --name SSH -j DROP
+<span class="fu">sudo</span> iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH -j ACCEPT</code></pre></div>
+<p>2 try, 60 sec delay</p>
 
                     <!-- /content post.html -->
                 </div>

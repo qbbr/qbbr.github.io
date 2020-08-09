@@ -72,7 +72,59 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
+<h3 id="cat-etcsysctl.dmemory.conf">cat /etc/sysctl.d/memory.conf</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Ограничение размера буфера.</span>
+<span class="co"># По умолчанию: 0</span>
+<span class="co">#</span>
+<span class="co"># Содержит количество &quot;грязной&quot; памяти при котором процесс генерирующий</span>
+<span class="co"># дисковую запись самостоятельно начнёт обратную запись.</span>
+<span class="co"># Если dirty_bytes установлено, dirty_ratio становится функцией к этому значению</span>
+<span class="co"># (dirty_bytes / размер &quot;загрязняемой&quot; системной памяти).</span>
+<span class="ex">vm.dirty_bytes</span> = 4194304
+<span class="co"># Содержит количество &quot;грязной&quot; памяти при котором фоновый демон</span>
+<span class="co"># обратной записи pdflush начнёт обратную запись.</span>
+<span class="co"># Eсли dirty_background_bytes указан, то dirty_background_ratio становится</span>
+<span class="co"># функцией к этому значению т.е.</span>
+<span class="co"># (dirty_background_bytes / размер &quot;загрязняемой&quot; системной памяти).</span>
+<span class="ex">vm.dirty_background_bytes</span> = 4194304
 
+<span class="co"># Отвечает за стратегию overcommit.</span>
+<span class="co"># Параметр overcommit_memory указывает стратегию выделения памяти:</span>
+<span class="co"># OVERCOMMIT_ALWAYS (1) — ядро всегда удовлетворяет любые запросы</span>
+<span class="co">#   на выделение памяти. Реально страницы памяти будут выделяться при</span>
+<span class="co">#   первом обращении к ним.</span>
+<span class="co"># OVERCOMMIT_GUESS (0) — эвристический подход к распределению памяти.</span>
+<span class="co">#   Используется по умолчанию. Система будет отвергать только запросы,</span>
+<span class="co">#   которые в принципе не могут быть удовлетворены, остальные — удовлетворять</span>
+<span class="co">#   вне зависимости от наличия свободной памяти.</span>
+<span class="co">#   На деле практически не отличим о OVERCOMMIT_ALWAYS.</span>
+<span class="co"># OVERCOMMIT_NEVER (2) — работа без overcommit. Полный объём памяти,</span>
+<span class="co">#   исходя из которого будут удовлетворяться или отвергаться запросы</span>
+<span class="co">#   на выделение памяти,</span>
+<span class="co">#   вычисляется как total_swap + total_ram * overcommit_ratio / 100.</span>
+<span class="co">#   Таким образом, при overcommit_ratio &lt; 100, система всегда будет</span>
+<span class="co">#   выделять память только если она подкреплена реальными страницами</span>
+<span class="co">#   в ОЗУ или свопе. При overcommit_ratio &gt; 100 мы получаем режим,</span>
+<span class="co">#   схожий с OVERCOMMIT_GUESS, но с явно установленным «ограничителем».</span>
+<span class="ex">vm.overcommit_memory</span> = 2
+
+<span class="co"># Отвечает за уровень (в процентах) overcommit-а.</span>
+<span class="ex">vm.overcommit_ratio</span> = 80
+
+<span class="co"># Уровень выделяемой памяти под кэш. Значение по умолчанию: 100.</span>
+<span class="co"># vfs_cache_pressure = 1000 mb?</span>
+<span class="ex">vm.vfs_cache_pressure</span> = 50
+
+<span class="co"># Значение (в целых процентах), это уровень свободной памяти,</span>
+<span class="co"># при котором система начнет активно сбрасывать память в своп.</span>
+<span class="co"># Значение по умолчанию: 60.</span>
+<span class="ex">vm.swappiness</span> = 30
+
+<span class="co"># Сколько миллисекунд должно пройти, чтобы ядро посчитало незаписанные</span>
+<span class="co"># в ФС данные достаточно устаревшими для их записи</span>
+<span class="ex">vm.dirty_expire_centisecs</span> = 6000
+<span class="co"># Как часто ядро должно находить незаписанные в ФС данные и писать их</span>
+<span class="ex">vm.dirty_writeback_centisecs</span> = 2000</code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

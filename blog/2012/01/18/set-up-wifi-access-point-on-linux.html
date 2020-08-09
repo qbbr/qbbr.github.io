@@ -72,7 +72,62 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
+<h3 id="configure-wireless-adapter">1) configure wireless adapter</h3>
+<p>add to <code>/etc/network/interfaces</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">auto</span> wlan0
+<span class="ex">iface</span> wlan0 inet static
+    <span class="ex">address</span> 192.168.13.1
+    <span class="ex">network</span> 192.168.13.0
+    <span class="ex">netmask</span> 255.255.255.0
+    <span class="ex">broadcast</span> 192.168.13.255</code></pre></div>
+<h3 id="ap-daemon">2) ap daemon</h3>
+<p>install <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install hostapd</code></pre></div>
+<p>edit <code>/etc/hostapd/hostapd.conf</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
+<span class="va">driver=</span>nl80211
 
+<span class="co"># AP name</span>
+<span class="va">ssid=</span>MY_AP
+<span class="va">country_code=</span>RU
+<span class="va">hw_mode=</span>g
+<span class="va">channel=</span>1
+
+<span class="va">macaddr_acl=</span>0
+
+<span class="va">wpa=</span>3
+<span class="va">wpa_key_mgmt=</span>WPA-PSK
+<span class="co"># password</span>
+<span class="va">wpa_passphrase=</span>password
+<span class="va">wpa_pairwise=</span>TKIP <span class="ex">CCMP</span></code></pre></div>
+<p>edit <code>/etc/default/hostapd</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">DAEMON_CONF=</span><span class="st">&quot;/etc/hostapd/hostapd.conf&quot;</span></code></pre></div>
+<p>start daemon:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/hostapd start</code></pre></div>
+<h3 id="netfilter">3) netfilter</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">su</span>
+<span class="bu">echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
+<span class="ex">iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
+<span class="bu">exit</span></code></pre></div>
+<p>for every boot system, edit <code>/etc/network/if-pre-up.d/wifi</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/sh</span>
+<span class="ex">/bin/echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
+<span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE</code></pre></div>
+<p>grant execute permissions:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> chmod +x /etc/network/if-pre-up.d/wifi</code></pre></div>
+<p>if use <strong>ppp0</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre></div>
+<p>add line to <code>/etc/network/if-pre-up.d/wifi</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre></div>
+<h3 id="dns-dhcp">4) DNS &amp; DHCP</h3>
+<p>install:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install dnsmasq</code></pre></div>
+<p>edit <code>/etc/dnsmasq.conf</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
+<span class="ex">dhcp-range</span>=192.168.13.10,192.168.13.50,24h</code></pre></div>
+<p>restart deamon:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/dnsmasq restart</code></pre></div>
+<h3 id="enjoy">5) enjoy!</h3>
 
                     <!-- /content post.html -->
                 </div>

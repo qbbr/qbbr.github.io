@@ -72,7 +72,15 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install">install</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install usbmount</code></pre></div>
+<h3 id="configure">configure</h3>
+<p>edit <code>/etc/usbmount/usbmount.conf</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">FILESYSTEMS=</span><span class="st">&quot;vfat ext2 ext3 ext4 hfsplus ntfs&quot;</span>
+<span class="va">MOUNTOPTIONS=</span><span class="st">&quot;noexec,nodev,noatime,nodiratime,defaults&quot;</span></code></pre></div>
+<h3 id="connect-u-usb-profit">connect u usb &amp;&amp; PROFIT!</h3>
+<p>umount:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> umount /media/usbX</code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

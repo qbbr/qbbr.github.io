@@ -72,7 +72,42 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="spf-sender-policy-framework">SPF (Sender Policy Framework)</h3>
+<p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/Sender_Policy_Framework">wiki</a> <a href="http://www.openspf.org/SPF_Record_Syntax">syntax</a> <a href="http://www.openspf.org/Tools">tools</a> <a href="http://www.kitterman.com/spf/validate.html">validator</a> <a href="http://www.ietf.org/rfc/rfc4408.txt">RFC 4408</a></p>
+<h4 id="dns-records">DNS records</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">domain.tld</span> IN TXT v=spf1 ip4:ipAddress ~all
+<span class="co"># domain.tld IN SPF v=spf1 ip4:ipAddress ~all</span></code></pre></div>
+<p>where:<br />
+ip4:<strong>ipAddress</strong> - Allowed IP for send</p>
+<h3 id="dkim-domainkeys-identified-mail">DKIM (DomainKeys Identified Mail)</h3>
+<p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail">wiki</a> <a href="http://dkimcore.org/tools/keycheck.html">validator</a> <a href="http://www.ietf.org/rfc/rfc4871.txt">RFC 4871</a></p>
+<h4 id="generate-dkim-keys">generate DKIM keys</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> /etc/exim4/dkim
+<span class="bu">cd</span> /etc/exim4/dkim
+<span class="co"># private key</span>
+<span class="ex">openssl</span> genrsa -out domain.tld.key 1024
+<span class="co"># public key</span>
+<span class="ex">openssl</span> rsa -in domain.tld.key -pubout <span class="op">&gt;</span> domain.tld.pub
+<span class="co"># permissions</span>
+<span class="fu">chown</span> -R Debian-exim:Debian-exim /etc/exim4/dkim/
+<span class="fu">chmod</span> 640 /etc/exim4/dkim/*</code></pre></div>
+<h4 id="configure-exim">configure exim</h4>
+<p>configure exim for internet site</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">dpkg-reconfigure</span> exim4-config</code></pre></div>
+<p>edit config: <code>/etc/exim4/update-exim4.conf.conf</code><br />
+or (if u use splitted config) <code>/etc/exim4/conf.d/transport/30_exim4-config_remote_smtp</code></p>
+<p>add this line:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">DKIM_DOMAIN</span> = <span class="va">${lc:${domain:$h_from:}}</span>
+<span class="ex">DKIM_KEY_FILE</span> = /etc/exim4/dkim/domain.tld.key
+<span class="ex">DKIM_PRIVATE_KEY</span> = <span class="va">${if</span><span class="er"> exists{DKIM_KEY_FILE</span><span class="va">}</span><span class="dt">{DKIM_KEY_FILE}{0}}</span>
+<span class="ex">DKIM_SELECTOR</span> = mail</code></pre></div>
+<p>restart exim</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/etc/init.d/exim4</span> restart</code></pre></div>
+<h4 id="dns-records-1">DNS records</h4>
+<pre><code>mail._domainkey IN TXT v=DKIM1; k=rsa; p=publicKey</code></pre>
+<p>where:<br />
+p=<strong>publicKey</strong> - u public key without new line breaks and comments (<code>/etc/exim4/dkim/domain.tld.pub</code>)<br />
+<strong>mail</strong>._domainkey - <code>DKIM_SELECTOR</code> from exim config</p>
 
                     <!-- /content post.html -->
                 </div>

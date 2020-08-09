@@ -72,7 +72,22 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="configure">configure</h3>
+<p>add to <code>/etc/initramfs-tools/modules</code> in your virtual machine:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">usbcore</span>
+<span class="ex">sd_mod</span>
+<span class="ex">ehci_hcd</span>
+<span class="ex">uhci_hcd</span>
+<span class="ex">ohci_hcd</span>
+<span class="ex">usb_storage</span>
+<span class="ex">scsi_mod</span></code></pre></div>
+<p>update initrd:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> update-initramfs -u</code></pre></div>
+<h3 id="burn-to-usb">burn to usb</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">VBoxManage</span> clonehd --format RAW you-virtualbox-linux-disc.vdi linux.img
+<span class="fu">sudo</span> dd bs=4M if=linux.img of=/dev/sdX</code></pre></div>
+<p>where <code>/dev/sdX</code> is your flash drive (do not write in partition <code>/dev/sdX1</code>)</p>
+<h3 id="thats-all-boot-from-usb">thats all, boot from usb =)</h3>
 
                     <!-- /content post.html -->
                 </div>

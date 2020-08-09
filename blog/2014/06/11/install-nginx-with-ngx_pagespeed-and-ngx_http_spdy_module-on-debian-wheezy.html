@@ -72,7 +72,61 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install-dependencies">install dependencies</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">aptitude</span> install build-essential zlib1g-dev libpcre3 libpcre3-dev openssl libssl-dev checkinstall</code></pre></div>
+<h3 id="download-nginx-and-ngx_pagespeed-sources">download nginx and ngx_pagespeed sources</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">nginx_build_dir=$HOME</span>/src
+<span class="fu">mkdir</span> -p <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> <span class="va">$_</span>
+<span class="co"># dl ngx_pagespeed</span>
+<span class="fu">wget</span> https://github.com/pagespeed/ngx_pagespeed/archive/v1.8.31.3-beta.zip -O ngx_pagespeed.zip <span class="kw">&amp;&amp;</span> <span class="fu">unzip</span> ngx_pagespeed.zip <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f ngx_pagespeed.zip
+<span class="co"># dl psol</span>
+<span class="bu">cd</span> ngx_pagespeed-*/ <span class="kw">&amp;&amp;</span> <span class="fu">wget</span> https://dl.google.com/dl/page-speed/psol/1.8.31.3.tar.gz -O psol.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">tar</span> -xzvf psol.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f psol.tar.gz
+<span class="co"># dl nginx (http://nginx.org/en/download.html)</span>
+<span class="bu">cd</span> <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&amp;</span> <span class="fu">wget</span> http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">tar</span> -xvzf nginx.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f nginx.tar.gz</code></pre></div>
+<h3 id="change-server-name-if-n">change server name if n</h3>
+<p><code>src/http/ngx_http_header_filter_module.c</code>:</p>
+<div class="sourceCode"><pre class="sourceCode diff"><code class="sourceCode diff"><span class="kw">--- src/http/ngx_http_header_filter_module.c.orig       2014-06-11 13:29:45.940360480 +0900</span>
+<span class="dt">+++ src/http/ngx_http_header_filter_module.c    2014-06-11 13:31:01.572361703 +0900</span>
+<span class="dt">@@ -49,2 +49,2 @@</span>
+<span class="st">-static char ngx_http_server_string[] = &quot;Server: nginx&quot; CRLF;</span>
+<span class="st">-static char ngx_http_server_full_string[] = &quot;Server: &quot; NGINX_VER CRLF;</span>
+<span class="va">+static char ngx_http_server_string[] = &quot;Server: custom name&quot; CRLF;</span>
+<span class="va">+static char ngx_http_server_full_string[] = &quot;Server: custom name/1.1500.0&quot; CRLF;</span></code></pre></div>
+<h3 id="build">build</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>/nginx-*
+<span class="ex">./configure</span> \
+    --prefix=/etc/nginx \
+    --conf-path=/etc/nginx/nginx.conf \
+    --sbin-path=/usr/sbin/nginx \
+    --pid-path=/var/run/nginx.pid \
+    --lock-path=/var/lock/nginx.lock \
+    --http-log-path=/var/log/nginx/access.log \
+    --error-log-path=/var/log/nginx/error.log \
+    --http-client-body-temp-path=/var/lib/nginx/body \
+    --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
+    --http-scgi-temp-path=/var/lib/nginx/scgi \
+    --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \
+    --http-proxy-temp-path=/var/lib/nginx/proxy \
+    --with-http_ssl_module \
+    --with-http_spdy_module \
+    --with-http_realip_module \
+    --with-http_gzip_static_module \
+    --with-http_gunzip_module \
+    --with-http_stub_status_module \
+    --with-http_sub_module \
+    --with-http_secure_link_module \
+    --with-http_addition_module \
+    --with-http_random_index_module \
+    --add-module=<span class="va">$nginx_build_dir</span>/ngx_pagespeed-*/
+<span class="fu">make</span>
+<span class="ex">checkinstall</span>
+<span class="ex">nginx</span> –V</code></pre></div>
+<h3 id="install-init-script">install init script</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>
+<span class="fu">wget</span> http://http.us.debian.org/debian/pool/main/n/nginx/nginx-common_1.6.0-1_all.deb -O nginx-common.deb <span class="kw">&amp;&amp;</span> <span class="ex">dpkg</span> -x nginx-common.deb nginx-common <span class="kw">&amp;&amp;</span> <span class="fu">cp</span> nginx-common/etc/init.d/nginx . <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf nginx-common nginx-common.deb
+<span class="fu">cp</span> nginx /etc/init.d/nginx</code></pre></div>
+<h3 id="use">use</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/etc/init.d/nginx</span> start</code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

@@ -72,7 +72,11 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install-debian">install (debian):</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install vorbis-tools</code></pre></div>
+<h3 id="using">using:</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> /to/dir/with/flac/
+<span class="fu">find</span> . -name <span class="st">&#39;*.flac&#39;</span> -exec oggenc -q9 <span class="dt">{}</span> <span class="dt">\;</span></code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

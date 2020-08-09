@@ -72,7 +72,25 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install-adb">install adb</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install android-tools-adb</code></pre></div>
+<h3 id="enable-usb-debugging-mode">enable USB debugging mode</h3>
+<p>Settings -&gt; Developer options -&gt; USB debugging (x)</p>
+<h3 id="sendsms.sh">sendsms.sh</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="co"># using: ./sendsms.sh 89999999999 &quot;Hello, im SMS from bash&quot;</span>
+<span class="va">ADB=</span>/usr/bin/adb
+<span class="co"># KEYCODE_HOME</span>
+<span class="va">$ADB</span> <span class="ex">shell</span> input keyevent 3
+<span class="co"># open form and fill them</span>
+<span class="va">$ADB</span> <span class="ex">shell</span> am start -a android.intent.action.SENDTO -d sms:<span class="va">$1</span> --es sms_body <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span> --ez exit_on_sent true
+<span class="co"># sleep 1 sec</span>
+<span class="fu">sleep</span> 1
+<span class="co"># KEYCODE_DPAD_RIGHT</span>
+<span class="va">$ADB</span> <span class="ex">shell</span> input keyevent 22
+<span class="co"># KEYCODE_ENTER</span>
+<span class="va">$ADB</span> <span class="ex">shell</span> input keyevent 66</code></pre></div>
+<h3 id="enjoy">enjoy!</h3>
 
                     <!-- /content post.html -->
                 </div>

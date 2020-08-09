@@ -72,7 +72,37 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
+<h3 id="configure">configure</h3>
+<p><strong>module <a href="http://nginx.org/ru/docs/http/ngx_http_geo_module.html">ngx_http_geo_module</a> can be installed!!!</strong></p>
+<pre class="nginx"><code>geo $maintenance {
+    default yes;
+    # ip white list
+    127.0.0.1 no;
+    192.168.100.0/24 no;
+}
 
+server {
+    # ...
+
+    location / {
+        if (-f /etc/nginx/maintenance.file) {
+            set $tmp clo;
+        }
+        if ($maintenance = yes) {
+            set $action &quot;${tmp}se&quot;;
+        }
+        if ($action = close) {
+            return 503;
+        }
+
+        # ...
+    }
+
+    error_page 503 /503.html;
+}</code></pre>
+<h3 id="use">use</h3>
+<p><code>touch /etc/nginx/maintenance.file</code> - close site<br />
+<code>rm /etc/nginx/maintenance.file</code> - open site</p>
 
                     <!-- /content post.html -->
                 </div>

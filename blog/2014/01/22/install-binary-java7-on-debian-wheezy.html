@@ -72,7 +72,15 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="configure">configure</h3>
+<p>add to <code>/etc/apt/sources.list</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">deb</span> http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
+<span class="ex">deb-src</span> http://ppa.launchpad.net/webupd8team/java/ubuntu precise main</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886</code></pre></div>
+<h3 id="install">install</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude update
+<span class="fu">sudo</span> aptitude install oracle-java7-installer
+<span class="fu">sudo</span> aptitude install oracle-java7-set-default</code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

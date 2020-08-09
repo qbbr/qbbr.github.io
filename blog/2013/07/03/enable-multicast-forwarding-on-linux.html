@@ -72,7 +72,16 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="configure-kernel">configure kernel</h3>
+<p>edit <code>/etc/sysctl.conf</code>:</p>
+<pre class="bashnet.ipv4.ip_forward=1"><code>net.ipv4.conf.all.mc_forwarding = 1
+net.ipv4.conf.default.mc_forwarding = 1
+net.ipv4.conf.lo.mc_forwarding = 1
+net.ipv4.conf.eth0.mc_forwarding = 1
+net.ipv4.conf.wlan0.mc_forwarding = 1
+net.inet.ip.mforwarding=1
+multicast_router=YES</code></pre>
+<h3 id="reboot-os-enjoy">reboot os &amp;&amp; enjoy!!</h3>
 
                     <!-- /content post.html -->
                 </div>

@@ -72,7 +72,20 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<p>great for generating cfg/rc from template</p>
+<h3 id="template">template</h3>
+<p>test.tmpl:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">test</span> template.
+<span class="va">${var1}</span>, <span class="va">${var2}</span></code></pre></div>
+<h3 id="render">render</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">var1=</span><span class="st">&quot;hello&quot;</span>
+<span class="bu">export</span> <span class="va">var2=</span><span class="st">&quot;world&quot;</span>
+<span class="ex">envsubst</span> <span class="op">&lt;</span> file.tmpl</code></pre></div>
+<h3 id="output">output</h3>
+<pre><code>test template.
+hello, world!</code></pre>
+<h3 id="links">links</h3>
+<p><a href="https://command-not-found.com/envsubst">envsubst</a></p>
 
                     <!-- /content post.html -->
                 </div>

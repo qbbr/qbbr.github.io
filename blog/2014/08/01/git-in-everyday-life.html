@@ -72,7 +72,48 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="configure">configure</h3>
+<p><code>~/.gitconfig</code>:</p>
+<div class="sourceCode"><pre class="sourceCode ini"><code class="sourceCode ini"><span class="kw">[user]</span>
+<span class="dt">    name </span><span class="ot">=</span><span class="st"> my name</span>
+<span class="dt">    email </span><span class="ot">=</span><span class="st"> mymail@domain.com</span>
+<span class="kw">[color]</span>
+<span class="dt">    diff </span><span class="ot">=</span><span class="st"> auto</span>
+<span class="dt">    status </span><span class="ot">=</span><span class="st"> auto</span>
+<span class="dt">    branch </span><span class="ot">=</span><span class="st"> auto</span>
+<span class="kw">[alias]</span>
+<span class="dt">    co </span><span class="ot">=</span><span class="st"> checkout</span>
+<span class="dt">    ci </span><span class="ot">=</span><span class="st"> commit</span>
+<span class="dt">    st </span><span class="ot">=</span><span class="st"> status</span>
+<span class="dt">    br </span><span class="ot">=</span><span class="st"> branch</span>
+<span class="dt">    hist </span><span class="ot">=</span><span class="st"> log --pretty=format:\&quot;%h %ad | %s%d [%an]\&quot; --graph --date=short</span>
+<span class="dt">    type </span><span class="ot">=</span><span class="st"> cat-file -t</span>
+<span class="dt">    dump </span><span class="ot">=</span><span class="st"> cat-file -p</span>
+<span class="kw">[core]</span>
+<span class="dt">    filemode </span><span class="ot">=</span><span class="st"> </span><span class="kw">true</span></code></pre></div>
+<h3 id="tags">tags</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># create</span>
+<span class="fu">git</span> tag <span class="op">&lt;</span>tag_name<span class="op">&gt;</span>
+<span class="fu">git</span> tag <span class="op">&lt;</span>tag_name<span class="op">&gt;</span> <span class="op">&lt;</span>commit<span class="op">&gt;</span>
+<span class="co"># list</span>
+<span class="fu">git</span> tag
+<span class="co"># jump to</span>
+<span class="fu">git</span> tag <span class="op">&lt;</span>tag_name<span class="op">&gt;</span>
+<span class="co"># remove</span>
+<span class="fu">git</span> tag -d <span class="op">&lt;</span>tag_name<span class="op">&gt;</span>
+<span class="co"># remove from remove (after local changes)</span>
+<span class="fu">git</span> push origin :refs/tags/<span class="op">&lt;</span>tag_name<span class="op">&gt;</span>
+<span class="co"># push to remote</span>
+<span class="fu">git</span> push origin --tags</code></pre></div>
+<h3 id="patches">patches</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># create</span>
+<span class="fu">git</span> diff <span class="op">&gt;</span> 01.patch
+<span class="fu">git</span> diff HEAD^ <span class="op">&gt;</span> 01.patch
+<span class="fu">git</span> diff <span class="op">&lt;</span>commit<span class="op">&gt;</span> <span class="op">&gt;</span> 01.patch
+<span class="co"># apply</span>
+<span class="fu">git</span> apply --stat 01.patch
+<span class="fu">git</span> apply --check  01.patch
+<span class="fu">git</span> apply -v 01.patch</code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

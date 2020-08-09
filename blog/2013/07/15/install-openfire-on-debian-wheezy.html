@@ -72,7 +72,19 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-
+<h3 id="install-java">install java:</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install openjdk-6-jre</code></pre></div>
+<h3 id="install-openfire">install openfire:</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wget</span> http://download.igniterealtime.org/openfire/openfire_3.8.2_all.deb
+<span class="fu">sudo</span> dpkg -i openfire_3.8.2_all.deb</code></pre></div>
+<h3 id="java_home-bugfix">JAVA_HOME bugfix:</h3>
+<p>add to top in <code>/etc/init.d/openfire</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> -f /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></code></pre></div>
+<h3 id="configure">configure:</h3>
+<p>start daemon</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/openfire start</code></pre></div>
+<p>open <code>127.0.0.1:9090</code> in browser and follow instructions</p>
+<h3 id="reboot-enjoy">reboot &amp;&amp; enjoy</h3>
 
                     <!-- /content post.html -->
                 </div>

@@ -72,7 +72,161 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
+<h3 id="plugins">plugins</h3>
+<ul>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/">Adblock Plus</a></li>
+<li><a href="http://noscript.net/">NoScript</a></li>
+<li><a href="https://www.eff.org/https-everywhere">HTTPS-Everywhere</a></li>
+<li><a href="https://www.ghostery.com/">Ghostery</a></li>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/flashblock/">Flashblock</a></li>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/betterprivacy/">Better Privacy</a></li>
+</ul>
+<h3 id="aboutconfig">about:config</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># private mode by default</span>
+<span class="ex">browser.privatebrowsing.autostart</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># what? u crazy...</span>
+<span class="ex">browser.send_pings</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># blank page on start</span>
+<span class="ex">browser.startup.page</span><span class="kw">;</span><span class="ex">0</span>
+<span class="co"># homepage is blank</span>
+<span class="ex">browser.startup.homepage</span><span class="kw">;</span><span class="ex">about</span>:blank
+<span class="co"># no page on newtab</span>
+<span class="ex">browser.newtabpage.enabled</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># newtab page is blank</span>
+<span class="ex">browser.newtab.url</span><span class="kw">;</span><span class="ex">about</span>:blank
+<span class="co"># no tab animation</span>
+<span class="ex">browser.tabs.animate</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># no fullscreen animation</span>
+<span class="ex">browser.fullscreen.animateUp</span><span class="kw">;</span><span class="ex">0</span>
+<span class="co"># no animation in panorama mode</span>
+<span class="ex">browser.panorama.animate_zoom</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># don`t save thumbnails</span>
+<span class="ex">browser.pagethumbnails.storage_version</span><span class="kw">;</span><span class="ex">0</span>
+<span class="co"># no thumbnails on drag tab</span>
+<span class="ex">nglayout.enable_drag_images</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># no smooth scroll</span>
+<span class="ex">general.smoothScroll</span><span class="kw">;</span><span class="fu">false</span>
 
+<span class="co"># disable auto update</span>
+<span class="ex">app.update.enabled</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># disable search engine update</span>
+<span class="ex">browser.search.update</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># default search engine</span>
+<span class="ex">browser.search.defaultenginename</span><span class="kw">;</span><span class="ex">DuckDuckGo</span>
+<span class="co"># override useragent</span>
+<span class="ex">general.useragent.override</span><span class="kw">;</span><span class="ex">Mozilla/5.0</span> (Macintosh<span class="kw">;</span> <span class="ex">Intel</span> Mac OS X 10_9_0) <span class="ex">AppleWebKit/537.36</span> (KHTML, like Gecko) <span class="ex">Chrome/32.0.1664.3</span> Safari/537.36
+<span class="co"># disable geo location</span>
+<span class="ex">geo.enabled</span><span class="kw">;</span><span class="fu">false</span>
+
+<span class="co"># disable fucking zond</span>
+<span class="ex">browser.safebrowsing.remoteLookups</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># wow, wow... zond...</span>
+<span class="ex">browser.safebrowsing.malware.enabled</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># http://safebrowsing.clients.google.com/? O_o fuck u google!</span>
+<span class="co"># fucking_google -&gt; localhost</span>
+<span class="ex">browser.safebrowsing.malware.reportURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/fucking_google/
+<span class="ex">browser.safebrowsing.reportMalwareURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/fucking_google/
+<span class="ex">browser.safebrowsing.reportMalwareErrorURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/fucking_google/
+<span class="ex">browser.safebrowsing.keyURL</span><span class="kw">;</span><span class="ex">https</span>://localhost//fucking_google/
+<span class="ex">browser.safebrowsing.gethashURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/fucking_google/
+<span class="ex">browser.safebrowsing.updateURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/fucking_google/
+<span class="ex">browser.safebrowsing.reportURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/fucking_google/
+<span class="co"># reports to localhost</span>
+<span class="ex">browser.safebrowsing.reportErrorURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/
+<span class="ex">browser.safebrowsing.reportGenericURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/
+<span class="ex">browser.safebrowsing.reportPhishURL</span><span class="kw">;</span><span class="ex">http</span>://localhost/
+
+<span class="co"># do not track me plz</span>
+<span class="ex">privacy.donottrackheader.enabled</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># cleanup pass on close</span>
+<span class="ex">privacy.clearOnShutdown.passwords</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># clear cookie on close</span>
+<span class="ex">privacy.clearOnShutdown.cookies</span><span class="kw">;</span><span class="fu">true</span>
+
+<span class="co"># turn off js access to resize w</span>
+<span class="ex">dom.disable_window_move_resize</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># f u dom storage ([INFO]: n for feedly.com)</span>
+<span class="ex">dom.storage.enabled</span><span class="kw">;</span><span class="fu">false</span>
+
+<span class="co"># no history</span>
+<span class="ex">browser.sessionhistory.max_total_viewers</span><span class="kw">;</span><span class="ex">0</span>
+<span class="co"># max urls in address panel</span>
+<span class="ex">browser.sessionhistory.max_entries</span><span class="kw">;</span><span class="ex">10</span>
+<span class="co"># no offline cache</span>
+<span class="ex">browser.cache.offline.enable</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">browser.cache.offline.capacity</span><span class="kw">;</span><span class="ex">0</span>
+<span class="co"># no cache on disk (if RAM &gt;= 4096Mb)</span>
+<span class="ex">browser.cache.disk.enable</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># cache to mem</span>
+<span class="ex">browser.cache.memory.enable</span><span class="kw">;</span><span class="fu">true</span>
+
+<span class="co"># cookie only for current session</span>
+<span class="ex">network.cookie.lifetimePolicy</span><span class="kw">;</span><span class="ex">2</span>
+<span class="co"># cookie lifetime</span>
+<span class="ex">network.cookie.lifetime.days</span><span class="kw">;</span><span class="ex">0</span>
+<span class="co"># don`t save cookie on change ff version</span>
+<span class="ex">network.cookie.prefsMigrated</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># for more secure cookie</span>
+<span class="ex">network.cookie.cookieBehavior</span><span class="kw">;</span><span class="ex">3</span>
+<span class="co"># 3rd party cookie only for current session</span>
+<span class="ex">network.cookie.thirdparty.sessionOnly</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># oh, fuck off websockets</span>
+<span class="ex">network.websocket.enabled</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># disable expose protocol handler</span>
+<span class="ex">network.protocol-handler.expose.mailto</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.expose.news</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.expose.nntp</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.expose.nntp</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># disable external protocol handler</span>
+<span class="ex">network.protocol-handler.external-default</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.external.mailto</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.external.news</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.external.nntp</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">network.protocol-handler.external.snews</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># warn me if external protocol has been used</span>
+<span class="ex">network.protocol-handler.warn-external-default</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.protocol-handler.warn-external.file</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.protocol-handler.warn-external.mailto</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.protocol-handler.warn-external.news</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.protocol-handler.warn-external.nntp</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.protocol-handler.warn-external.snews</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># don`t send referrer in header</span>
+<span class="ex">network.http.sendRefererHeader</span><span class="kw">;</span><span class="ex">0</span>
+<span class="ex">network.http.sendSecureXSiteReferrer</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># if use proxy, dns must be wrapped</span>
+<span class="ex">network.proxy.socks_remote_dns</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># don`t use prefetch url (rel=&quot;prefetch&quot;)</span>
+<span class="ex">network.prefetch-next</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># enable pipelining (~+80% performans)</span>
+<span class="ex">network.http.pipelining</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.http.pipelining.ssl</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.http.proxy.pipelining</span><span class="kw">;</span><span class="fu">true</span>
+<span class="ex">network.http.pipelining.maxrequests</span><span class="kw">;</span><span class="ex">32</span>
+
+<span class="co"># disable IPv6</span>
+<span class="ex">network.dns.disableIPv6</span><span class="kw">;</span><span class="fu">true</span>
+
+<span class="co"># no auto refresh page</span>
+<span class="ex">accessibility.blockautorefresh</span><span class="kw">;</span><span class="fu">true</span>
+
+<span class="co"># don`t remember password for sites</span>
+<span class="ex">signon.rememberSignons</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># autofill</span>
+<span class="ex">signon.autofillForms</span><span class="kw">;</span><span class="fu">false</span>
+
+<span class="co"># disable default inspector if using firebug</span>
+<span class="ex">devtools.inspector.enabled</span><span class="kw">;</span><span class="fu">false</span>
+<span class="ex">extensions.firebug.hideDefaultInspector</span><span class="kw">;</span><span class="fu">true</span>
+
+<span class="co"># disable missing plugin notification</span>
+<span class="ex">plugins.hide_infobar_for_missing_plugin</span><span class="kw">;</span><span class="fu">true</span>
+<span class="co"># no scan plugins</span>
+<span class="ex">plugin.scan.plid.all</span><span class="kw">;</span><span class="fu">false</span>
+<span class="co"># start plugin after click</span>
+<span class="ex">plugins.click_to_play</span><span class="kw">;</span><span class="fu">true</span>
+
+<span class="co"># always show http(s):// in urlbar</span>
+<span class="ex">browser.urlbar.trimURLs</span><span class="kw">;</span><span class="fu">false</span></code></pre></div>
 
                     <!-- /content post.html -->
                 </div>

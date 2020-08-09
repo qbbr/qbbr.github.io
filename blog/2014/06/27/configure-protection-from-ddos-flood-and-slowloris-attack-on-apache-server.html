@@ -72,7 +72,63 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
+<h3 id="mod_evasive">mod_evasive</h3>
+<p><a href="http://www.zdziarski.com/blog/?page_id=442">mod_evasive</a> - anti DDOS, flood attack.</p>
+<h4 id="install">install</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">aptitude</span> install libapache2-mod-evasive</code></pre></div>
+<h4 id="configure">configure</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> /var/log/mod_evasive/
+<span class="fu">chown</span> www-data:www-data /var/log/mod_evasive/</code></pre></div>
+<p><code>/etc/apache2/conf.d/modevasive</code>:</p>
+<pre class="apache2"><code>&lt;ifmodule mod_evasive20.c&gt;
+    DOSHashTableSize 3097
+    DOSPageCount 2
+    DOSSiteCount 50
+    DOSPageInterval 1
+    DOSSiteInterval 1
+    DOSBlockingPeriod 60
+    DOSLogDir /var/log/mod_evasive
+    DOSEmailNotify webmaster@localhost
+    DOSWhitelist 127.0.0.1
+    DOSWhitelist 192.168.*.*
+&lt;/ifmodule&gt;</code></pre>
+<h3 id="mod_security">mod_security</h3>
+<p><a href="https://modsecurity.org/">mod_security</a> - open source web application firewall.</p>
+<h4 id="install-1">install</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">aptitude</span> install libapache-mod-security</code></pre></div>
+<h4 id="install-rules">install rules</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> /tmp/
+<span class="fu">wget</span> https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v2.2.5.tar.gz
+<span class="fu">tar</span> xvf v2.2.5.tar.gz
+<span class="fu">mkdir</span> /etc/apache2/mod_security_rules/
+<span class="fu">mv</span> owasp-modsecurity-crs-2.2.5/base_rules/* /etc/apache2/mod_security_rules/
+<span class="fu">rm</span> -rf owasp-modsecurity-crs-2.2.5/ v2.2.5.tar.gz
+<span class="fu">chown</span> -R root:root /etc/apache2/mod_security_rules/</code></pre></div>
+<h4 id="configure-1">configure</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cp</span> /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf</code></pre></div>
+<p>enable engine <code>/etc/modsecurity/modsecurity.conf</code>:</p>
+<pre class="apache2"><code>SecRuleEngine On</code></pre>
+<p><code>/etc/apache2/conf.d/modsecurity</code>:</p>
+<pre class="apache2"><code>&lt;ifmodule mod_security2.c&gt;
+    Include mod_security_rules/*.conf
+    SecWriteStateLimit 100
+&lt;/ifmodule&gt;</code></pre>
+<h3 id="enable-apache-modules">enable apache modules</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">a2enmod</span> headers unique_id mod-evasive mod-security
+<span class="ex">/etc/init.d/apache2</span> restart</code></pre></div>
+<h3 id="testing">testing</h3>
+<p><a href="http://code.google.com/p/slowhttptest/">slowhttptest</a></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">slowhttptest</span> -c 65539 -B -g -o my_server_stats -i 110 -r 200 -s 8192 -t FAKEVERB -u www.my-site.local -x 10 -p 3
 
+<span class="ex">Fri</span> Jun 27 09:42:19 2014:
+<span class="ex">slow</span> HTTP test status on 10th second:
+
+<span class="ex">initializing</span>:        0
+<span class="ex">pending</span>:             1406
+<span class="ex">connected</span>:           50
+<span class="ex">error</span>:               0
+<span class="ex">closed</span>:              15
+<span class="ex">service</span> available:   NO</code></pre></div>
 
                     <!-- /content post.html -->
                 </div>
