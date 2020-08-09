@@ -72,22 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<h3 id="configure">configure</h3>
-<p>add to <code>/etc/initramfs-tools/modules</code> in your virtual machine:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">usbcore</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="ex">sd_mod</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="ex">ehci_hcd</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="ex">uhci_hcd</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="ex">ohci_hcd</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="ex">usb_storage</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="ex">scsi_mod</span></a></code></pre></div>
-<p>update initrd:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">sudo</span> update-initramfs -u</a></code></pre></div>
-<h3 id="burn-to-usb">burn to usb</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">VBoxManage</span> clonehd --format RAW you-virtualbox-linux-disc.vdi linux.img</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="fu">sudo</span> dd bs=4M if=linux.img of=/dev/sdX</a></code></pre></div>
-<p>where <code>/dev/sdX</code> is your flash drive (do not write in partition <code>/dev/sdX1</code>)</p>
-<h3 id="thats-all-boot-from-usb">thats all, boot from usb =)</h3>
+
 
                     <!-- /content post.html -->
                 </div>

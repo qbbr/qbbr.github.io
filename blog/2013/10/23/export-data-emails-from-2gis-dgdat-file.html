@@ -72,28 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<h3 id="download-latest-2gis-db-for-ur-city">download latest 2gis db for ur city</h3>
-<ul>
-<li>from web <a href="http://2gis.ru/how-get/linux/">site</a></li>
-<li>or use u local db (path/to/2gis/3.0/Data_Novosibirsk.dgdat)</li>
-</ul>
-<h3 id="for-decrypt-the-file-use-bitwise-exclusive-or-operation-xor">for decrypt the file, use bitwise Exclusive OR operation (xor)</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1">[file] ^ <span class="bn">0xC5</span> <span class="co">// pattern 11000101</span></a></code></pre></div>
-<ol type="1">
-<li>open u .dgdat file in hexeditor</li>
-<li>xor file by pattern 11000101</li>
-<li>save as (file.dump)</li>
-</ol>
-<h3 id="after-decrypt-use-a-regular-expression-to-get-mail-addresses">after decrypt use a regular expression to get mail addresses</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">grep</span> -E -o -a <span class="st">&quot;[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.(ru|ua|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)&quot;</span> file.dump <span class="op">&gt;</span> emails.txt</a></code></pre></div>
-<h3 id="enjoy">enjoy</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="fu">wc</span> -l emails.txt</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="ex">34864</span> emails.txt <span class="co"># (&gt;^_^)&gt; Prank Gone Right</span></a></code></pre></div>
-<h3 id="hex-editors-for-linux">hex editors for linux</h3>
-<ul>
-<li><a href="http://www.wxhexeditor.org/">wxHexEditor</a></li>
-<li><a href="http://home.gna.org/bless/">Bless</a></li>
-</ul>
+
 
                     <!-- /content post.html -->
                 </div>

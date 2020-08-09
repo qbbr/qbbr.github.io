@@ -72,40 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<h3 id="install-tor">install tor</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">sudo</span> aptitude install tor</a></code></pre></div>
-<h3 id="install-caching-web-proxy">install caching web proxy</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">sudo</span> aptitude install polipo</a></code></pre></div>
-<h3 id="configure">configure</h3>
-<p>edit config <code>/etc/polipo/config</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">proxyAddress</span> = <span class="st">&quot;127.0.0.1&quot;</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="ex">proxyPort</span> = 8118</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="ex">allowedClients</span> = 127.0.0.1</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="ex">allowedPorts</span> = 1-65535</a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="ex">proxyName</span> = <span class="st">&quot;localhost&quot;</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="ex">cacheIsShared</span> = false</a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="ex">socksParentProxy</span> = <span class="st">&quot;localhost:9050&quot;</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="ex">socksProxyType</span> = socks5</a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="ex">chunkHighMark</span> = 67108864</a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="ex">diskCacheRoot</span> = <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="ex">localDocumentRoot</span> = <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="ex">disableLocalInterface</span> = true</a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="ex">disableConfiguration</span> = true</a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="ex">dnsUseGethostbyname</span> = yes</a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="ex">disableVia</span> = true</a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="ex">censoredHeaders</span> = from,accept-language,x-pad,link</a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="ex">censorReferer</span> = maybe</a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="ex">maxConnectionAge</span> = 5m</a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="ex">maxConnectionRequests</span> = 120</a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="ex">serverMaxSlots</span> = 8</a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="ex">serverSlots</span> = 2</a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="ex">tunnelAllowedPorts</span> = 1-65535</a></code></pre></div>
-<p>restart daemon</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="fu">sudo</span> /etc/init.d/polipo restart</a></code></pre></div>
-<h3 id="using">using</h3>
-<p>set proxy <code>127.0.0.1:8118</code> in your browser or using <code>iceweasel-torbutton</code></p>
-<p>for application use <code>usewithtor &lt;app&gt;</code></p>
-<p><a href="https://check.torproject.org/">tor checker</a></p>
+
 
                     <!-- /content post.html -->
                 </div>

@@ -72,34 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<ol type="1">
-<li><p><a href="2013-10-21-symfony2-create-kernel-event-listener">create kernel event listener</a></p></li>
-<li><p>modify onKernelRequest:</p></li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">&lt;?php</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">namespace</span> Acme\DemoBundle\EventListener<span class="ot">;</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">use</span> Symfony\Component\DependencyInjection\ContainerInterface<span class="ot">;</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">use</span> Symfony\Component\HttpKernel\Event\GetResponseEvent<span class="ot">;</span></a>
-<a class="sourceLine" id="cb1-7" title="7"></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">class</span> AcmeKernelListener</a>
-<a class="sourceLine" id="cb1-9" title="9">{</a>
-<a class="sourceLine" id="cb1-10" title="10">    <span class="kw">protected</span> <span class="kw">$container</span><span class="ot">;</span></a>
-<a class="sourceLine" id="cb1-11" title="11"></a>
-<a class="sourceLine" id="cb1-12" title="12">    <span class="kw">public</span> <span class="kw">function</span> <span class="fu">__construct</span><span class="ot">(</span>ContainerInterface <span class="kw">$container</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-13" title="13">    {</a>
-<a class="sourceLine" id="cb1-14" title="14">        <span class="kw">$this</span>-&gt;container = <span class="kw">$container</span><span class="ot">;</span></a>
-<a class="sourceLine" id="cb1-15" title="15">    }</a>
-<a class="sourceLine" id="cb1-16" title="16"></a>
-<a class="sourceLine" id="cb1-17" title="17">    <span class="kw">public</span> <span class="kw">function</span> onKernelRequest<span class="ot">(</span>GetResponseEvent <span class="kw">$event</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-18" title="18">    {</a>
-<a class="sourceLine" id="cb1-19" title="19">        <span class="kw">$this</span>-&gt;container-&gt;get<span class="ot">(</span><span class="st">&#39;twig&#39;</span><span class="ot">)</span>-&gt;getExtension<span class="ot">(</span><span class="st">&#39;core&#39;</span><span class="ot">)</span>-&gt;setNumberFormat<span class="ot">(</span><span class="dv">2</span><span class="ot">,</span> <span class="st">&#39;.&#39;</span><span class="ot">,</span> <span class="st">&#39;&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-20" title="20">    }</a>
-<a class="sourceLine" id="cb1-21" title="21">}</a></code></pre></div>
-<ol start="3" type="1">
-<li>using <a href="http://twig.sensiolabs.org/doc/filters/number_format.html">number_format</a> in twig</li>
-</ol>
+
 
                     <!-- /content post.html -->
                 </div>

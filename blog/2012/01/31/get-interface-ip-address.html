@@ -72,12 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">ip</span> -o -4 addr list eth0 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{ print $4 }&#39;</span></a></code></pre></div>
-<p>or</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="ex">/sbin/ifconfig</span> eth0 <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&#39;inet addr:&#39;</span> <span class="kw">|</span> <span class="fu">cut</span> -d: -f2 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{ print $1}&#39;</span></a></code></pre></div>
-<p>for ipv6:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">ip</span> -o -6 addr list eth0 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{ print $4 }&#39;</span> <span class="kw">|</span> <span class="fu">head</span> -n 1 <span class="kw">|</span> <span class="fu">cut</span> -d <span class="st">&#39;/&#39;</span> -f 1</a></code></pre></div>
-<p>where <strong>eth0</strong> - interface</p>
+
 
                     <!-- /content post.html -->
                 </div>

@@ -72,61 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<h3 id="install-dependencies">install dependencies</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">aptitude</span> install build-essential zlib1g-dev libpcre3 libpcre3-dev openssl libssl-dev checkinstall</a></code></pre></div>
-<h3 id="download-nginx-and-ngx_pagespeed-sources">download nginx and ngx_pagespeed sources</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="bu">export</span> <span class="va">nginx_build_dir=$HOME</span>/src</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="fu">mkdir</span> -p <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> <span class="va">$_</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co"># dl ngx_pagespeed</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="fu">wget</span> https://github.com/pagespeed/ngx_pagespeed/archive/v1.8.31.3-beta.zip -O ngx_pagespeed.zip <span class="kw">&amp;&amp;</span> <span class="fu">unzip</span> ngx_pagespeed.zip <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f ngx_pagespeed.zip</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co"># dl psol</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="bu">cd</span> ngx_pagespeed-*/ <span class="kw">&amp;&amp;</span> <span class="fu">wget</span> https://dl.google.com/dl/page-speed/psol/1.8.31.3.tar.gz -O psol.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">tar</span> -xzvf psol.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f psol.tar.gz</a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co"># dl nginx (http://nginx.org/en/download.html)</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&amp;</span> <span class="fu">wget</span> http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">tar</span> -xvzf nginx.tar.gz <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -f nginx.tar.gz</a></code></pre></div>
-<h3 id="change-server-name-if-n">change server name if n</h3>
-<p><code>src/http/ngx_http_header_filter_module.c</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">--- src/http/ngx_http_header_filter_module.c.orig       2014-06-11 13:29:45.940360480 +0900</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="dt">+++ src/http/ngx_http_header_filter_module.c    2014-06-11 13:31:01.572361703 +0900</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="dt">@@ -49,2 +49,2 @@</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="st">-static char ngx_http_server_string[] = &quot;Server: nginx&quot; CRLF;</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="st">-static char ngx_http_server_full_string[] = &quot;Server: &quot; NGINX_VER CRLF;</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="va">+static char ngx_http_server_string[] = &quot;Server: custom name&quot; CRLF;</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="va">+static char ngx_http_server_full_string[] = &quot;Server: custom name/1.1500.0&quot; CRLF;</span></a></code></pre></div>
-<h3 id="build">build</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>/nginx-*</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="ex">./configure</span> \</a>
-<a class="sourceLine" id="cb4-3" title="3">    --prefix=/etc/nginx \</a>
-<a class="sourceLine" id="cb4-4" title="4">    --conf-path=/etc/nginx/nginx.conf \</a>
-<a class="sourceLine" id="cb4-5" title="5">    --sbin-path=/usr/sbin/nginx \</a>
-<a class="sourceLine" id="cb4-6" title="6">    --pid-path=/var/run/nginx.pid \</a>
-<a class="sourceLine" id="cb4-7" title="7">    --lock-path=/var/lock/nginx.lock \</a>
-<a class="sourceLine" id="cb4-8" title="8">    --http-log-path=/var/log/nginx/access.log \</a>
-<a class="sourceLine" id="cb4-9" title="9">    --error-log-path=/var/log/nginx/error.log \</a>
-<a class="sourceLine" id="cb4-10" title="10">    --http-client-body-temp-path=/var/lib/nginx/body \</a>
-<a class="sourceLine" id="cb4-11" title="11">    --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \</a>
-<a class="sourceLine" id="cb4-12" title="12">    --http-scgi-temp-path=/var/lib/nginx/scgi \</a>
-<a class="sourceLine" id="cb4-13" title="13">    --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \</a>
-<a class="sourceLine" id="cb4-14" title="14">    --http-proxy-temp-path=/var/lib/nginx/proxy \</a>
-<a class="sourceLine" id="cb4-15" title="15">    --with-http_ssl_module \</a>
-<a class="sourceLine" id="cb4-16" title="16">    --with-http_spdy_module \</a>
-<a class="sourceLine" id="cb4-17" title="17">    --with-http_realip_module \</a>
-<a class="sourceLine" id="cb4-18" title="18">    --with-http_gzip_static_module \</a>
-<a class="sourceLine" id="cb4-19" title="19">    --with-http_gunzip_module \</a>
-<a class="sourceLine" id="cb4-20" title="20">    --with-http_stub_status_module \</a>
-<a class="sourceLine" id="cb4-21" title="21">    --with-http_sub_module \</a>
-<a class="sourceLine" id="cb4-22" title="22">    --with-http_secure_link_module \</a>
-<a class="sourceLine" id="cb4-23" title="23">    --with-http_addition_module \</a>
-<a class="sourceLine" id="cb4-24" title="24">    --with-http_random_index_module \</a>
-<a class="sourceLine" id="cb4-25" title="25">    --add-module=<span class="va">$nginx_build_dir</span>/ngx_pagespeed-*/</a>
-<a class="sourceLine" id="cb4-26" title="26"><span class="fu">make</span></a>
-<a class="sourceLine" id="cb4-27" title="27"><span class="ex">checkinstall</span></a>
-<a class="sourceLine" id="cb4-28" title="28"><span class="ex">nginx</span> –V</a></code></pre></div>
-<h3 id="install-init-script">install init script</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="fu">wget</span> http://http.us.debian.org/debian/pool/main/n/nginx/nginx-common_1.6.0-1_all.deb -O nginx-common.deb <span class="kw">&amp;&amp;</span> <span class="ex">dpkg</span> -x nginx-common.deb nginx-common <span class="kw">&amp;&amp;</span> <span class="fu">cp</span> nginx-common/etc/init.d/nginx . <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf nginx-common nginx-common.deb</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="fu">cp</span> nginx /etc/init.d/nginx</a></code></pre></div>
-<h3 id="use">use</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="ex">/etc/init.d/nginx</span> start</a></code></pre></div>
+
 
                     <!-- /content post.html -->
                 </div>

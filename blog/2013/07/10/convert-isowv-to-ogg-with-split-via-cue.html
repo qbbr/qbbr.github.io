@@ -72,32 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<h3 id="install-debian">install (debian):</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">sudo</span> aptitude install shntool vorbis-tools wavpack</a></code></pre></div>
-<h3 id="using">using:</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="ex">wvunpack</span> -cc file.iso.wv</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="ex">shnsplit</span> -o <span class="st">&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f file.cue -t %t file.wav</a></code></pre></div>
-<p>convert <strong>.iso.wv</strong> to <strong>.ogg</strong> with auto rename <strong>.ogg</strong> files:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#!/bin/sh</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># ./isowv2ogg</span></a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="va">FILE=$1</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="va">TMP_DIR=</span>tmp</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="fu">mkdir</span> tmp</a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="ex">wvunpack</span> -cc <span class="va">$1</span> -o <span class="va">$TMP_DIR</span>/</a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="bu">cd</span> <span class="va">$TMP_DIR</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="va">CUE=</span><span class="kw">`</span><span class="fu">find</span> . -name <span class="st">&#39;*.cue&#39;</span><span class="kw">`</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="va">WAV=</span><span class="kw">`</span><span class="fu">find</span> . -name <span class="st">&#39;*.wav&#39;</span><span class="kw">`</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="va">YEAR=</span><span class="kw">`</span><span class="fu">cat</span> <span class="va">$CUE</span> <span class="kw">|</span> <span class="fu">grep</span> DATE <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{ print $3 }&#39;</span><span class="kw">`</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="va">ALBUM=</span><span class="kw">`</span><span class="fu">cat</span> <span class="va">$CUE</span> <span class="kw">|</span> <span class="fu">grep</span> TITLE <span class="kw">|</span> <span class="fu">head</span> -n 1 <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/TITLE //&#39;</span> <span class="kw">|</span> <span class="fu">sed</span>  <span class="st">&#39;s/&quot;//g&#39;</span><span class="kw">`</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="bu">echo</span> <span class="va">$ALBUM</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="ex">shnsplit</span> -o <span class="st">&#39;cust ext=ogg oggenc -q9 - -o %f&#39;</span> -f <span class="va">$CUE</span> -t <span class="st">&quot;%n - %p - %a - </span><span class="va">$YEAR</span><span class="st"> - %t&quot;</span> <span class="va">$WAV</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="fu">rm</span> -f <span class="va">$WAV</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="bu">cd</span> ..</a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="fu">mv</span> <span class="va">$TMP_DIR</span> <span class="st">&quot;</span><span class="va">$YEAR</span><span class="st">-</span><span class="va">$ALBUM</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="bu">echo</span> <span class="st">&#39;[DONE]&#39;</span></a></code></pre></div>
-<p>script using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="ex">./isowv2ogg</span> file.iso.wv</a></code></pre></div>
+
 
                     <!-- /content post.html -->
                 </div>

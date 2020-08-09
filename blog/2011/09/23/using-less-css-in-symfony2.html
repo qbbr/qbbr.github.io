@@ -72,31 +72,7 @@
                 <div class="post" itemprop="articleBody">
                     <!-- content post.html -->
 
-<h3 id="install-node.js-npm-required">install (node.js + npm required):</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">sudo</span> npm install -g less</a></code></pre></div>
-<h3 id="configure">configure:</h3>
-<p>add less filter to assetic configuration:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># app/config/config.yml</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co"># ...</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co"># Assetic Configuration</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="fu">assetic:</span></a>
-<a class="sourceLine" id="cb2-5" title="5">    <span class="fu">debug:</span><span class="at">          %kernel.debug%</span></a>
-<a class="sourceLine" id="cb2-6" title="6">    <span class="fu">use_controller:</span><span class="at"> </span><span class="ch">false</span></a>
-<a class="sourceLine" id="cb2-7" title="7">    <span class="fu">filters:</span></a>
-<a class="sourceLine" id="cb2-8" title="8">        <span class="fu">cssrewrite:</span><span class="at"> </span><span class="ch">~</span></a>
-<a class="sourceLine" id="cb2-9" title="9">        <span class="fu">less:</span></a>
-<a class="sourceLine" id="cb2-10" title="10">            <span class="fu">node:</span><span class="at"> /usr/bin/node</span></a>
-<a class="sourceLine" id="cb2-11" title="11">            <span class="fu">node_paths:</span><span class="at"> </span><span class="kw">[</span>/usr/lib/node_modules/<span class="kw">]</span></a></code></pre></div>
-<h3 id="using">using:</h3>
-<p>twig:</p>
-<pre class="twig"><code>{% verbatim %}{% raw %}
-{% stylesheets filter=&#39;less&#39;
-    &#39;@QcmsAdminBundle/Resources/public/less/layout.less&#39;
-    &#39;@QcmsAdminBundle/Resources/public/less/left-menu.less&#39;
-%}
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ asset_url }}&quot;&gt;
-{% endstylesheets %}
-{% endraw %}{% endverbatim %}</code></pre>
+
 
                     <!-- /content post.html -->
                 </div>
