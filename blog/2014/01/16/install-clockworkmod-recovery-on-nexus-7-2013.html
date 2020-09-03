@@ -29,92 +29,87 @@
                                   `"7tY~'            `\  `\    `|_   |
                                                            `~\  |
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>qbbr.io / blog / install clockworkmod recovery on nexus 7 2013</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
-        <meta name="description" content="a personal blog about linux, hacking and programming">
-        <meta name="robots" content="index, follow">
-        <meta name="generator" content="bash">
-        <meta name="author" content="qbbr">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/highlight.css">
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
-        </header>
-
-        <main role="main">
-            <!-- content base.html -->
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <h2 itemprop="headline">
-                    <a itemprop="url" href="/blog/2014/01/16/install-clockworkmod-recovery-on-nexus-7-2013.html">
-                        <b>#</b> <span itemprop="name">install clockworkmod recovery on nexus 7 2013</span>
-                    </a>
-                </h2>
-
-                <div class="tags">
-                    <b>&sect; tags: </b>
-                    <a href=/blog/tags/nexus_7.html>nexus_7</a><a href=/blog/tags/android.html>android</a><a href=/blog/tags/clockworkmod.html>clockworkmod</a>
+<head>
+    <title>qbbr.io / blog / install clockworkmod recovery on nexus 7 2013</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2014/01/16/install-clockworkmod-recovery-on-nexus-7-2013.html"><b>#</b> <span itemprop="name">install clockworkmod recovery on nexus 7 2013</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b> <a href="/blog/tags/nexus_7.html">nexus_7</a><a href="/blog/tags/android.html">android</a><a href="/blog/tags/clockworkmod.html">clockworkmod</a>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2014-01-16" datetime="2014-01-16">16/01/2014</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <h3 id="install-fastboot-tool">install fastboot tool</h3>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install android-tools-fastboot</code></pre>
                 </div>
-
-                <div class="date">
-                    <h2><time itemprop="datePublished" content="2014-01-16" datetime="2014-01-16">16/01/2014</time></h2>
+                <h3 id="unlock-the-bootloader">unlock the bootloader</h3>
+                <p>Press volume down + power button to boot into bootloader mode<br>
+                or:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">adb</span> reboot bootloader</code></pre>
                 </div>
-
-                <div class="post" itemprop="articleBody">
-                    <!-- content post.html -->
-
-<h3 id="install-fastboot-tool">install fastboot tool</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install android-tools-fastboot</code></pre></div>
-<h3 id="unlock-the-bootloader">unlock the bootloader</h3>
-<p>Press volume down + power button to boot into bootloader mode<br />
-or:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">adb</span> reboot bootloader</code></pre></div>
-<p>unlock (ALL DATA WILL BE REMOVED!):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot oem unlock</code></pre></div>
-<h3 id="download-cwm-6.0.4.3">download CWM (6.0.4.3)</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wget</span> -O /tmp/clockworkmod.img https://www.dropbox.com/s/73llj8n6g2vat3o/recovery-clockwork-touch-6.0.4.3-flo.img</code></pre></div>
-<h3 id="install-cwm">install CWM</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot flash recovery /tmp/clockworkmod.img</code></pre></div>
-<h3 id="fix-loop-loading-animations">fix loop loading animations</h3>
-<p>in bootloader mode:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot format userdata
-<span class="fu">sudo</span> fastboot format cache</code></pre></div>
-<h3 id="wow-wow-wow">wow, wow, wow =)</h3>
-
-                    <!-- /content post.html -->
+                <p>unlock (ALL DATA WILL BE REMOVED!):</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot oem unlock</code></pre>
                 </div>
-            </article>
-            <!-- /content base.html -->
-        </main>
-
-        <footer>
-            <small>
-                <div>
-    <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2014-01-16-install-clockworkmod-recovery-on-nexus-7-2013.md" rel="external">post source</a>
-</div>
-                <div>generated from <a href="https://www.gnu.org/software/bash/" rel=external">bash</a></div>
-                <div>&copy; 2020 <a href="/">qbbr.io</a></div>
-            </small>
-        </footer>
-
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-42421652-1', 'qbbr.io');
-            ga('send', 'pageview');
-        </script>
-    </body>
+                <h3 id="download-cwm-6.0.4.3">download CWM (6.0.4.3)</h3>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wget</span> -O /tmp/clockworkmod.img https://www.dropbox.com/s/73llj8n6g2vat3o/recovery-clockwork-touch-6.0.4.3-flo.img</code></pre>
+                </div>
+                <h3 id="install-cwm">install CWM</h3>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot flash recovery /tmp/clockworkmod.img</code></pre>
+                </div>
+                <h3 id="fix-loop-loading-animations">fix loop loading animations</h3>
+                <p>in bootloader mode:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> fastboot format userdata
+<span class="fu">sudo</span> fastboot format cache</code></pre>
+                </div>
+                <h3 id="wow-wow-wow">wow, wow, wow =)</h3><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2014-01-16-install-clockworkmod-recovery-on-nexus-7-2013.md" rel="external">post source</a></small>
+        </div>
+        <div>
+            <small>generated from <a href="https://www.gnu.org/software/bash/" rel="external">bash</a></small>
+        </div>
+        <div>
+            <small>© 2020 <a href="/">qbbr.io</a></small>
+        </div>
+    </footer>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42421652-1', 'qbbr.io');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>

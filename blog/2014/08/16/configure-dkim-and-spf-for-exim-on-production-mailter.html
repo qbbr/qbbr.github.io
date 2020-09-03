@@ -29,61 +29,54 @@
                                   `"7tY~'            `\  `\    `|_   |
                                                            `~\  |
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>qbbr.io / blog / configure dkim and spf for exim on production mailter</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
-        <meta name="description" content="a personal blog about linux, hacking and programming">
-        <meta name="robots" content="index, follow">
-        <meta name="generator" content="bash">
-        <meta name="author" content="qbbr">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/highlight.css">
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
-        </header>
-
-        <main role="main">
-            <!-- content base.html -->
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <h2 itemprop="headline">
-                    <a itemprop="url" href="/blog/2014/08/16/configure-dkim-and-spf-for-exim-on-production-mailter.html">
-                        <b>#</b> <span itemprop="name">configure dkim and spf for exim on production mailter</span>
-                    </a>
-                </h2>
-
-                <div class="tags">
-                    <b>&sect; tags: </b>
-                    <a href=/blog/tags/linux.html>linux</a><a href=/blog/tags/debian.html>debian</a><a href=/blog/tags/exim.html>exim</a><a href=/blog/tags/mail.html>mail</a><a href=/blog/tags/dns.html>dns</a><a href=/blog/tags/dkim.html>dkim</a><a href=/blog/tags/spf.html>spf</a>
+<head>
+    <title>qbbr.io / blog / configure dkim and spf for exim on production mailter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2014/08/16/configure-dkim-and-spf-for-exim-on-production-mailter.html"><b>#</b> <span itemprop="name">configure dkim and spf for exim on production mailter</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b> <a href="/blog/tags/linux.html">linux</a><a href="/blog/tags/debian.html">debian</a><a href="/blog/tags/exim.html">exim</a><a href="/blog/tags/mail.html">mail</a><a href="/blog/tags/dns.html">dns</a><a href="/blog/tags/dkim.html">dkim</a><a href="/blog/tags/spf.html">spf</a>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2014-08-16" datetime="2014-08-16">16/08/2014</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <h3 id="spf-sender-policy-framework">SPF (Sender Policy Framework)</h3>
+                <p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/Sender_Policy_Framework">wiki</a> <a href="http://www.openspf.org/SPF_Record_Syntax">syntax</a> <a href="http://www.openspf.org/Tools">tools</a> <a href="http://www.kitterman.com/spf/validate.html">validator</a> <a href="http://www.ietf.org/rfc/rfc4408.txt">RFC 4408</a></p>
+                <h4 id="dns-records">DNS records</h4>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">domain.tld</span> IN TXT v=spf1 ip4:ipAddress ~all
+<span class="co"># domain.tld IN SPF v=spf1 ip4:ipAddress ~all</span></code></pre>
                 </div>
-
-                <div class="date">
-                    <h2><time itemprop="datePublished" content="2014-08-16" datetime="2014-08-16">16/08/2014</time></h2>
-                </div>
-
-                <div class="post" itemprop="articleBody">
-                    <!-- content post.html -->
-
-<h3 id="spf-sender-policy-framework">SPF (Sender Policy Framework)</h3>
-<p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/Sender_Policy_Framework">wiki</a> <a href="http://www.openspf.org/SPF_Record_Syntax">syntax</a> <a href="http://www.openspf.org/Tools">tools</a> <a href="http://www.kitterman.com/spf/validate.html">validator</a> <a href="http://www.ietf.org/rfc/rfc4408.txt">RFC 4408</a></p>
-<h4 id="dns-records">DNS records</h4>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">domain.tld</span> IN TXT v=spf1 ip4:ipAddress ~all
-<span class="co"># domain.tld IN SPF v=spf1 ip4:ipAddress ~all</span></code></pre></div>
-<p>where:<br />
-ip4:<strong>ipAddress</strong> - Allowed IP for send</p>
-<h3 id="dkim-domainkeys-identified-mail">DKIM (DomainKeys Identified Mail)</h3>
-<p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail">wiki</a> <a href="http://dkimcore.org/tools/keycheck.html">validator</a> <a href="http://www.ietf.org/rfc/rfc4871.txt">RFC 4871</a></p>
-<h4 id="generate-dkim-keys">generate DKIM keys</h4>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> /etc/exim4/dkim
+                <p>where:<br>
+                ip4:<strong>ipAddress</strong> - Allowed IP for send</p>
+                <h3 id="dkim-domainkeys-identified-mail">DKIM (DomainKeys Identified Mail)</h3>
+                <p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail">wiki</a> <a href="http://dkimcore.org/tools/keycheck.html">validator</a> <a href="http://www.ietf.org/rfc/rfc4871.txt">RFC 4871</a></p>
+                <h4 id="generate-dkim-keys">generate DKIM keys</h4>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> /etc/exim4/dkim
 <span class="bu">cd</span> /etc/exim4/dkim
 <span class="co"># private key</span>
 <span class="ex">openssl</span> genrsa -out domain.tld.key 1024
@@ -91,49 +84,49 @@ ip4:<strong>ipAddress</strong> - Allowed IP for send</p>
 <span class="ex">openssl</span> rsa -in domain.tld.key -pubout <span class="op">&gt;</span> domain.tld.pub
 <span class="co"># permissions</span>
 <span class="fu">chown</span> -R Debian-exim:Debian-exim /etc/exim4/dkim/
-<span class="fu">chmod</span> 640 /etc/exim4/dkim/*</code></pre></div>
-<h4 id="configure-exim">configure exim</h4>
-<p>configure exim for internet site</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">dpkg-reconfigure</span> exim4-config</code></pre></div>
-<p>edit config: <code>/etc/exim4/update-exim4.conf.conf</code><br />
-or (if u use splitted config) <code>/etc/exim4/conf.d/transport/30_exim4-config_remote_smtp</code></p>
-<p>add this line:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">DKIM_DOMAIN</span> = <span class="va">${lc:${domain:$h_from:}}</span>
+<span class="fu">chmod</span> 640 /etc/exim4/dkim/*</code></pre>
+                </div>
+                <h4 id="configure-exim">configure exim</h4>
+                <p>configure exim for internet site</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">dpkg-reconfigure</span> exim4-config</code></pre>
+                </div>
+                <p>edit config: <code>/etc/exim4/update-exim4.conf.conf</code><br>
+                or (if u use splitted config) <code>/etc/exim4/conf.d/transport/30_exim4-config_remote_smtp</code></p>
+                <p>add this line:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">DKIM_DOMAIN</span> = <span class="va">${lc:${domain:$h_from:}}</span>
 <span class="ex">DKIM_KEY_FILE</span> = /etc/exim4/dkim/domain.tld.key
 <span class="ex">DKIM_PRIVATE_KEY</span> = <span class="va">${if</span><span class="er"> exists{DKIM_KEY_FILE</span><span class="va">}</span><span class="dt">{DKIM_KEY_FILE}{0}}</span>
-<span class="ex">DKIM_SELECTOR</span> = mail</code></pre></div>
-<p>restart exim</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/etc/init.d/exim4</span> restart</code></pre></div>
-<h4 id="dns-records-1">DNS records</h4>
-<pre><code>mail._domainkey IN TXT v=DKIM1; k=rsa; p=publicKey</code></pre>
-<p>where:<br />
-p=<strong>publicKey</strong> - u public key without new line breaks and comments (<code>/etc/exim4/dkim/domain.tld.pub</code>)<br />
-<strong>mail</strong>._domainkey - <code>DKIM_SELECTOR</code> from exim config</p>
-
-                    <!-- /content post.html -->
+<span class="ex">DKIM_SELECTOR</span> = mail</code></pre>
                 </div>
-            </article>
-            <!-- /content base.html -->
-        </main>
-
-        <footer>
-            <small>
-                <div>
-    <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2014-08-16-configure-dkim-and-spf-for-exim-on-production-mailter.md" rel="external">post source</a>
-</div>
-                <div>generated from <a href="https://www.gnu.org/software/bash/" rel=external">bash</a></div>
-                <div>&copy; 2020 <a href="/">qbbr.io</a></div>
-            </small>
-        </footer>
-
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-42421652-1', 'qbbr.io');
-            ga('send', 'pageview');
-        </script>
-    </body>
+                <p>restart exim</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/etc/init.d/exim4</span> restart</code></pre>
+                </div>
+                <h4 id="dns-records-1">DNS records</h4>
+                <pre><code>mail._domainkey IN TXT v=DKIM1; k=rsa; p=publicKey</code></pre>
+                <p>where:<br>
+                p=<strong>publicKey</strong> - u public key without new line breaks and comments (<code>/etc/exim4/dkim/domain.tld.pub</code>)<br>
+                <strong>mail</strong>._domainkey - <code>DKIM_SELECTOR</code> from exim config</p><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2014-08-16-configure-dkim-and-spf-for-exim-on-production-mailter.md" rel="external">post source</a></small>
+        </div>
+        <div>
+            <small>generated from <a href="https://www.gnu.org/software/bash/" rel="external">bash</a></small>
+        </div>
+        <div>
+            <small>© 2020 <a href="/">qbbr.io</a></small>
+        </div>
+    </footer>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42421652-1', 'qbbr.io');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>

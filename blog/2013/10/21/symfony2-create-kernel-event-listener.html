@@ -29,52 +29,43 @@
                                   `"7tY~'            `\  `\    `|_   |
                                                            `~\  |
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>qbbr.io / blog / symfony2 create kernel event listener</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
-        <meta name="description" content="a personal blog about linux, hacking and programming">
-        <meta name="robots" content="index, follow">
-        <meta name="generator" content="bash">
-        <meta name="author" content="qbbr">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/highlight.css">
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
-        </header>
-
-        <main role="main">
-            <!-- content base.html -->
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <h2 itemprop="headline">
-                    <a itemprop="url" href="/blog/2013/10/21/symfony2-create-kernel-event-listener.html">
-                        <b>#</b> <span itemprop="name">symfony2 create kernel event listener</span>
-                    </a>
-                </h2>
-
-                <div class="tags">
-                    <b>&sect; tags: </b>
-                    <a href=/blog/tags/php.html>php</a><a href=/blog/tags/symfony2.html>symfony2</a>
-                </div>
-
-                <div class="date">
-                    <h2><time itemprop="datePublished" content="2013-10-21" datetime="2013-10-21">21/10/2013</time></h2>
-                </div>
-
-                <div class="post" itemprop="articleBody">
-                    <!-- content post.html -->
-
-<p>src/Acme/DemoBundle/EventListener/AcmeKernelListener.php:</p>
-<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
+<head>
+    <title>qbbr.io / blog / symfony2 create kernel event listener</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2013/10/21/symfony2-create-kernel-event-listener.html"><b>#</b> <span itemprop="name">symfony2 create kernel event listener</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b> <a href="/blog/tags/php.html">php</a><a href="/blog/tags/symfony2.html">symfony2</a>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2013-10-21" datetime="2013-10-21">21/10/2013</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <p>src/Acme/DemoBundle/EventListener/AcmeKernelListener.php:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
 
 <span class="kw">namespace</span> Acme\DemoBundle\EventListener<span class="ot">;</span>
 
@@ -107,40 +98,36 @@
         <span class="kw">$request</span>   = <span class="kw">$event</span>-&gt;getRequest<span class="ot">();</span>
         <span class="co">// u code</span>
     }
-}</code></pre></div>
-<p>app/config/config.yml:</p>
-<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">services:</span>
+}</code></pre>
+                </div>
+                <p>app/config/config.yml:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">services:</span>
     <span class="fu">listener.requestresponse:</span>
         <span class="fu">class:</span><span class="at"> Acme\DemoBundle\EventListener\AcmeKernelListener</span>
         <span class="fu">arguments:</span><span class="at"> </span><span class="kw">[</span> @service_container <span class="kw">]</span>
         <span class="fu">tags:</span>
             <span class="kw">-</span> <span class="kw">{</span> <span class="fu">name:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span> <span class="fu">event:</span><span class="at"> kernel.request</span><span class="kw">,</span> <span class="fu">method:</span><span class="at"> onKernelRequest </span><span class="kw">}</span>
-            <span class="kw">-</span> <span class="kw">{</span> <span class="fu">name:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span> <span class="fu">event:</span><span class="at"> kernel.response</span><span class="kw">,</span> <span class="fu">method:</span><span class="at"> onKernelResponse </span><span class="kw">}</span></code></pre></div>
-
-                    <!-- /content post.html -->
-                </div>
-            </article>
-            <!-- /content base.html -->
-        </main>
-
-        <footer>
-            <small>
-                <div>
-    <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2013-10-21-symfony2-create-kernel-event-listener.md" rel="external">post source</a>
-</div>
-                <div>generated from <a href="https://www.gnu.org/software/bash/" rel=external">bash</a></div>
-                <div>&copy; 2020 <a href="/">qbbr.io</a></div>
-            </small>
-        </footer>
-
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-42421652-1', 'qbbr.io');
-            ga('send', 'pageview');
-        </script>
-    </body>
+            <span class="kw">-</span> <span class="kw">{</span> <span class="fu">name:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span> <span class="fu">event:</span><span class="at"> kernel.response</span><span class="kw">,</span> <span class="fu">method:</span><span class="at"> onKernelResponse </span><span class="kw">}</span></code></pre>
+                </div><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2013-10-21-symfony2-create-kernel-event-listener.md" rel="external">post source</a></small>
+        </div>
+        <div>
+            <small>generated from <a href="https://www.gnu.org/software/bash/" rel="external">bash</a></small>
+        </div>
+        <div>
+            <small>© 2020 <a href="/">qbbr.io</a></small>
+        </div>
+    </footer>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42421652-1', 'qbbr.io');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>

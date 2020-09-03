@@ -29,62 +29,59 @@
                                   `"7tY~'            `\  `\    `|_   |
                                                            `~\  |
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>qbbr.io / blog / PHP: globaly vardumper server</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
-        <meta name="description" content="a personal blog about linux, hacking and programming">
-        <meta name="robots" content="index, follow">
-        <meta name="generator" content="bash">
-        <meta name="author" content="qbbr">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/highlight.css">
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
-        </header>
-
-        <main role="main">
-            <!-- content base.html -->
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <h2 itemprop="headline">
-                    <a itemprop="url" href="/blog/2020/08/09/PHP:-globaly-vardumper-server.html">
-                        <b>#</b> <span itemprop="name">PHP: globaly vardumper server</span>
-                    </a>
-                </h2>
-
-                <div class="tags">
-                    <b>&sect; tags: </b>
-                    
+<head>
+    <title>qbbr.io / blog / PHP: globaly vardumper server</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2020/08/09/PHP:-globaly-vardumper-server.html"><b>#</b> <span itemprop="name">PHP: globaly vardumper server</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2020-08-09" datetime="2020-08-09">09/08/2020</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <h3 id="installation-configure">installation &amp;& configure</h3>
+                <p><a href="https://symfony.com/doc/current/components/var_dumper.html">Symfony VarDumper Component</a></p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">composer</span> global require symfony/var-dumper symfony/console</code></pre>
                 </div>
-
-                <div class="date">
-                    <h2><time itemprop="datePublished" content="2020-08-09" datetime="2020-08-09">09/08/2020</time></h2>
+                <p>add to <code>.bashrc</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">PATH=</span><span class="st">"</span><span class="va">$PATH</span><span class="st">:</span><span class="va">$HOME</span><span class="st">/.config/composer/vendor/bin"</span></code></pre>
                 </div>
+                <p>file <code>~/.config/php/autoload.php</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
 
-                <div class="post" itemprop="articleBody">
-                    <!-- content post.html -->
-
-<h3 id="installation-configure">installation &amp;&amp; configure</h3>
-<p><a href="https://symfony.com/doc/current/components/var_dumper.html">Symfony VarDumper Component</a></p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">composer</span> global require symfony/var-dumper symfony/console</code></pre></div>
-<p>add to <code>.bashrc</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">PATH=</span><span class="st">&quot;</span><span class="va">$PATH</span><span class="st">:</span><span class="va">$HOME</span><span class="st">/.config/composer/vendor/bin&quot;</span></code></pre></div>
-<p>file <code>~/.config/php/autoload.php</code>:</p>
-<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
-
-<span class="kw">require</span> <span class="fu">getenv</span><span class="ot">(</span><span class="st">&#39;HOME&#39;</span><span class="ot">)</span>.<span class="st">&#39;/.config/composer/vendor/autoload.php&#39;</span><span class="ot">;</span>
-<span class="kw">require</span> <span class="kw">__DIR__</span>.<span class="st">&#39;/var_dumper_server.php&#39;</span><span class="ot">;</span></code></pre></div>
-<p>file <code>~/.config/php/var_dumper_server.php</code>:</p>
-<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
+<span class="kw">require</span> <span class="fu">getenv</span><span class="ot">(</span><span class="st">'HOME'</span><span class="ot">)</span>.<span class="st">'/.config/composer/vendor/autoload.php'</span><span class="ot">;</span>
+<span class="kw">require</span> <span class="kw">__DIR__</span>.<span class="st">'/var_dumper_server.php'</span><span class="ot">;</span></code></pre>
+                </div>
+                <p>file <code>~/.config/php/var_dumper_server.php</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
 
 <span class="kw">use</span> Symfony\Component\VarDumper\Cloner\VarCloner<span class="ot">;</span>
 <span class="kw">use</span> Symfony\Component\VarDumper\Dumper\CliDumper<span class="ot">;</span>
@@ -95,54 +92,54 @@
 <span class="kw">use</span> Symfony\Component\VarDumper\VarDumper<span class="ot">;</span>
 
 <span class="kw">$cloner</span> = <span class="kw">new</span> VarCloner<span class="ot">();</span>
-<span class="kw">$fallbackDumper</span> = \<span class="fu">in_array</span><span class="ot">(</span>\<span class="kw">PHP_SAPI</span><span class="ot">,</span> <span class="ot">[</span><span class="st">&#39;cli&#39;</span><span class="ot">,</span> <span class="st">&#39;phpdbg&#39;</span><span class="ot">])</span> <span class="ot">?</span> <span class="kw">new</span> CliDumper<span class="ot">()</span> <span class="ot">:</span> <span class="kw">new</span> HtmlDumper<span class="ot">();</span>
-<span class="kw">$dumper</span> = <span class="kw">new</span> ServerDumper<span class="ot">(</span><span class="kw">$_SERVER</span><span class="ot">[</span><span class="st">&#39;VAR_DUMPER_SERVER&#39;</span><span class="ot">]</span> <span class="ot">??</span> <span class="st">&#39;tcp://127.0.0.1:9912&#39;</span><span class="ot">,</span> <span class="kw">$fallbackDumper</span><span class="ot">,</span> <span class="ot">[</span>
-    <span class="st">&#39;cli&#39;</span> =&gt; <span class="kw">new</span> CliContextProvider<span class="ot">(),</span>
-    <span class="st">&#39;source&#39;</span> =&gt; <span class="kw">new</span> SourceContextProvider<span class="ot">(),</span>
+<span class="kw">$fallbackDumper</span> = \<span class="fu">in_array</span><span class="ot">(</span>\<span class="kw">PHP_SAPI</span><span class="ot">,</span> <span class="ot">[</span><span class="st">'cli'</span><span class="ot">,</span> <span class="st">'phpdbg'</span><span class="ot">])</span> <span class="ot">?</span> <span class="kw">new</span> CliDumper<span class="ot">()</span> <span class="ot">:</span> <span class="kw">new</span> HtmlDumper<span class="ot">();</span>
+<span class="kw">$dumper</span> = <span class="kw">new</span> ServerDumper<span class="ot">(</span><span class="kw">$_SERVER</span><span class="ot">[</span><span class="st">'VAR_DUMPER_SERVER'</span><span class="ot">]</span> <span class="ot">??</span> <span class="st">'tcp://127.0.0.1:9912'</span><span class="ot">,</span> <span class="kw">$fallbackDumper</span><span class="ot">,</span> <span class="ot">[</span>
+    <span class="st">'cli'</span> =&gt; <span class="kw">new</span> CliContextProvider<span class="ot">(),</span>
+    <span class="st">'source'</span> =&gt; <span class="kw">new</span> SourceContextProvider<span class="ot">(),</span>
 <span class="ot">]);</span>
 
 VarDumper::setHandler<span class="ot">(</span><span class="kw">function</span> <span class="ot">(</span><span class="kw">$var</span><span class="ot">)</span> <span class="kw">use</span> <span class="ot">(</span><span class="kw">$cloner</span><span class="ot">,</span> <span class="kw">$dumper</span><span class="ot">)</span> {
     <span class="kw">$dumper</span>-&gt;dump<span class="ot">(</span><span class="kw">$cloner</span>-&gt;cloneVar<span class="ot">(</span><span class="kw">$var</span><span class="ot">));</span>
-}<span class="ot">);;</span></code></pre></div>
-<p>set auto_prepend_file in <code>php.ini</code> file:</p>
-<pre><code>auto_prepend_file = ${HOME}/.config/php/autoload.php</code></pre>
-<p>(optional) u can set VAR_DUMPER_SERVER, <code>.bashrc</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">VAR_DUMPER_SERVER=</span>tcp://127.0.0.1:9913</code></pre></div>
-<h3 id="using">using</h3>
-<p>use <code>var-dump-server</code> cmd for start same server</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># test.php</span>
+}<span class="ot">);;</span></code></pre>
+                </div>
+                <p>set auto_prepend_file in <code>php.ini</code> file:</p>
+                <pre><code>auto_prepend_file = ${HOME}/.config/php/autoload.php</code></pre>
+                <p>(optional) u can set VAR_DUMPER_SERVER, <code>.bashrc</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">VAR_DUMPER_SERVER=</span>tcp://127.0.0.1:9913</code></pre>
+                </div>
+                <h3 id="using">using</h3>
+                <p>use <code>var-dump-server</code> cmd for start same server</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># test.php</span>
 <span class="op">&lt;</span><span class="ex">?php</span>
 
 <span class="ex">dump</span>(<span class="va">$_SERVER</span>);
 
-<span class="bu">echo</span> <span class="st">&#39;test&#39;</span><span class="kw">;</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">php</span> test.php</code></pre></div>
-<p>see pretty print dump on console =)</p>
-
-                    <!-- /content post.html -->
+<span class="bu">echo</span> <span class="st">'test'</span><span class="kw">;</span></code></pre>
                 </div>
-            </article>
-            <!-- /content base.html -->
-        </main>
-
-        <footer>
-            <small>
-                <div>
-    <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2020-08-09-PHP:-globaly-vardumper-server.md" rel="external">post source</a>
-</div>
-                <div>generated from <a href="https://www.gnu.org/software/bash/" rel=external">bash</a></div>
-                <div>&copy; 2020 <a href="/">qbbr.io</a></div>
-            </small>
-        </footer>
-
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-42421652-1', 'qbbr.io');
-            ga('send', 'pageview');
-        </script>
-    </body>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">php</span> test.php</code></pre>
+                </div>
+                <p>see pretty print dump on console =)</p><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2020-08-09-PHP:-globaly-vardumper-server.md" rel="external">post source</a></small>
+        </div>
+        <div>
+            <small>generated from <a href="https://www.gnu.org/software/bash/" rel="external">bash</a></small>
+        </div>
+        <div>
+            <small>© 2020 <a href="/">qbbr.io</a></small>
+        </div>
+    </footer>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42421652-1', 'qbbr.io');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>

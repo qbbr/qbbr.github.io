@@ -29,63 +29,58 @@
                                   `"7tY~'            `\  `\    `|_   |
                                                            `~\  |
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>qbbr.io / blog / set up wifi access point on linux</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
-        <meta name="description" content="a personal blog about linux, hacking and programming">
-        <meta name="robots" content="index, follow">
-        <meta name="generator" content="bash">
-        <meta name="author" content="qbbr">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/highlight.css">
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">qbbr<span>.io</span></a><b class="s1"> / </b><b class="s2">~</b><a href="/blog/">blog</a></h1>
-        </header>
-
-        <main role="main">
-            <!-- content base.html -->
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <h2 itemprop="headline">
-                    <a itemprop="url" href="/blog/2012/01/18/set-up-wifi-access-point-on-linux.html">
-                        <b>#</b> <span itemprop="name">set up wifi access point on linux</span>
-                    </a>
-                </h2>
-
-                <div class="tags">
-                    <b>&sect; tags: </b>
-                    <a href=/blog/tags/linux.html>linux</a><a href=/blog/tags/debian.html>debian</a><a href=/blog/tags/network.html>network</a><a href=/blog/tags/wireless.html>wireless</a><a href=/blog/tags/iptables.html>iptables</a>
-                </div>
-
-                <div class="date">
-                    <h2><time itemprop="datePublished" content="2012-01-18" datetime="2012-01-18">18/01/2012</time></h2>
-                </div>
-
-                <div class="post" itemprop="articleBody">
-                    <!-- content post.html -->
-
-<h3 id="configure-wireless-adapter">1) configure wireless adapter</h3>
-<p>add to <code>/etc/network/interfaces</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">auto</span> wlan0
+<head>
+    <title>qbbr.io / blog / set up wifi access point on linux</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2012/01/18/set-up-wifi-access-point-on-linux.html"><b>#</b> <span itemprop="name">set up wifi access point on linux</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b> <a href="/blog/tags/linux.html">linux</a><a href="/blog/tags/debian.html">debian</a><a href="/blog/tags/network.html">network</a><a href="/blog/tags/wireless.html">wireless</a><a href="/blog/tags/iptables.html">iptables</a>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2012-01-18" datetime="2012-01-18">18/01/2012</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <h3 id="configure-wireless-adapter">1) configure wireless adapter</h3>
+                <p>add to <code>/etc/network/interfaces</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">auto</span> wlan0
 <span class="ex">iface</span> wlan0 inet static
     <span class="ex">address</span> 192.168.13.1
     <span class="ex">network</span> 192.168.13.0
     <span class="ex">netmask</span> 255.255.255.0
-    <span class="ex">broadcast</span> 192.168.13.255</code></pre></div>
-<h3 id="ap-daemon">2) ap daemon</h3>
-<p>install <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install hostapd</code></pre></div>
-<p>edit <code>/etc/hostapd/hostapd.conf</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
+    <span class="ex">broadcast</span> 192.168.13.255</code></pre>
+                </div>
+                <h3 id="ap-daemon">2) ap daemon</h3>
+                <p>install <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install hostapd</code></pre>
+                </div>
+                <p>edit <code>/etc/hostapd/hostapd.conf</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
 <span class="va">driver=</span>nl80211
 
 <span class="co"># AP name</span>
@@ -100,60 +95,74 @@
 <span class="va">wpa_key_mgmt=</span>WPA-PSK
 <span class="co"># password</span>
 <span class="va">wpa_passphrase=</span>password
-<span class="va">wpa_pairwise=</span>TKIP <span class="ex">CCMP</span></code></pre></div>
-<p>edit <code>/etc/default/hostapd</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">DAEMON_CONF=</span><span class="st">&quot;/etc/hostapd/hostapd.conf&quot;</span></code></pre></div>
-<p>start daemon:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/hostapd start</code></pre></div>
-<h3 id="netfilter">3) netfilter</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">su</span>
+<span class="va">wpa_pairwise=</span>TKIP <span class="ex">CCMP</span></code></pre>
+                </div>
+                <p>edit <code>/etc/default/hostapd</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">DAEMON_CONF=</span><span class="st">"/etc/hostapd/hostapd.conf"</span></code></pre>
+                </div>
+                <p>start daemon:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/hostapd start</code></pre>
+                </div>
+                <h3 id="netfilter">3) netfilter</h3>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">su</span>
 <span class="bu">echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
 <span class="ex">iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
-<span class="bu">exit</span></code></pre></div>
-<p>for every boot system, edit <code>/etc/network/if-pre-up.d/wifi</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/sh</span>
-<span class="ex">/bin/echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
-<span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE</code></pre></div>
-<p>grant execute permissions:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> chmod +x /etc/network/if-pre-up.d/wifi</code></pre></div>
-<p>if use <strong>ppp0</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre></div>
-<p>add line to <code>/etc/network/if-pre-up.d/wifi</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre></div>
-<h3 id="dns-dhcp">4) DNS &amp; DHCP</h3>
-<p>install:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install dnsmasq</code></pre></div>
-<p>edit <code>/etc/dnsmasq.conf</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
-<span class="ex">dhcp-range</span>=192.168.13.10,192.168.13.50,24h</code></pre></div>
-<p>restart deamon:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/dnsmasq restart</code></pre></div>
-<h3 id="enjoy">5) enjoy!</h3>
-
-                    <!-- /content post.html -->
+<span class="bu">exit</span></code></pre>
                 </div>
-            </article>
-            <!-- /content base.html -->
-        </main>
-
-        <footer>
-            <small>
-                <div>
-    <a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2012-01-18-set-up-wifi-access-point-on-linux.md" rel="external">post source</a>
-</div>
-                <div>generated from <a href="https://www.gnu.org/software/bash/" rel=external">bash</a></div>
-                <div>&copy; 2020 <a href="/">qbbr.io</a></div>
-            </small>
-        </footer>
-
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-42421652-1', 'qbbr.io');
-            ga('send', 'pageview');
-        </script>
-    </body>
+                <p>for every boot system, edit <code>/etc/network/if-pre-up.d/wifi</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/sh</span>
+<span class="ex">/bin/echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
+<span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE</code></pre>
+                </div>
+                <p>grant execute permissions:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> chmod +x /etc/network/if-pre-up.d/wifi</code></pre>
+                </div>
+                <p>if use <strong>ppp0</strong>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre>
+                </div>
+                <p>add line to <code>/etc/network/if-pre-up.d/wifi</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre>
+                </div>
+                <h3 id="dns-dhcp">4) DNS & DHCP</h3>
+                <p>install:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install dnsmasq</code></pre>
+                </div>
+                <p>edit <code>/etc/dnsmasq.conf</code>:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
+<span class="ex">dhcp-range</span>=192.168.13.10,192.168.13.50,24h</code></pre>
+                </div>
+                <p>restart deamon:</p>
+                <div class="sourceCode">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/dnsmasq restart</code></pre>
+                </div>
+                <h3 id="enjoy">5) enjoy!</h3><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2012-01-18-set-up-wifi-access-point-on-linux.md" rel="external">post source</a></small>
+        </div>
+        <div>
+            <small>generated from <a href="https://www.gnu.org/software/bash/" rel="external">bash</a></small>
+        </div>
+        <div>
+            <small>© 2020 <a href="/">qbbr.io</a></small>
+        </div>
+    </footer>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42421652-1', 'qbbr.io');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>
