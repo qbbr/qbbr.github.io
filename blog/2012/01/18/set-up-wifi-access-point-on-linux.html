@@ -65,84 +65,84 @@
                 <!-- content post.html -->
                 <h3 id="configure-wireless-adapter">1) configure wireless adapter</h3>
                 <p>add to <code>/etc/network/interfaces</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">auto</span> wlan0
-<span class="ex">iface</span> wlan0 inet static
-    <span class="ex">address</span> 192.168.13.1
-    <span class="ex">network</span> 192.168.13.0
-    <span class="ex">netmask</span> 255.255.255.0
-    <span class="ex">broadcast</span> 192.168.13.255</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">auto</span> wlan0</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ex">iface</span> wlan0 inet static</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="ex">address</span> 192.168.13.1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="ex">network</span> 192.168.13.0</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="ex">netmask</span> 255.255.255.0</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="ex">broadcast</span> 192.168.13.255</span></code></pre>
                 </div>
                 <h3 id="ap-daemon">2) ap daemon</h3>
                 <p>install <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install hostapd</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">sudo</span> aptitude install hostapd</span></code></pre>
                 </div>
                 <p>edit <code>/etc/hostapd/hostapd.conf</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
-<span class="va">driver=</span>nl80211
-
-<span class="co"># AP name</span>
-<span class="va">ssid=</span>MY_AP
-<span class="va">country_code=</span>RU
-<span class="va">hw_mode=</span>g
-<span class="va">channel=</span>1
-
-<span class="va">macaddr_acl=</span>0
-
-<span class="va">wpa=</span>3
-<span class="va">wpa_key_mgmt=</span>WPA-PSK
-<span class="co"># password</span>
-<span class="va">wpa_passphrase=</span>password
-<span class="va">wpa_pairwise=</span>TKIP <span class="ex">CCMP</span></code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="va">interface=</span>wlan0</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="va">driver=</span>nl80211</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co"># AP name</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="va">ssid=</span>MY_AP</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="va">country_code=</span>RU</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="va">hw_mode=</span>g</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="va">channel=</span>1</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="va">macaddr_acl=</span>0</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="va">wpa=</span>3</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="va">wpa_key_mgmt=</span>WPA-PSK</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co"># password</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="va">wpa_passphrase=</span>password</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="va">wpa_pairwise=</span>TKIP <span class="ex">CCMP</span></span></code></pre>
                 </div>
                 <p>edit <code>/etc/default/hostapd</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">DAEMON_CONF=</span><span class="st">"/etc/hostapd/hostapd.conf"</span></code></pre>
+                <div class="sourceCode" id="cb4">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="va">DAEMON_CONF=</span><span class="st">"/etc/hostapd/hostapd.conf"</span></span></code></pre>
                 </div>
                 <p>start daemon:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/hostapd start</code></pre>
+                <div class="sourceCode" id="cb5">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">sudo</span> /etc/init.d/hostapd start</span></code></pre>
                 </div>
                 <h3 id="netfilter">3) netfilter</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">su</span>
-<span class="bu">echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
-<span class="ex">iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
-<span class="bu">exit</span></code></pre>
+                <div class="sourceCode" id="cb6">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">su</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="bu">echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="ex">iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="bu">exit</span></span></code></pre>
                 </div>
                 <p>for every boot system, edit <code>/etc/network/if-pre-up.d/wifi</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/sh</span>
-<span class="ex">/bin/echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward
-<span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE</code></pre>
+                <div class="sourceCode" id="cb7">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="ex">/bin/echo</span> 1 <span class="op">&gt;</span> /proc/sys/net/ipv4/ip_forward</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE</span></code></pre>
                 </div>
                 <p>grant execute permissions:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> chmod +x /etc/network/if-pre-up.d/wifi</code></pre>
+                <div class="sourceCode" id="cb8">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">sudo</span> chmod +x /etc/network/if-pre-up.d/wifi</span></code></pre>
                 </div>
                 <p>if use <strong>ppp0</strong>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre>
+                <div class="sourceCode" id="cb9">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="fu">sudo</span> iptables -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</span></code></pre>
                 </div>
                 <p>add line to <code>/etc/network/if-pre-up.d/wifi</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</code></pre>
+                <div class="sourceCode" id="cb10">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ex">/sbin/iptables</span> -t nat -A POSTROUTING -s 192.168.13.0/24 -o ppp0 -j MASQUERADE</span></code></pre>
                 </div>
                 <h3 id="dns-dhcp">4) DNS & DHCP</h3>
                 <p>install:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install dnsmasq</code></pre>
+                <div class="sourceCode" id="cb11">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="fu">sudo</span> aptitude install dnsmasq</span></code></pre>
                 </div>
                 <p>edit <code>/etc/dnsmasq.conf</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">interface=</span>wlan0
-<span class="ex">dhcp-range</span>=192.168.13.10,192.168.13.50,24h</code></pre>
+                <div class="sourceCode" id="cb12">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="va">interface=</span>wlan0</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="ex">dhcp-range</span>=192.168.13.10,192.168.13.50,24h</span></code></pre>
                 </div>
                 <p>restart deamon:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/dnsmasq restart</code></pre>
+                <div class="sourceCode" id="cb13">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="fu">sudo</span> /etc/init.d/dnsmasq restart</span></code></pre>
                 </div>
                 <h3 id="enjoy">5) enjoy!</h3><!-- /content post.html -->
             </div>

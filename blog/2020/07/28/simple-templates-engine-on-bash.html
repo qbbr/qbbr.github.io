@@ -66,15 +66,15 @@
                 <p>great for generating cfg/rc from template</p>
                 <h3 id="template">template</h3>
                 <p>test.tmpl:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">test</span> template.
-<span class="va">${var1}</span>, <span class="va">${var2}</span></code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">test</span> template.</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="va">${var1}</span>, <span class="va">${var2}</span></span></code></pre>
                 </div>
                 <h3 id="render">render</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">var1=</span><span class="st">"hello"</span>
-<span class="bu">export</span> <span class="va">var2=</span><span class="st">"world"</span>
-<span class="ex">envsubst</span> <span class="op">&lt;</span> file.tmpl</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">export</span> <span class="va">var1=</span><span class="st">"hello"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="bu">export</span> <span class="va">var2=</span><span class="st">"world"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ex">envsubst</span> <span class="op">&lt;</span> file.tmpl</span></code></pre>
                 </div>
                 <h3 id="output">output</h3>
                 <pre><code>test template.

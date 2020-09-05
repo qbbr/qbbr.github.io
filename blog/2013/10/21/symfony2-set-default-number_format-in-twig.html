@@ -71,28 +71,28 @@
                         <p>modify onKernelRequest:</p>
                     </li>
                 </ol>
-                <div class="sourceCode">
-                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
-
-<span class="kw">namespace</span> Acme\DemoBundle\EventListener<span class="ot">;</span>
-
-<span class="kw">use</span> Symfony\Component\DependencyInjection\ContainerInterface<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\HttpKernel\Event\GetResponseEvent<span class="ot">;</span>
-
-<span class="kw">class</span> AcmeKernelListener
-{
-    <span class="kw">protected</span> <span class="kw">$container</span><span class="ot">;</span>
-
-    <span class="kw">public</span> <span class="kw">function</span> <span class="fu">__construct</span><span class="ot">(</span>ContainerInterface <span class="kw">$container</span><span class="ot">)</span>
-    {
-        <span class="kw">$this</span>-&gt;container = <span class="kw">$container</span><span class="ot">;</span>
-    }
-
-    <span class="kw">public</span> <span class="kw">function</span> onKernelRequest<span class="ot">(</span>GetResponseEvent <span class="kw">$event</span><span class="ot">)</span>
-    {
-        <span class="kw">$this</span>-&gt;container-&gt;get<span class="ot">(</span><span class="st">'twig'</span><span class="ot">)</span>-&gt;getExtension<span class="ot">(</span><span class="st">'core'</span><span class="ot">)</span>-&gt;setNumberFormat<span class="ot">(</span><span class="dv">2</span><span class="ot">,</span> <span class="st">'.'</span><span class="ot">,</span> <span class="st">''</span><span class="ot">);</span>
-    }
-}</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;?php</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">namespace</span> Acme\DemoBundle\EventListener<span class="ot">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\DependencyInjection\ContainerInterface<span class="ot">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\HttpKernel\Event\GetResponseEvent<span class="ot">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">class</span> AcmeKernelListener</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>{</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="kw">protected</span> <span class="kw">$container</span><span class="ot">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="kw">public</span> <span class="kw">function</span> <span class="fu">__construct</span><span class="ot">(</span>ContainerInterface <span class="kw">$container</span><span class="ot">)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>        <span class="kw">$this</span>-&gt;container = <span class="kw">$container</span><span class="ot">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    }</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    <span class="kw">public</span> <span class="kw">function</span> onKernelRequest<span class="ot">(</span>GetResponseEvent <span class="kw">$event</span><span class="ot">)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>        <span class="kw">$this</span>-&gt;container-&gt;get<span class="ot">(</span><span class="st">'twig'</span><span class="ot">)</span>-&gt;getExtension<span class="ot">(</span><span class="st">'core'</span><span class="ot">)</span>-&gt;setNumberFormat<span class="ot">(</span><span class="dv">2</span><span class="ot">,</span> <span class="st">'.'</span><span class="ot">,</span> <span class="st">''</span><span class="ot">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    }</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>}</span></code></pre>
                 </div>
                 <ol start="3" type="1">
                     <li>using <a href="http://twig.sensiolabs.org/doc/filters/number_format.html">number_format</a> in twig

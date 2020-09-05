@@ -64,42 +64,42 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <h3 id="install-tor">install tor</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install tor</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">sudo</span> aptitude install tor</span></code></pre>
                 </div>
                 <h3 id="install-caching-web-proxy">install caching web proxy</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install polipo</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">sudo</span> aptitude install polipo</span></code></pre>
                 </div>
                 <h3 id="configure">configure</h3>
                 <p>edit config <code>/etc/polipo/config</code></p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">proxyAddress</span> = <span class="st">"127.0.0.1"</span>
-<span class="ex">proxyPort</span> = 8118
-<span class="ex">allowedClients</span> = 127.0.0.1
-<span class="ex">allowedPorts</span> = 1-65535
-<span class="ex">proxyName</span> = <span class="st">"localhost"</span>
-<span class="ex">cacheIsShared</span> = false
-<span class="ex">socksParentProxy</span> = <span class="st">"localhost:9050"</span>
-<span class="ex">socksProxyType</span> = socks5
-<span class="ex">chunkHighMark</span> = 67108864
-<span class="ex">diskCacheRoot</span> = <span class="st">""</span>
-<span class="ex">localDocumentRoot</span> = <span class="st">""</span>
-<span class="ex">disableLocalInterface</span> = true
-<span class="ex">disableConfiguration</span> = true
-<span class="ex">dnsUseGethostbyname</span> = yes
-<span class="ex">disableVia</span> = true
-<span class="ex">censoredHeaders</span> = from,accept-language,x-pad,link
-<span class="ex">censorReferer</span> = maybe
-<span class="ex">maxConnectionAge</span> = 5m
-<span class="ex">maxConnectionRequests</span> = 120
-<span class="ex">serverMaxSlots</span> = 8
-<span class="ex">serverSlots</span> = 2
-<span class="ex">tunnelAllowedPorts</span> = 1-65535</code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">proxyAddress</span> = <span class="st">"127.0.0.1"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ex">proxyPort</span> = 8118</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ex">allowedClients</span> = 127.0.0.1</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ex">allowedPorts</span> = 1-65535</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ex">proxyName</span> = <span class="st">"localhost"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="ex">cacheIsShared</span> = false</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="ex">socksParentProxy</span> = <span class="st">"localhost:9050"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ex">socksProxyType</span> = socks5</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="ex">chunkHighMark</span> = 67108864</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="ex">diskCacheRoot</span> = <span class="st">""</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="ex">localDocumentRoot</span> = <span class="st">""</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="ex">disableLocalInterface</span> = true</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="ex">disableConfiguration</span> = true</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="ex">dnsUseGethostbyname</span> = yes</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="ex">disableVia</span> = true</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="ex">censoredHeaders</span> = from,accept-language,x-pad,link</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="ex">censorReferer</span> = maybe</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="ex">maxConnectionAge</span> = 5m</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="ex">maxConnectionRequests</span> = 120</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="ex">serverMaxSlots</span> = 8</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="ex">serverSlots</span> = 2</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="ex">tunnelAllowedPorts</span> = 1-65535</span></code></pre>
                 </div>
                 <p>restart daemon</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> /etc/init.d/polipo restart</code></pre>
+                <div class="sourceCode" id="cb4">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">sudo</span> /etc/init.d/polipo restart</span></code></pre>
                 </div>
                 <h3 id="using">using</h3>
                 <p>set proxy <code>127.0.0.1:8118</code> in your browser or using <code>iceweasel-torbutton</code></p>

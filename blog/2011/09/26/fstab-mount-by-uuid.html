@@ -64,40 +64,40 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <p>get uuid for all device:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> -l /dev/disk/by-uuid/</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">ls</span> -l /dev/disk/by-uuid/</span></code></pre>
                 </div>
                 <p>result:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash">┌─[<span class="ex">Q</span>:qbbr][~]
-└─╼ <span class="fu">ls</span> -l /dev/disk/by-uuid/
-итого <span class="ex">0</span>
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 019a28b3-ca4d-4be0-8e72-d8befd2ae936 -<span class="op">&gt;</span> ../../sda5
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 2e782133-1167-495d-b758-f75e3f868b8c -<span class="op">&gt;</span> ../../sda8
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 37edf9f9-0652-45be-a4de-81e44a97e6bc -<span class="op">&gt;</span> ../../sda7
-<span class="ex">lrwxrwxrwx</span> 1 root root  9 Сен 26 06:51 5016-9138 -<span class="op">&gt;</span> ../../sdb
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 834bf017-f811-43f5-9ece-626d1c541860 -<span class="op">&gt;</span> ../../sda1
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 07:52 86a077d8-3e5b-464b-956c-25bd3da118f6 -<span class="op">&gt;</span> ../../sda6
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 991f208a-efb3-4c79-9030-c63636183256 -<span class="op">&gt;</span> ../../sda3
-<span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 b452b0ba-3488-4802-a4df-39500527e874 -<span class="op">&gt;</span> ../../sda4</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>┌─[<span class="ex">Q</span>:qbbr][~]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>└─╼ <span class="fu">ls</span> -l /dev/disk/by-uuid/</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>итого <span class="ex">0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 019a28b3-ca4d-4be0-8e72-d8befd2ae936 -<span class="op">&gt;</span> ../../sda5</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 2e782133-1167-495d-b758-f75e3f868b8c -<span class="op">&gt;</span> ../../sda8</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 37edf9f9-0652-45be-a4de-81e44a97e6bc -<span class="op">&gt;</span> ../../sda7</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root  9 Сен 26 06:51 5016-9138 -<span class="op">&gt;</span> ../../sdb</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 834bf017-f811-43f5-9ece-626d1c541860 -<span class="op">&gt;</span> ../../sda1</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 07:52 86a077d8-3e5b-464b-956c-25bd3da118f6 -<span class="op">&gt;</span> ../../sda6</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 991f208a-efb3-4c79-9030-c63636183256 -<span class="op">&gt;</span> ../../sda3</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="ex">lrwxrwxrwx</span> 1 root root 10 Сен 26 05:09 b452b0ba-3488-4802-a4df-39500527e874 -<span class="op">&gt;</span> ../../sda4</span></code></pre>
                 </div>
                 <p>edit u <code>/etc/fstab</code> and replace <strong>id</strong> to <strong>UUID</strong>, example:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># &lt;file system&gt;                          &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span>
-<span class="co"># / was on /dev/sda3 during installation</span>
-<span class="va">UUID=</span>991f208a-efb3-4c79-9030-c63636183256 <span class="ex">/</span>               ext3    errors=remount-ro,acl 0       1
-<span class="co"># /boot was on /dev/sda1 during installation</span>
-<span class="va">UUID=</span>834bf017-f811-43f5-9ece-626d1c541860 <span class="ex">/boot</span>           ext2    nodev           0       2
-<span class="co"># /home was on /dev/sda4 during installation</span>
-<span class="va">UUID=</span>b452b0ba-3488-4802-a4df-39500527e874 <span class="ex">/home</span>           ext3    defaults        0       2
-<span class="co"># /media/dwnlds was on /dev/sda6 during installation</span>
-<span class="va">UUID=</span>86a077d8-3e5b-464b-956c-25bd3da118f6 <span class="ex">/media/dwnlds</span>   ext4    nodev,noexec    0       2
-<span class="co"># /media/strg1 was on /dev/sda7 during installation</span>
-<span class="va">UUID=</span>37edf9f9-0652-45be-a4de-81e44a97e6bc <span class="ex">/media/strg1</span>    ext3    nodev           0       2
-<span class="co"># /media/strg2 was on /dev/sda8 during installation</span>
-<span class="va">UUID=</span>2e782133-1167-495d-b758-f75e3f868b8c <span class="ex">/media/strg2</span>    ext3    nodev           0       2
-<span class="co"># swap was on /dev/sda5 during installation</span>
-<span class="va">UUID=</span>019a28b3-ca4d-4be0-8e72-d8befd2ae936 <span class="ex">none</span>            swap    sw              0       0</code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># &lt;file system&gt;                          &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># / was on /dev/sda3 during installation</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="va">UUID=</span>991f208a-efb3-4c79-9030-c63636183256 <span class="ex">/</span>               ext3    errors=remount-ro,acl 0       1</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co"># /boot was on /dev/sda1 during installation</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="va">UUID=</span>834bf017-f811-43f5-9ece-626d1c541860 <span class="ex">/boot</span>           ext2    nodev           0       2</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co"># /home was on /dev/sda4 during installation</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="va">UUID=</span>b452b0ba-3488-4802-a4df-39500527e874 <span class="ex">/home</span>           ext3    defaults        0       2</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co"># /media/dwnlds was on /dev/sda6 during installation</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="va">UUID=</span>86a077d8-3e5b-464b-956c-25bd3da118f6 <span class="ex">/media/dwnlds</span>   ext4    nodev,noexec    0       2</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co"># /media/strg1 was on /dev/sda7 during installation</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="va">UUID=</span>37edf9f9-0652-45be-a4de-81e44a97e6bc <span class="ex">/media/strg1</span>    ext3    nodev           0       2</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co"># /media/strg2 was on /dev/sda8 during installation</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="va">UUID=</span>2e782133-1167-495d-b758-f75e3f868b8c <span class="ex">/media/strg2</span>    ext3    nodev           0       2</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co"># swap was on /dev/sda5 during installation</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="va">UUID=</span>019a28b3-ca4d-4be0-8e72-d8befd2ae936 <span class="ex">none</span>            swap    sw              0       0</span></code></pre>
                 </div><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->

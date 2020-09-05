@@ -64,19 +64,19 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <h3 id="install-adb">install adb</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> aptitude install android-tools-adb</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">sudo</span> aptitude install android-tools-adb</span></code></pre>
                 </div>
                 <h3 id="enable-remote-debugging-on-u-zte-open">enable remote debugging on u ZTE Open</h3>
                 <p>Settings -&gt; Device information -&gt; More Information -&gt; Developer -&gt; Remote debuging (x)</p>
                 <h3 id="download-cwm-6.0.3.3">download CWM (6.0.3.3)</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wget</span> -O /tmp/clockworkmod.img https://www.dropbox.com/s/gybczn4x4l2kgce/recovery-clockwork-6.0.3.3-roamer2.img</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">wget</span> -O /tmp/clockworkmod.img https://www.dropbox.com/s/gybczn4x4l2kgce/recovery-clockwork-6.0.3.3-roamer2.img</span></code></pre>
                 </div>
                 <h3 id="install-cwm">install CWM</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">adb</span> push /tmp/clockworkmod.img /sdcard/clockworkmod.img
-<span class="ex">adb</span> shell flash_image recovery /sdcard/clockworkmod.img</code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">adb</span> push /tmp/clockworkmod.img /sdcard/clockworkmod.img</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ex">adb</span> shell flash_image recovery /sdcard/clockworkmod.img</span></code></pre>
                 </div>
                 <h3 id="use-me-plz">use me plz</h3>
                 <p>Hold volume up and power button to boot into recovery mode.</p><!-- /content post.html -->

@@ -63,16 +63,16 @@
             </div>
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">ip</span> -o -4 addr list eth0 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $4 }'</span></code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">ip</span> -o -4 addr list eth0 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $4 }'</span></span></code></pre>
                 </div>
                 <p>or</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/sbin/ifconfig</span> eth0 <span class="kw">|</span> <span class="fu">grep</span> <span class="st">'inet addr:'</span> <span class="kw">|</span> <span class="fu">cut</span> -d: -f2 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $1}'</span></code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">/sbin/ifconfig</span> eth0 <span class="kw">|</span> <span class="fu">grep</span> <span class="st">'inet addr:'</span> <span class="kw">|</span> <span class="fu">cut</span> -d: -f2 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $1}'</span></span></code></pre>
                 </div>
                 <p>for ipv6:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">ip</span> -o -6 addr list eth0 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $4 }'</span> <span class="kw">|</span> <span class="fu">head</span> -n 1 <span class="kw">|</span> <span class="fu">cut</span> -d <span class="st">'/'</span> -f 1</code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">ip</span> -o -6 addr list eth0 <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{ print $4 }'</span> <span class="kw">|</span> <span class="fu">head</span> -n 1 <span class="kw">|</span> <span class="fu">cut</span> -d <span class="st">'/'</span> -f 1</span></code></pre>
                 </div>
                 <p>where <strong>eth0</strong> - interface</p><!-- /content post.html -->
             </div>

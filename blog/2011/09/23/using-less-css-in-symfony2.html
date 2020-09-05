@@ -64,23 +64,23 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <h3 id="install-node.js-npm-required">install (node.js + npm required):</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> npm install -g less</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">sudo</span> npm install -g less</span></code></pre>
                 </div>
                 <h3 id="configure">configure:</h3>
                 <p>add less filter to assetic configuration:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="co"># app/config/config.yml</span>
-<span class="co"># ...</span>
-<span class="co"># Assetic Configuration</span>
-<span class="fu">assetic:</span>
-    <span class="fu">debug:</span><span class="at">          %kernel.debug%</span>
-    <span class="fu">use_controller:</span><span class="at"> false</span>
-    <span class="fu">filters:</span>
-        <span class="fu">cssrewrite:</span><span class="at"> ~</span>
-        <span class="fu">less:</span>
-            <span class="fu">node:</span><span class="at"> /usr/bin/node</span>
-            <span class="fu">node_paths:</span><span class="at"> </span><span class="kw">[</span>/usr/lib/node_modules/<span class="kw">]</span></code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># app/config/config.yml</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co"># ...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"># Assetic Configuration</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">assetic</span><span class="kw">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="at">    </span><span class="fu">debug</span><span class="kw">:</span><span class="at">          %kernel.debug%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="at">    </span><span class="fu">use_controller</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="at">    </span><span class="fu">filters</span><span class="kw">:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="at">        </span><span class="fu">cssrewrite</span><span class="kw">:</span><span class="at"> </span><span class="ch">~</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="at">        </span><span class="fu">less</span><span class="kw">:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="at">            </span><span class="fu">node</span><span class="kw">:</span><span class="at"> /usr/bin/node</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="at">            </span><span class="fu">node_paths</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">/usr/lib/node_modules/</span><span class="kw">]</span></span></code></pre>
                 </div>
                 <h3 id="using">using:</h3>
                 <p>twig:</p>

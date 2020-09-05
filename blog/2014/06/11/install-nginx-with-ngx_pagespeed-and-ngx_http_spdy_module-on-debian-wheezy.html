@@ -64,71 +64,71 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <h3 id="install-dependencies">install dependencies</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">aptitude</span> install build-essential zlib1g-dev libpcre3 libpcre3-dev openssl libssl-dev checkinstall</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">aptitude</span> install build-essential zlib1g-dev libpcre3 libpcre3-dev openssl libssl-dev checkinstall</span></code></pre>
                 </div>
                 <h3 id="download-nginx-and-ngx_pagespeed-sources">download nginx and ngx_pagespeed sources</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">nginx_build_dir=$HOME</span>/src
-<span class="fu">mkdir</span> -p <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&</span> <span class="bu">cd</span> <span class="va">$_</span>
-<span class="co"># dl ngx_pagespeed</span>
-<span class="fu">wget</span> https://github.com/pagespeed/ngx_pagespeed/archive/v1.8.31.3-beta.zip -O ngx_pagespeed.zip <span class="kw">&amp;&</span> <span class="fu">unzip</span> ngx_pagespeed.zip <span class="kw">&amp;&</span> <span class="fu">rm</span> -f ngx_pagespeed.zip
-<span class="co"># dl psol</span>
-<span class="bu">cd</span> ngx_pagespeed-*/ <span class="kw">&amp;&</span> <span class="fu">wget</span> https://dl.google.com/dl/page-speed/psol/1.8.31.3.tar.gz -O psol.tar.gz <span class="kw">&amp;&</span> <span class="fu">tar</span> -xzvf psol.tar.gz <span class="kw">&amp;&</span> <span class="fu">rm</span> -f psol.tar.gz
-<span class="co"># dl nginx (http://nginx.org/en/download.html)</span>
-<span class="bu">cd</span> <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&</span> <span class="fu">wget</span> http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz <span class="kw">&amp;&</span> <span class="fu">tar</span> -xvzf nginx.tar.gz <span class="kw">&amp;&</span> <span class="fu">rm</span> -f nginx.tar.gz</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">export</span> <span class="va">nginx_build_dir=$HOME</span>/src</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">mkdir</span> -p <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&</span> <span class="bu">cd</span> <span class="va">$_</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"># dl ngx_pagespeed</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">wget</span> https://github.com/pagespeed/ngx_pagespeed/archive/v1.8.31.3-beta.zip -O ngx_pagespeed.zip <span class="kw">&amp;&</span> <span class="fu">unzip</span> ngx_pagespeed.zip <span class="kw">&amp;&</span> <span class="fu">rm</span> -f ngx_pagespeed.zip</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"># dl psol</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="bu">cd</span> ngx_pagespeed-*/ <span class="kw">&amp;&</span> <span class="fu">wget</span> https://dl.google.com/dl/page-speed/psol/1.8.31.3.tar.gz -O psol.tar.gz <span class="kw">&amp;&</span> <span class="fu">tar</span> -xzvf psol.tar.gz <span class="kw">&amp;&</span> <span class="fu">rm</span> -f psol.tar.gz</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"># dl nginx (http://nginx.org/en/download.html)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="bu">cd</span> <span class="va">$nginx_build_dir</span> <span class="kw">&amp;&</span> <span class="fu">wget</span> http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz <span class="kw">&amp;&</span> <span class="fu">tar</span> -xvzf nginx.tar.gz <span class="kw">&amp;&</span> <span class="fu">rm</span> -f nginx.tar.gz</span></code></pre>
                 </div>
                 <h3 id="change-server-name-if-n">change server name if n</h3>
                 <p><code>src/http/ngx_http_header_filter_module.c</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode diff"><code class="sourceCode diff"><span class="kw">--- src/http/ngx_http_header_filter_module.c.orig       2014-06-11 13:29:45.940360480 +0900</span>
-<span class="dt">+++ src/http/ngx_http_header_filter_module.c    2014-06-11 13:31:01.572361703 +0900</span>
-<span class="dt">@@ -49,2 +49,2 @@</span>
-<span class="st">-static char ngx_http_server_string[] = "Server: nginx" CRLF;</span>
-<span class="st">-static char ngx_http_server_full_string[] = "Server: " NGINX_VER CRLF;</span>
-<span class="va">+static char ngx_http_server_string[] = "Server: custom name" CRLF;</span>
-<span class="va">+static char ngx_http_server_full_string[] = "Server: custom name/1.1500.0" CRLF;</span></code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">--- src/http/ngx_http_header_filter_module.c.orig       2014-06-11 13:29:45.940360480 +0900</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="dt">+++ src/http/ngx_http_header_filter_module.c    2014-06-11 13:31:01.572361703 +0900</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="dt">@@ -49,2 +49,2 @@</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="st">-static char ngx_http_server_string[] = "Server: nginx" CRLF;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="st">-static char ngx_http_server_full_string[] = "Server: " NGINX_VER CRLF;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="va">+static char ngx_http_server_string[] = "Server: custom name" CRLF;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="va">+static char ngx_http_server_full_string[] = "Server: custom name/1.1500.0" CRLF;</span></span></code></pre>
                 </div>
                 <h3 id="build">build</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>/nginx-*
-<span class="ex">./configure</span> \
-    --prefix=/etc/nginx \
-    --conf-path=/etc/nginx/nginx.conf \
-    --sbin-path=/usr/sbin/nginx \
-    --pid-path=/var/run/nginx.pid \
-    --lock-path=/var/lock/nginx.lock \
-    --http-log-path=/var/log/nginx/access.log \
-    --error-log-path=/var/log/nginx/error.log \
-    --http-client-body-temp-path=/var/lib/nginx/body \
-    --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
-    --http-scgi-temp-path=/var/lib/nginx/scgi \
-    --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \
-    --http-proxy-temp-path=/var/lib/nginx/proxy \
-    --with-http_ssl_module \
-    --with-http_spdy_module \
-    --with-http_realip_module \
-    --with-http_gzip_static_module \
-    --with-http_gunzip_module \
-    --with-http_stub_status_module \
-    --with-http_sub_module \
-    --with-http_secure_link_module \
-    --with-http_addition_module \
-    --with-http_random_index_module \
-    --add-module=<span class="va">$nginx_build_dir</span>/ngx_pagespeed-*/
-<span class="fu">make</span>
-<span class="ex">checkinstall</span>
-<span class="ex">nginx</span> –V</code></pre>
+                <div class="sourceCode" id="cb4">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>/nginx-*</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="ex">./configure</span> <span class="kw">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="ex">--prefix</span>=/etc/nginx <span class="kw">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="ex">--conf-path</span>=/etc/nginx/nginx.conf <span class="kw">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="ex">--sbin-path</span>=/usr/sbin/nginx <span class="kw">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="ex">--pid-path</span>=/var/run/nginx.pid <span class="kw">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="ex">--lock-path</span>=/var/lock/nginx.lock <span class="kw">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="ex">--http-log-path</span>=/var/log/nginx/access.log <span class="kw">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="ex">--error-log-path</span>=/var/log/nginx/error.log <span class="kw">\</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>    <span class="ex">--http-client-body-temp-path</span>=/var/lib/nginx/body <span class="kw">\</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    <span class="ex">--http-fastcgi-temp-path</span>=/var/lib/nginx/fastcgi <span class="kw">\</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    <span class="ex">--http-scgi-temp-path</span>=/var/lib/nginx/scgi <span class="kw">\</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="ex">--http-uwsgi-temp-path</span>=/var/lib/nginx/uwsgi <span class="kw">\</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="ex">--http-proxy-temp-path</span>=/var/lib/nginx/proxy <span class="kw">\</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="ex">--with-http_ssl_module</span> <span class="kw">\</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    <span class="ex">--with-http_spdy_module</span> <span class="kw">\</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    <span class="ex">--with-http_realip_module</span> <span class="kw">\</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    <span class="ex">--with-http_gzip_static_module</span> <span class="kw">\</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>    <span class="ex">--with-http_gunzip_module</span> <span class="kw">\</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>    <span class="ex">--with-http_stub_status_module</span> <span class="kw">\</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>    <span class="ex">--with-http_sub_module</span> <span class="kw">\</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="ex">--with-http_secure_link_module</span> <span class="kw">\</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    <span class="ex">--with-http_addition_module</span> <span class="kw">\</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>    <span class="ex">--with-http_random_index_module</span> <span class="kw">\</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>    <span class="ex">--add-module</span>=<span class="va">$nginx_build_dir</span>/ngx_pagespeed-*/</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="fu">make</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="ex">checkinstall</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="ex">nginx</span> –V</span></code></pre>
                 </div>
                 <h3 id="install-init-script">install init script</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> <span class="va">$nginx_build_dir</span>
-<span class="fu">wget</span> http://http.us.debian.org/debian/pool/main/n/nginx/nginx-common_1.6.0-1_all.deb -O nginx-common.deb <span class="kw">&amp;&</span> <span class="ex">dpkg</span> -x nginx-common.deb nginx-common <span class="kw">&amp;&</span> <span class="fu">cp</span> nginx-common/etc/init.d/nginx . <span class="kw">&amp;&</span> <span class="fu">rm</span> -rf nginx-common nginx-common.deb
-<span class="fu">cp</span> nginx /etc/init.d/nginx</code></pre>
+                <div class="sourceCode" id="cb5">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="bu">cd</span> <span class="va">$nginx_build_dir</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="fu">wget</span> http://http.us.debian.org/debian/pool/main/n/nginx/nginx-common_1.6.0-1_all.deb -O nginx-common.deb <span class="kw">&amp;&</span> <span class="ex">dpkg</span> -x nginx-common.deb nginx-common <span class="kw">&amp;&</span> <span class="fu">cp</span> nginx-common/etc/init.d/nginx . <span class="kw">&amp;&</span> <span class="fu">rm</span> -rf nginx-common nginx-common.deb</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="fu">cp</span> nginx /etc/init.d/nginx</span></code></pre>
                 </div>
                 <h3 id="use">use</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/etc/init.d/nginx</span> start</code></pre>
+                <div class="sourceCode" id="cb6">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">/etc/init.d/nginx</span> start</span></code></pre>
                 </div><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->

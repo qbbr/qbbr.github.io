@@ -64,51 +64,51 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <p>src/Acme/DemoBundle/EventListener/AcmeKernelListener.php:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
-
-<span class="kw">namespace</span> Acme\DemoBundle\EventListener<span class="ot">;</span>
-
-<span class="kw">use</span> Symfony\Component\DependencyInjection\ContainerInterface<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\HttpKernel\Event\GetResponseEvent<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\HttpKernel\Event\FilterResponseEvent<span class="ot">;</span>
-
-<span class="kw">class</span> AcmeKernelListener
-{
-    <span class="kw">protected</span> <span class="kw">$container</span><span class="ot">;</span>
-
-    <span class="kw">public</span> <span class="kw">function</span> <span class="fu">__construct</span><span class="ot">(</span>ContainerInterface <span class="kw">$container</span><span class="ot">)</span>
-    {
-        <span class="kw">$this</span>-&gt;container = <span class="kw">$container</span><span class="ot">;</span>
-    }
-
-    <span class="kw">public</span> <span class="kw">function</span> onKernelRequest<span class="ot">(</span>GetResponseEvent <span class="kw">$event</span><span class="ot">)</span>
-    {
-        <span class="kw">$container</span> = <span class="kw">$this</span>-&gt;container<span class="ot">;</span>
-        <span class="kw">$kernel</span>    = <span class="kw">$event</span>-&gt;getKernel<span class="ot">();</span>
-        <span class="kw">$request</span>   = <span class="kw">$event</span>-&gt;getRequest<span class="ot">();</span>
-        <span class="co">// u code</span>
-    }
-
-    <span class="kw">public</span> <span class="kw">function</span> onKernelResponse<span class="ot">(</span>FilterResponseEvent <span class="kw">$event</span><span class="ot">)</span>
-    {
-        <span class="kw">$container</span> = <span class="kw">$this</span>-&gt;container<span class="ot">;</span>
-        <span class="kw">$kernel</span>    = <span class="kw">$event</span>-&gt;getKernel<span class="ot">();</span>
-        <span class="kw">$response</span>  = <span class="kw">$event</span>-&gt;getResponse<span class="ot">();</span>
-        <span class="kw">$request</span>   = <span class="kw">$event</span>-&gt;getRequest<span class="ot">();</span>
-        <span class="co">// u code</span>
-    }
-}</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;?php</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">namespace</span> Acme\DemoBundle\EventListener<span class="ot">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\DependencyInjection\ContainerInterface<span class="ot">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\HttpKernel\Event\GetResponseEvent<span class="ot">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\HttpKernel\Event\FilterResponseEvent<span class="ot">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">class</span> AcmeKernelListener</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>{</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="kw">protected</span> <span class="kw">$container</span><span class="ot">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="kw">public</span> <span class="kw">function</span> <span class="fu">__construct</span><span class="ot">(</span>ContainerInterface <span class="kw">$container</span><span class="ot">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>        <span class="kw">$this</span>-&gt;container = <span class="kw">$container</span><span class="ot">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    }</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    <span class="kw">public</span> <span class="kw">function</span> onKernelRequest<span class="ot">(</span>GetResponseEvent <span class="kw">$event</span><span class="ot">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>        <span class="kw">$container</span> = <span class="kw">$this</span>-&gt;container<span class="ot">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        <span class="kw">$kernel</span>    = <span class="kw">$event</span>-&gt;getKernel<span class="ot">();</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>        <span class="kw">$request</span>   = <span class="kw">$event</span>-&gt;getRequest<span class="ot">();</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>        <span class="co">// u code</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    <span class="kw">public</span> <span class="kw">function</span> onKernelResponse<span class="ot">(</span>FilterResponseEvent <span class="kw">$event</span><span class="ot">)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>        <span class="kw">$container</span> = <span class="kw">$this</span>-&gt;container<span class="ot">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>        <span class="kw">$kernel</span>    = <span class="kw">$event</span>-&gt;getKernel<span class="ot">();</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>        <span class="kw">$response</span>  = <span class="kw">$event</span>-&gt;getResponse<span class="ot">();</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>        <span class="kw">$request</span>   = <span class="kw">$event</span>-&gt;getRequest<span class="ot">();</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>        <span class="co">// u code</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    }</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>}</span></code></pre>
                 </div>
                 <p>app/config/config.yml:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">services:</span>
-    <span class="fu">listener.requestresponse:</span>
-        <span class="fu">class:</span><span class="at"> Acme\DemoBundle\EventListener\AcmeKernelListener</span>
-        <span class="fu">arguments:</span><span class="at"> </span><span class="kw">[</span> @service_container <span class="kw">]</span>
-        <span class="fu">tags:</span>
-            <span class="kw">-</span> <span class="kw">{</span> <span class="fu">name:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span> <span class="fu">event:</span><span class="at"> kernel.request</span><span class="kw">,</span> <span class="fu">method:</span><span class="at"> onKernelRequest </span><span class="kw">}</span>
-            <span class="kw">-</span> <span class="kw">{</span> <span class="fu">name:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span> <span class="fu">event:</span><span class="at"> kernel.response</span><span class="kw">,</span> <span class="fu">method:</span><span class="at"> onKernelResponse </span><span class="kw">}</span></code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="at">    </span><span class="fu">listener.requestresponse</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="at">        </span><span class="fu">class</span><span class="kw">:</span><span class="at"> Acme\DemoBundle\EventListener\AcmeKernelListener</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="at">        </span><span class="fu">arguments</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> @service_container </span><span class="kw">]</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="at">        </span><span class="fu">tags</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="at">            </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span><span class="at"> </span><span class="fu">event</span><span class="kw">:</span><span class="at"> kernel.request</span><span class="kw">,</span><span class="at"> </span><span class="fu">method</span><span class="kw">:</span><span class="at"> onKernelRequest </span><span class="kw">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="at">            </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> kernel.event_listener</span><span class="kw">,</span><span class="at"> </span><span class="fu">event</span><span class="kw">:</span><span class="at"> kernel.response</span><span class="kw">,</span><span class="at"> </span><span class="fu">method</span><span class="kw">:</span><span class="at"> onKernelResponse </span><span class="kw">}</span></span></code></pre>
                 </div><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->

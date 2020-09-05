@@ -70,8 +70,8 @@
                     <li>or use u local db (path/to/2gis/3.0/Data_Novosibirsk.dgdat)</li>
                 </ul>
                 <h3 id="for-decrypt-the-file-use-bitwise-exclusive-or-operation-xor">for decrypt the file, use bitwise Exclusive OR operation (xor)</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode cpp"><code class="sourceCode cpp">[file] ^ <span class="bn">0xC5</span> <span class="co">// pattern 11000101</span></code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>[file] ^ <span class="bn">0xC5</span> <span class="co">// pattern 11000101</span></span></code></pre>
                 </div>
                 <ol type="1">
                     <li>open u .dgdat file in hexeditor</li>
@@ -79,13 +79,13 @@
                     <li>save as (file.dump)</li>
                 </ol>
                 <h3 id="after-decrypt-use-a-regular-expression-to-get-mail-addresses">after decrypt use a regular expression to get mail addresses</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">grep</span> -E -o -a <span class="st">"[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.(ru|ua|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)"</span> file.dump <span class="op">&gt;</span> emails.txt</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">grep</span> -E -o -a <span class="st">"[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.(ru|ua|aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel)"</span> file.dump <span class="op">&gt;</span> emails.txt</span></code></pre>
                 </div>
                 <h3 id="enjoy">enjoy</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wc</span> -l emails.txt
-<span class="ex">34864</span> emails.txt <span class="co"># (&gt;^_^)&gt; Prank Gone Right</span></code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">wc</span> -l emails.txt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ex">34864</span> emails.txt # (<span class="op">&gt;</span>^_^)<span class="op">&gt;</span> <span class="ex">Prank</span> Gone Right</span></code></pre>
                 </div>
                 <h3 id="hex-editors-for-linux">hex editors for linux</h3>
                 <ul>

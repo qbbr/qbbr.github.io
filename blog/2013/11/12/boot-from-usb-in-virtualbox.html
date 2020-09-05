@@ -64,11 +64,11 @@
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
                 <h3 id="create-vm-disk-.vmdk">create VM disk (.vmdk)</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">VBoxManage</span> internalcommands createrawvmdk -filename usb.vmdk -rawdisk /dev/sdX</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">VBoxManage</span> internalcommands createrawvmdk -filename usb.vmdk -rawdisk /dev/sdX</span></code></pre>
                 </div>
                 <p>where <code>/dev/sdX</code> is your flash drive (do not use partition /dev/sdX1)</p>
-                <p>now, <code>usb.vmdk</code> is "symbolic" link to your usb flash disk.</p>
+                <p>now, <code>usb.vmdk</code> is “symbolic” link to your usb flash disk.</p>
                 <h3 id="import-.vmdk-in-vm-boot">import .vmdk in VM &amp;& boot</h3><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->

@@ -66,13 +66,13 @@
                 <h3 id="mod_evasive">mod_evasive</h3>
                 <p><a href="http://www.zdziarski.com/blog/?page_id=442">mod_evasive</a> - anti DDOS, flood attack.</p>
                 <h4 id="install">install</h4>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">aptitude</span> install libapache2-mod-evasive</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">aptitude</span> install libapache2-mod-evasive</span></code></pre>
                 </div>
                 <h4 id="configure">configure</h4>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> /var/log/mod_evasive/
-<span class="fu">chown</span> www-data:www-data /var/log/mod_evasive/</code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">mkdir</span> /var/log/mod_evasive/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">chown</span> www-data:www-data /var/log/mod_evasive/</span></code></pre>
                 </div>
                 <p><code>/etc/apache2/conf.d/modevasive</code>:</p>
                 <pre class="apache2"><code>&lt;ifmodule mod_evasive20.c&gt;
@@ -90,22 +90,22 @@
                 <h3 id="mod_security">mod_security</h3>
                 <p><a href="https://modsecurity.org/">mod_security</a> - open source web application firewall.</p>
                 <h4 id="install-1">install</h4>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">aptitude</span> install libapache-mod-security</code></pre>
+                <div class="sourceCode" id="cb4">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="ex">aptitude</span> install libapache-mod-security</span></code></pre>
                 </div>
                 <h4 id="install-rules">install rules</h4>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> /tmp/
-<span class="fu">wget</span> https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v2.2.5.tar.gz
-<span class="fu">tar</span> xvf v2.2.5.tar.gz
-<span class="fu">mkdir</span> /etc/apache2/mod_security_rules/
-<span class="fu">mv</span> owasp-modsecurity-crs-2.2.5/base_rules/* /etc/apache2/mod_security_rules/
-<span class="fu">rm</span> -rf owasp-modsecurity-crs-2.2.5/ v2.2.5.tar.gz
-<span class="fu">chown</span> -R root:root /etc/apache2/mod_security_rules/</code></pre>
+                <div class="sourceCode" id="cb5">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="bu">cd</span> /tmp/</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="fu">wget</span> https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v2.2.5.tar.gz</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="fu">tar</span> xvf v2.2.5.tar.gz</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="fu">mkdir</span> /etc/apache2/mod_security_rules/</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="fu">mv</span> owasp-modsecurity-crs-2.2.5/base_rules/* /etc/apache2/mod_security_rules/</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="fu">rm</span> -rf owasp-modsecurity-crs-2.2.5/ v2.2.5.tar.gz</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="fu">chown</span> -R root:root /etc/apache2/mod_security_rules/</span></code></pre>
                 </div>
                 <h4 id="configure-1">configure</h4>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cp</span> /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf</code></pre>
+                <div class="sourceCode" id="cb6">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">cp</span> /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf</span></code></pre>
                 </div>
                 <p>enable engine <code>/etc/modsecurity/modsecurity.conf</code>:</p>
                 <pre class="apache2"><code>SecRuleEngine On</code></pre>
@@ -115,24 +115,24 @@
     SecWriteStateLimit 100
 &lt;/ifmodule&gt;</code></pre>
                 <h3 id="enable-apache-modules">enable apache modules</h3>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">a2enmod</span> headers unique_id mod-evasive mod-security
-<span class="ex">/etc/init.d/apache2</span> restart</code></pre>
+                <div class="sourceCode" id="cb9">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">a2enmod</span> headers unique_id mod-evasive mod-security</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="ex">/etc/init.d/apache2</span> restart</span></code></pre>
                 </div>
                 <h3 id="testing">testing</h3>
                 <p><a href="http://code.google.com/p/slowhttptest/">slowhttptest</a></p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">slowhttptest</span> -c 65539 -B -g -o my_server_stats -i 110 -r 200 -s 8192 -t FAKEVERB -u www.my-site.local -x 10 -p 3
-
-<span class="ex">Fri</span> Jun 27 09:42:19 2014:
-<span class="ex">slow</span> HTTP test status on 10th second:
-
-<span class="ex">initializing</span>:        0
-<span class="ex">pending</span>:             1406
-<span class="ex">connected</span>:           50
-<span class="ex">error</span>:               0
-<span class="ex">closed</span>:              15
-<span class="ex">service</span> available:   NO</code></pre>
+                <div class="sourceCode" id="cb10">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ex">slowhttptest</span> -c 65539 -B -g -o my_server_stats -i 110 -r 200 -s 8192 -t FAKEVERB -u www.my-site.local -x 10 -p 3</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="ex">Fri</span> Jun 27 09:42:19 2014:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="ex">slow</span> HTTP test status on 10th second:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="ex">initializing</span>:        0</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="ex">pending</span>:             1406</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="ex">connected</span>:           50</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="ex">error</span>:               0</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="ex">closed</span>:              15</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="ex">service</span> available:   NO</span></code></pre>
                 </div><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->

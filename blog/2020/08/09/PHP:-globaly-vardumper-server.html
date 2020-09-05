@@ -65,61 +65,61 @@
                 <!-- content post.html -->
                 <h3 id="installation-configure">installation &amp;& configure</h3>
                 <p><a href="https://symfony.com/doc/current/components/var_dumper.html">Symfony VarDumper Component</a></p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">composer</span> global require symfony/var-dumper symfony/console</code></pre>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">composer</span> global require symfony/var-dumper symfony/console</span></code></pre>
                 </div>
                 <p>add to <code>.bashrc</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">PATH=</span><span class="st">"</span><span class="va">$PATH</span><span class="st">:</span><span class="va">$HOME</span><span class="st">/.config/composer/vendor/bin"</span></code></pre>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">export</span> <span class="va">PATH=</span><span class="st">"</span><span class="va">$PATH</span><span class="st">:</span><span class="va">$HOME</span><span class="st">/.config/composer/vendor/bin"</span></span></code></pre>
                 </div>
                 <p>file <code>~/.config/php/autoload.php</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
-
-<span class="kw">require</span> <span class="fu">getenv</span><span class="ot">(</span><span class="st">'HOME'</span><span class="ot">)</span>.<span class="st">'/.config/composer/vendor/autoload.php'</span><span class="ot">;</span>
-<span class="kw">require</span> <span class="kw">__DIR__</span>.<span class="st">'/var_dumper_server.php'</span><span class="ot">;</span></code></pre>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;?php</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">require</span> <span class="fu">getenv</span><span class="ot">(</span><span class="st">'HOME'</span><span class="ot">)</span>.<span class="st">'/.config/composer/vendor/autoload.php'</span><span class="ot">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">require</span> <span class="kw">__DIR__</span>.<span class="st">'/var_dumper_server.php'</span><span class="ot">;</span></span></code></pre>
                 </div>
                 <p>file <code>~/.config/php/var_dumper_server.php</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
-
-<span class="kw">use</span> Symfony\Component\VarDumper\Cloner\VarCloner<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\VarDumper\Dumper\CliDumper<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\VarDumper\Dumper\HtmlDumper<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\VarDumper\Dumper\ServerDumper<span class="ot">;</span>
-<span class="kw">use</span> Symfony\Component\VarDumper\VarDumper<span class="ot">;</span>
-
-<span class="kw">$cloner</span> = <span class="kw">new</span> VarCloner<span class="ot">();</span>
-<span class="kw">$fallbackDumper</span> = \<span class="fu">in_array</span><span class="ot">(</span>\<span class="kw">PHP_SAPI</span><span class="ot">,</span> <span class="ot">[</span><span class="st">'cli'</span><span class="ot">,</span> <span class="st">'phpdbg'</span><span class="ot">])</span> <span class="ot">?</span> <span class="kw">new</span> CliDumper<span class="ot">()</span> <span class="ot">:</span> <span class="kw">new</span> HtmlDumper<span class="ot">();</span>
-<span class="kw">$dumper</span> = <span class="kw">new</span> ServerDumper<span class="ot">(</span><span class="kw">$_SERVER</span><span class="ot">[</span><span class="st">'VAR_DUMPER_SERVER'</span><span class="ot">]</span> <span class="ot">??</span> <span class="st">'tcp://127.0.0.1:9912'</span><span class="ot">,</span> <span class="kw">$fallbackDumper</span><span class="ot">,</span> <span class="ot">[</span>
-    <span class="st">'cli'</span> =&gt; <span class="kw">new</span> CliContextProvider<span class="ot">(),</span>
-    <span class="st">'source'</span> =&gt; <span class="kw">new</span> SourceContextProvider<span class="ot">(),</span>
-<span class="ot">]);</span>
-
-VarDumper::setHandler<span class="ot">(</span><span class="kw">function</span> <span class="ot">(</span><span class="kw">$var</span><span class="ot">)</span> <span class="kw">use</span> <span class="ot">(</span><span class="kw">$cloner</span><span class="ot">,</span> <span class="kw">$dumper</span><span class="ot">)</span> {
-    <span class="kw">$dumper</span>-&gt;dump<span class="ot">(</span><span class="kw">$cloner</span>-&gt;cloneVar<span class="ot">(</span><span class="kw">$var</span><span class="ot">));</span>
-}<span class="ot">);;</span></code></pre>
+                <div class="sourceCode" id="cb4">
+                    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">&lt;?php</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\Cloner\VarCloner<span class="ot">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\Dumper\CliDumper<span class="ot">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider<span class="ot">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider<span class="ot">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\Dumper\HtmlDumper<span class="ot">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\Dumper\ServerDumper<span class="ot">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">use</span> Symfony\Component\VarDumper\VarDumper<span class="ot">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">$cloner</span> = <span class="kw">new</span> VarCloner<span class="ot">();</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">$fallbackDumper</span> = \<span class="fu">in_array</span><span class="ot">(</span>\<span class="kw">PHP_SAPI</span><span class="ot">,</span> <span class="ot">[</span><span class="st">'cli'</span><span class="ot">,</span> <span class="st">'phpdbg'</span><span class="ot">])</span> <span class="ot">?</span> <span class="kw">new</span> CliDumper<span class="ot">()</span> <span class="ot">:</span> <span class="kw">new</span> HtmlDumper<span class="ot">();</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">$dumper</span> = <span class="kw">new</span> ServerDumper<span class="ot">(</span><span class="kw">$_SERVER</span><span class="ot">[</span><span class="st">'VAR_DUMPER_SERVER'</span><span class="ot">]</span> <span class="ot">??</span> <span class="st">'tcp://127.0.0.1:9912'</span><span class="ot">,</span> <span class="kw">$fallbackDumper</span><span class="ot">,</span> <span class="ot">[</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="st">'cli'</span> =&gt; <span class="kw">new</span> CliContextProvider<span class="ot">(),</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="st">'source'</span> =&gt; <span class="kw">new</span> SourceContextProvider<span class="ot">(),</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="ot">]);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>VarDumper::setHandler<span class="ot">(</span><span class="kw">function</span> <span class="ot">(</span><span class="kw">$var</span><span class="ot">)</span> <span class="kw">use</span> <span class="ot">(</span><span class="kw">$cloner</span><span class="ot">,</span> <span class="kw">$dumper</span><span class="ot">)</span> {</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>    <span class="kw">$dumper</span>-&gt;dump<span class="ot">(</span><span class="kw">$cloner</span>-&gt;cloneVar<span class="ot">(</span><span class="kw">$var</span><span class="ot">));</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>}<span class="ot">);;</span></span></code></pre>
                 </div>
                 <p>set auto_prepend_file in <code>php.ini</code> file:</p>
                 <pre><code>auto_prepend_file = ${HOME}/.config/php/autoload.php</code></pre>
                 <p>(optional) u can set VAR_DUMPER_SERVER, <code>.bashrc</code>:</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="va">VAR_DUMPER_SERVER=</span>tcp://127.0.0.1:9913</code></pre>
+                <div class="sourceCode" id="cb6">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="bu">export</span> <span class="va">VAR_DUMPER_SERVER=</span>tcp://127.0.0.1:9913</span></code></pre>
                 </div>
                 <h3 id="using">using</h3>
                 <p>use <code>var-dump-server</code> cmd for start same server</p>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># test.php</span>
-<span class="op">&lt;</span><span class="ex">?php</span>
-
-<span class="ex">dump</span>(<span class="va">$_SERVER</span>);
-
-<span class="bu">echo</span> <span class="st">'test'</span><span class="kw">;</span></code></pre>
+                <div class="sourceCode" id="cb7">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co"># test.php</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="op">&lt;</span><span class="ex">?php</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="ex">dump</span>(<span class="va">$_SERVER</span>);</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="bu">echo</span> <span class="st">'test'</span><span class="kw">;</span></span></code></pre>
                 </div>
-                <div class="sourceCode">
-                    <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">php</span> test.php</code></pre>
+                <div class="sourceCode" id="cb8">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">php</span> test.php</span></code></pre>
                 </div>
                 <p>see pretty print dump on console =)</p><!-- /content post.html -->
             </div>
