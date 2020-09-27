@@ -1,0 +1,263 @@
+<!--
+                    ;,_            ,
+                  _uP~"b          d"u,
+                 dP'   "b       ,d"  "o
+                d"    , `b     d"'    "b
+               l] [    " `l,  d"       lb
+               Ol ?     "  "b`"=uoqo,_  "l
+             ,dBb "b        "b,    `"~~TObup,_
+           ,d" (db.`"         ""     "tbc,_ `~"Yuu,_
+         .d" l`T'  '=                      ~     `""Yu,
+       ,dO` gP,                           `u,   b,_  "b7
+      d?' ,d" l,                           `"b,_ `~b  "1
+    ,8i' dl   `l                 ,ggQOV",dbgq,._"  `l  lb
+   .df' (O,    "             ,ggQY"~  , @@@@@d"bd~  `b "1
+  .df'   `"           -=@QgpOY""     (b  @@@@P db    `Lp"b,
+ .d(                  _               "ko "=d_,Q`  ,_  "  "b,
+ Ql         .         `"qo,._          "tQo,_`""bo ;tb,    `"b,
+(qQ         |L           ~"QQQgggc,_.,dObc,opooO  `"~~";.   __,7,
+`qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
+ `qp        `Q["tQQQo,_                          ,pl{QOP"'   7AFR`
+   `         `tb  '""tQQQg,_             p" "b   `       .;-.`Vl'
+              "Yb      `"tQOOo,__    _,edb    ` .__   /`/'|  |b;=;.__
+                            `"tQQQOOOOP""        `"\QV;qQObob"`-._`\_~~-._
+                                 """"    ._        /   | |oP"\_   ~\ ~\_  ~\
+                                         `~"\ic,qggddOOP"|  |  ~\   `\  ~-._
+                                           ,qP`"""|"   | `\ `;   `\   `\
+                                _        _,p"     |    |   `\`;    |    |
+                                 "boo,._dP"       `\_  `\    `\|   `\   ;
+                                  `"7tY~'            `\  `\    `|_   |
+                                                           `~\  |
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>qbbr.io / blog / OLED display on Raspberry Pi over I2C</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2020/09/27/OLED-display-on-Raspberry-Pi-over-I2C.html"><b>#</b> <span itemprop="name">OLED display on Raspberry Pi over I2C</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b> <a href="/blog/tags/linux.html">linux</a><a href="/blog/tags/raspberrypi.html">raspberrypi</a><a href="/blog/tags/python.html">python</a>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2020-09-27" datetime="2020-09-27">27/09/2020</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/Raspberry_Pi">Raspberry Pi Wiki</a> <a href="https://www.raspberrypi.org/products/raspberry-pi-2-model-b/">Raspberry Pi 2 Model B</a> <a href="https://www.raspberrypi.org/documentation/usage/gpio/">GPIO usage</a> <a href="https://github.com/adafruit/Adafruit_CircuitPython_SSD1306">driver for SSD1306/SSD1305 OLED</a> <a href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf">SSD1306 datasheet</a></p>
+                <h2 id="my-hw">my hw</h2>
+                <p>Display: <strong>OLED SSD1306 128x64 (4 pins)</strong></p>
+                <p>Raspberry:</p>
+                <div class="sourceCode" id="cb1">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">cat</span> /proc/device-tree/model</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">#&gt; Raspberry Pi 2 Model B Rev 1.1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">uname</span> -r</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">#&gt; 5.4.51-v7+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">cat</span> /etc/os-release <span class="kw">|</span> <span class="fu">grep</span> PRETTY_NAME</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">#&gt; Raspbian GNU/Linux 10 (buster)</span></span></code></pre>
+                </div>
+                <h2 id="upgrade-to-latest-raspbian-and-install-python3">upgrade to latest Raspbian and install python3</h2>
+                <div class="sourceCode" id="cb2">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">sudo</span> apt upgrade</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">sudo</span> apt install python3 python3-pip</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">sudo</span> pip3 install --upgrade setuptools</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">python</span> --version</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">#&gt; Python 2.7.16</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"># set default python version, must be python3</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="fu">sudo</span> update-alternatives --install /usr/bin/python python <span class="va">$(</span><span class="fu">which</span> python2<span class="va">)</span> 1</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="fu">sudo</span> update-alternatives --install /usr/bin/python python <span class="va">$(</span><span class="fu">which</span> python3<span class="va">)</span> 2</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="fu">sudo</span> update-alternatives --config python</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="ex">python</span> --version</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">#&gt; Python 3.7.3</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="ex">pip3</span> --version</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">#&gt; pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)</span></span></code></pre>
+                </div>
+                <h2 id="enable-i2c-on-kernel">enable i2c on kernel</h2>
+                <div class="sourceCode" id="cb3">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">sudo</span> raspi-config</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">## Interfacing Options -&gt; I2C</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">## enable? -&gt; YES</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co"># check kernel module to load</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="fu">cat</span> /etc/modules <span class="kw">|</span> <span class="fu">grep</span> i2c</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt; i2c-dev</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="fu">sudo</span> reboot</span></code></pre>
+                </div>
+                <h2 id="connect-oled-to-raspberry">connect OLED to Raspberry</h2>
+                <p>!!! use 3V (PIN 1), not 5V (PIN 2, PIN 4), its more safely for OLED.</p>
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th>Raspberry Pi</th>
+                            <th>OLED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd">
+                            <td>Ground (PIN 6)</td>
+                            <td>GND</td>
+                        </tr>
+                        <tr class="even">
+                            <td>3V3 power (PIN 1)</td>
+                            <td>VCC</td>
+                        </tr>
+                        <tr class="odd">
+                            <td>GPIO 3 (PIN 5)</td>
+                            <td>SCL</td>
+                        </tr>
+                        <tr class="even">
+                            <td>GPIO 2 (PIN 3)</td>
+                            <td>SDA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 id="test-i2c">test i2c</h2>
+                <div class="sourceCode" id="cb4">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co"># check i2c-dev</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="fu">ls</span> /dev/i2c*</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">#&gt; /dev/i2c-1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="fu">sudo</span> apt install python-smbus i2c-tools</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="ex">i2cdetect</span> -y 1</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">#&gt;      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">#&gt; 00:          -- -- -- -- -- -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt; 10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">#&gt; 20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">#&gt; 30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">#&gt; 40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">#&gt; 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">#&gt; 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co">#&gt; 70: -- -- -- -- -- -- -- --</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co"># address is 0x3C</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co"># for older models (256mb) change port to 0</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co">#i2cdetect -y 0</span></span></code></pre>
+                </div>
+                <h2 id="install-ssd1306-driver">install SSD1306 driver</h2>
+                <div class="sourceCode" id="cb5">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">sudo</span> pip3 install adafruit-circuitpython-ssd1306</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="fu">sudo</span> apt install python3-pil</span></code></pre>
+                </div>
+                <h2 id="write-code">write code</h2>
+                <p>oled_stats.py:</p>
+                <div class="sourceCode" id="cb6">
+                    <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="im">import</span> time</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="im">import</span> subprocess</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="im">from</span> board <span class="im">import</span> SCL, SDA</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="im">import</span> busio</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="im">from</span> PIL <span class="im">import</span> Image, ImageDraw, ImageFont</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="im">import</span> adafruit_ssd1306</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>i2c <span class="op">=</span> busio.I2C(SCL, SDA)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>disp <span class="op">=</span> adafruit_ssd1306.SSD1306_I2C(<span class="dv">128</span>, <span class="dv">64</span>, i2c)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>disp.fill(<span class="dv">0</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>disp.show()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>image <span class="op">=</span> Image.new(<span class="st">"1"</span>, (disp.width, disp.height))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>font_height <span class="op">=</span> <span class="dv">8</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>font <span class="op">=</span> ImageFont.load_default()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>line <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="kw">def</span> clear_screen():</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>    <span class="kw">global</span> line</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a>    line <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a>    draw.rectangle((<span class="dv">0</span>, <span class="dv">0</span>, disp.width, disp.height), outline<span class="op">=</span><span class="dv">0</span>, fill<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="kw">def</span> draw_line(text):</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a>    <span class="kw">global</span> line</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a>    draw.text((<span class="dv">0</span>, font_height <span class="op">*</span> line), text, font<span class="op">=</span>font, fill<span class="op">=</span><span class="dv">255</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a>    line <span class="op">=</span> line <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="kw">def</span> shell(cmd):</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a>    <span class="cf">return</span> subprocess.check_output(cmd, shell<span class="op">=</span><span class="va">True</span>).decode(<span class="st">"utf-8"</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a>    clear_screen()</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a>    uptime <span class="op">=</span> shell(<span class="st">"""uptime -p | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a>    date <span class="op">=</span> shell(<span class="st">"""date +'</span><span class="sc">%d</span><span class="st">.%m.%y %H:%M' | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a>    ip <span class="op">=</span> shell(<span class="st">"""hostname -I | awk '{printf "</span><span class="sc">%s</span><span class="st">",$1}'"""</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>    cpu <span class="op">=</span> shell(<span class="st">"""top -b -n1 | grep 'Cpu(s)' | awk '{printf "</span><span class="sc">%.2f%%</span><span class="st">",$2+$4}'"""</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a>    mem <span class="op">=</span> shell(<span class="st">"""free -m | awk 'NR==2{printf "</span><span class="sc">%s</span><span class="st">/</span><span class="sc">%s</span><span class="st">MB </span><span class="sc">%d%%</span><span class="st">",$3,$2,$3*100/$2 }'"""</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a>    disk <span class="op">=</span> shell(<span class="st">"""df -h | awk '$NF=="/"{printf "</span><span class="sc">%d</span><span class="st">/</span><span class="sc">%d</span><span class="st">GB </span><span class="sc">%s</span><span class="st">",$3,$2,$5}'"""</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true"></a>    docker <span class="op">=</span> shell(<span class="st">"""echo "$(docker ps -q | wc -l)/$(docker ps -q -a | wc -l)" | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true"></a>    <span class="co"># draw lines</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true"></a>    draw_line(uptime)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true"></a>    draw_line(<span class="st">"DATE: "</span> <span class="op">+</span> date)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true"></a>    draw_line(<span class="st">"IP: "</span> <span class="op">+</span> ip)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true"></a>    draw_line(<span class="st">"CPU: "</span> <span class="op">+</span> cpu)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true"></a>    draw_line(<span class="st">"MEM: "</span> <span class="op">+</span> mem)</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true"></a>    draw_line(<span class="st">"DISK: "</span> <span class="op">+</span> disk)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true"></a>    draw_line(<span class="st">"CONTAINERS: "</span> <span class="op">+</span> docker)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true"></a></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true"></a>    <span class="co"># display image</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true"></a>    disp.image(image)</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true"></a>    disp.show()</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true"></a>    <span class="co"># update every 5 sec</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true"></a>    time.sleep(<span class="dv">5</span>)</span></code></pre>
+                </div>
+                <p>run it</p>
+                <div class="sourceCode" id="cb7">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="fu">chmod</span> +x oled_stats.py</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="ex">./oled_stats.py</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">#&gt; up 1 hour, 14 minutes</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">#&gt; DATE: 27.09.20 21:16</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">#&gt; IP: 192.168.137.150</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">#&gt; CPU: 7.20%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">#&gt; MEM: 284/925MB 30%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">#&gt; DISK: 6/29GB 24%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">#&gt; CONTAINERS: 10/10</span></span></code></pre>
+                </div>
+                <h2 id="run-on-boot">run on boot</h2>
+                <p>add to <code>/etc/rc.local</code>:</p>
+                <div class="sourceCode" id="cb8">
+                    <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">./home/pi/oled_stats.py</span> <span class="kw">&</span></span></code></pre>
+                </div>
+                <h2 id="enjoy">enjoy!</h2><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source.qbbr.github.io/master/posts/2020-09-27-OLED-display-on-Raspberry-Pi-over-I2C.md" rel="external">post source</a></small>
+        </div>
+        <div>
+            <small>generated from <a href="https://www.gnu.org/software/bash/" rel="external">bash</a></small>
+        </div>
+        <div>
+            <small>© 2020 <a href="/">qbbr.io</a></small>
+        </div>
+    </footer>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42421652-1', 'qbbr.io');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>
