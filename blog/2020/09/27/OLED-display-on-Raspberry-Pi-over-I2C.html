@@ -63,7 +63,24 @@
             </div>
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
-                <p><strong>links:</strong> <a href="https://en.wikipedia.org/wiki/Raspberry_Pi">Raspberry Pi Wiki</a> <a href="https://www.raspberrypi.org/products/raspberry-pi-2-model-b/">Raspberry Pi 2 Model B</a> <a href="https://www.raspberrypi.org/documentation/usage/gpio/">GPIO usage</a> <a href="https://github.com/adafruit/Adafruit_CircuitPython_SSD1306">driver for SSD1306/SSD1305 OLED</a> <a href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf">SSD1306 datasheet</a></p>
+                <p>links:</p>
+                <ul>
+                    <li>
+                        <a href="https://en.wikipedia.org/wiki/Raspberry_Pi">Raspberry Pi Wiki</a>
+                    </li>
+                    <li>
+                        <a href="https://www.raspberrypi.org/products/raspberry-pi-2-model-b/">Raspberry Pi 2 Model B</a>
+                    </li>
+                    <li>
+                        <a href="https://www.raspberrypi.org/documentation/usage/gpio/">GPIO usage</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/adafruit/Adafruit_CircuitPython_SSD1306">driver for SSD1306/SSD1305 OLED</a>
+                    </li>
+                    <li>
+                        <a href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf">SSD1306 datasheet</a>
+                    </li>
+                </ul>
                 <h2 id="my-hw">my hw</h2>
                 <p>Display: <strong>OLED SSD1306 128x64 (4 pins)</strong></p>
                 <p>Raspberry:</p>
@@ -189,38 +206,39 @@
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a>    <span class="kw">global</span> line</span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a>    draw.text((<span class="dv">0</span>, font_height <span class="op">*</span> line), text, font<span class="op">=</span>font, fill<span class="op">=</span><span class="dv">255</span>)</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a>    line <span class="op">=</span> line <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a>    <span class="co">#print(text)</span></span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="kw">def</span> shell(cmd):</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a>    <span class="cf">return</span> subprocess.check_output(cmd, shell<span class="op">=</span><span class="va">True</span>).decode(<span class="st">"utf-8"</span>)</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a><span class="kw">def</span> shell(cmd):</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a>    <span class="cf">return</span> subprocess.check_output(cmd, shell<span class="op">=</span><span class="va">True</span>).decode(<span class="st">"utf-8"</span>)</span>
 <span id="cb6-37"><a href="#cb6-37" aria-hidden="true"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a>    clear_screen()</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a>    uptime <span class="op">=</span> shell(<span class="st">"""uptime -p | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a>    date <span class="op">=</span> shell(<span class="st">"""date +'</span><span class="sc">%d</span><span class="st">.%m.%y %H:%M' | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a>    ip <span class="op">=</span> shell(<span class="st">"""hostname -I | awk '{printf "</span><span class="sc">%s</span><span class="st">",$1}'"""</span>)</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>    cpu <span class="op">=</span> shell(<span class="st">"""top -b -n1 | grep 'Cpu(s)' | awk '{printf "</span><span class="sc">%.2f%%</span><span class="st">",$2+$4}'"""</span>)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a>    mem <span class="op">=</span> shell(<span class="st">"""free -m | awk 'NR==2{printf "</span><span class="sc">%s</span><span class="st">/</span><span class="sc">%s</span><span class="st">MB </span><span class="sc">%d%%</span><span class="st">",$3,$2,$3*100/$2 }'"""</span>)</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a>    disk <span class="op">=</span> shell(<span class="st">"""df -h | awk '$NF=="/"{printf "</span><span class="sc">%d</span><span class="st">/</span><span class="sc">%d</span><span class="st">GB </span><span class="sc">%s</span><span class="st">",$3,$2,$5}'"""</span>)</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true"></a>    docker <span class="op">=</span> shell(<span class="st">"""echo "$(docker ps -q | wc -l)/$(docker ps -q -a | wc -l)" | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true"></a>    <span class="co"># draw lines</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true"></a>    draw_line(uptime)</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true"></a>    draw_line(<span class="st">"DATE: "</span> <span class="op">+</span> date)</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true"></a>    draw_line(<span class="st">"IP: "</span> <span class="op">+</span> ip)</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true"></a>    draw_line(<span class="st">"CPU: "</span> <span class="op">+</span> cpu)</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true"></a>    draw_line(<span class="st">"MEM: "</span> <span class="op">+</span> mem)</span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true"></a>    draw_line(<span class="st">"DISK: "</span> <span class="op">+</span> disk)</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true"></a>    draw_line(<span class="st">"CONTAINERS: "</span> <span class="op">+</span> docker)</span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true"></a></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true"></a>    <span class="co"># display image</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true"></a>    disp.image(image)</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true"></a>    disp.show()</span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true"></a></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true"></a>    <span class="co"># update every 5 sec</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true"></a>    time.sleep(<span class="dv">5</span>)</span></code></pre>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a>    clear_screen()</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a>    uptime <span class="op">=</span> shell(<span class="st">"""uptime -p | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a>    date <span class="op">=</span> shell(<span class="st">"""date +'</span><span class="sc">%d</span><span class="st">.%m.%y %H:%M' | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>    ip <span class="op">=</span> shell(<span class="st">"""hostname -I | awk '{printf "</span><span class="sc">%s</span><span class="st">",$1}'"""</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a>    cpu <span class="op">=</span> shell(<span class="st">"""top -b -n1 | grep 'Cpu(s)' | awk '{printf "</span><span class="sc">%.2f%%</span><span class="st">",$2+$4}'"""</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a>    mem <span class="op">=</span> shell(<span class="st">"""free -m | awk 'NR==2{printf "</span><span class="sc">%s</span><span class="st">/</span><span class="sc">%s</span><span class="st">MB </span><span class="sc">%d%%</span><span class="st">",$3,$2,$3*100/$2 }'"""</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true"></a>    disk <span class="op">=</span> shell(<span class="st">"""df -h | awk '$NF=="/"{printf "</span><span class="sc">%d</span><span class="st">/</span><span class="sc">%d</span><span class="st">GB </span><span class="sc">%s</span><span class="st">",$3,$2,$5}'"""</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true"></a>    docker <span class="op">=</span> shell(<span class="st">"""echo "$(docker ps -q | wc -l)/$(docker ps -q -a | wc -l)" | tr -d '</span><span class="ch">\n</span><span class="st">'"""</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true"></a>    <span class="co"># draw lines</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true"></a>    draw_line(uptime)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true"></a>    draw_line(<span class="st">"DATE: "</span> <span class="op">+</span> date)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true"></a>    draw_line(<span class="st">"IP: "</span> <span class="op">+</span> ip)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true"></a>    draw_line(<span class="st">"CPU: "</span> <span class="op">+</span> cpu)</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true"></a>    draw_line(<span class="st">"MEM: "</span> <span class="op">+</span> mem)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true"></a>    draw_line(<span class="st">"DISK: "</span> <span class="op">+</span> disk)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true"></a>    draw_line(<span class="st">"CONTAINERS: "</span> <span class="op">+</span> docker)</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true"></a></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true"></a>    <span class="co"># display image</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true"></a>    disp.image(image)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true"></a>    disp.show()</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true"></a>    <span class="co"># update every 5 sec</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true"></a>    time.sleep(<span class="dv">5</span>)</span></code></pre>
                 </div>
                 <p>run it</p>
                 <div class="sourceCode" id="cb7">
