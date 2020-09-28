@@ -63,25 +63,8 @@
             </div>
             <div class="post" itemprop="articleBody">
                 <!-- content post.html -->
-                <p>links:</p>
-                <ul>
-                    <li>
-                        <a href="https://en.wikipedia.org/wiki/Raspberry_Pi">Raspberry Pi Wiki</a>
-                    </li>
-                    <li>
-                        <a href="https://www.raspberrypi.org/products/raspberry-pi-2-model-b/">Raspberry Pi 2 Model B</a>
-                    </li>
-                    <li>
-                        <a href="https://www.raspberrypi.org/documentation/usage/gpio/">GPIO usage</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/adafruit/Adafruit_CircuitPython_SSD1306">driver for SSD1306/SSD1305 OLED</a>
-                    </li>
-                    <li>
-                        <a href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf">SSD1306 datasheet</a>
-                    </li>
-                </ul>
-                <h2 id="my-hw">my hw</h2>
+                <p><a href="/img/blog/qbbr-raspberry-pi-oled-display.jpg" class="img"><img src="/img/blog/qbbr-raspberry-pi-oled-display.jpg" alt="qbbr-raspberry-pi-oled-display"></a><!-- nofig --></p>
+                <h3 id="my-hw">my hw</h3>
                 <p>Display: <strong>OLED SSD1306 128x64 (4 pins)</strong></p>
                 <p>Raspberry:</p>
                 <div class="sourceCode" id="cb1">
@@ -92,7 +75,7 @@
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">cat</span> /etc/os-release <span class="kw">|</span> <span class="fu">grep</span> PRETTY_NAME</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">#&gt; Raspbian GNU/Linux 10 (buster)</span></span></code></pre>
                 </div>
-                <h2 id="upgrade-to-latest-raspbian-and-install-python3">upgrade to latest Raspbian and install python3</h2>
+                <h3 id="upgrade-to-latest-raspbian-and-install-python3">upgrade to latest Raspbian and install python3</h3>
                 <div class="sourceCode" id="cb2">
                     <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">sudo</span> apt upgrade</span>
@@ -109,7 +92,7 @@
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="ex">pip3</span> --version</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">#&gt; pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)</span></span></code></pre>
                 </div>
-                <h2 id="enable-i2c-on-kernel">enable i2c on kernel</h2>
+                <h3 id="enable-i2c-on-kernel">enable i2c on kernel</h3>
                 <div class="sourceCode" id="cb3">
                     <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">sudo</span> raspi-config</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">## Interfacing Options -&gt; I2C</span></span>
@@ -119,7 +102,7 @@
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt; i2c-dev</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="fu">sudo</span> reboot</span></code></pre>
                 </div>
-                <h2 id="connect-oled-to-raspberry">connect OLED to Raspberry</h2>
+                <h3 id="connect-oled-to-raspberry">connect OLED to Raspberry</h3>
                 <p>!!! use 3V (PIN 1), not 5V (PIN 2, PIN 4), its more safely for OLED.</p>
                 <table>
                     <thead>
@@ -147,7 +130,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <h2 id="test-i2c">test i2c</h2>
+                <h3 id="test-i2c">test i2c</h3>
                 <div class="sourceCode" id="cb4">
                     <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co"># check i2c-dev</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="fu">ls</span> /dev/i2c*</span>
@@ -167,12 +150,12 @@
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co"># for older models (256mb) change port to 0</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co">#i2cdetect -y 0</span></span></code></pre>
                 </div>
-                <h2 id="install-ssd1306-driver">install SSD1306 driver</h2>
+                <h3 id="install-ssd1306-driver">install SSD1306 driver</h3>
                 <div class="sourceCode" id="cb5">
                     <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">sudo</span> pip3 install adafruit-circuitpython-ssd1306</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="fu">sudo</span> apt install python3-pil</span></code></pre>
                 </div>
-                <h2 id="write-code">write code</h2>
+                <h3 id="write-code">write code</h3>
                 <p>oled_stats.py:</p>
                 <div class="sourceCode" id="cb6">
                     <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">#!/usr/bin/env python3</span></span>
@@ -252,12 +235,30 @@
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">#&gt; DISK: 6/29GB 24%</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">#&gt; CONTAINERS: 10/10</span></span></code></pre>
                 </div>
-                <h2 id="run-on-boot">run on boot</h2>
+                <h3 id="run-on-boot">run on boot</h3>
                 <p>add to <code>/etc/rc.local</code>:</p>
                 <div class="sourceCode" id="cb8">
                     <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">./home/pi/oled_stats.py</span> <span class="kw">&</span></span></code></pre>
                 </div>
-                <h2 id="enjoy">enjoy!</h2><!-- /content post.html -->
+                <p>enjoy!</p>
+                <h3 id="links">links</h3>
+                <ul>
+                    <li>
+                        <a href="https://en.wikipedia.org/wiki/Raspberry_Pi">Raspberry Pi Wiki</a>
+                    </li>
+                    <li>
+                        <a href="https://www.raspberrypi.org/products/raspberry-pi-2-model-b/">Raspberry Pi 2 Model B</a>
+                    </li>
+                    <li>
+                        <a href="https://www.raspberrypi.org/documentation/usage/gpio/">GPIO usage</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/adafruit/Adafruit_CircuitPython_SSD1306">driver for SSD1306/SSD1305 OLED</a>
+                    </li>
+                    <li>
+                        <a href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf">SSD1306 datasheet</a>
+                    </li>
+                </ul><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->
     </main>
