@@ -66,8 +66,9 @@
                 <div class="sourceCode" id="cb1">
                     <pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">find</span> ~/.config/JetBrains/IntelliJIdea*/eval -name <span class="st">'*.key'</span> -exec rm {} <span class="dt">\;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">find</span> ~/.config/JetBrains/IntelliJIdea* -exec touch -t <span class="va">$(</span><span class="fu">date</span> +<span class="st">"%Y%m%d%H%M"</span><span class="va">)</span> {} <span class="dt">\;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">find</span> ~/.java/* -type d -exec touch -t <span class="va">$(</span><span class="fu">date</span> +<span class="st">"%Y%m%d%H%M"</span><span class="va">)</span> {} <span class="dt">\;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">rm</span> -rf ~/.java/.userPrefs/jetbrains/idea/</span></code></pre>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">find</span> ~/.config/JetBrains/IntelliJIdea*/options -name <span class="st">'other.xml'</span> -exec sed -i <span class="st">'/evlsprt/d'</span> {} <span class="dt">\;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">find</span> ~/.java/* -type d -exec touch -t <span class="va">$(</span><span class="fu">date</span> +<span class="st">"%Y%m%d%H%M"</span><span class="va">)</span> {} <span class="dt">\;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">rm</span> -rf ~/.java/.userPrefs/jetbrains/idea/</span></code></pre>
                 </div><!-- /content post.html -->
             </div>
         </article><!-- /content base.html -->
