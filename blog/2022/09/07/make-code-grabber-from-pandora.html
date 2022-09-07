@@ -1,0 +1,177 @@
+<!--
+                    ;,_            ,
+                  _uP~"b          d"u,
+                 dP'   "b       ,d"  "o
+                d"    , `b     d"'    "b
+               l] [    " `l,  d"       lb
+               Ol ?     "  "b`"=uoqo,_  "l
+             ,dBb "b        "b,    `"~~TObup,_
+           ,d" (db.`"         ""     "tbc,_ `~"Yuu,_
+         .d" l`T'  '=                      ~     `""Yu,
+       ,dO` gP,                           `u,   b,_  "b7
+      d?' ,d" l,                           `"b,_ `~b  "1
+    ,8i' dl   `l                 ,ggQOV",dbgq,._"  `l  lb
+   .df' (O,    "             ,ggQY"~  , @@@@@d"bd~  `b "1
+  .df'   `"           -=@QgpOY""     (b  @@@@P db    `Lp"b,
+ .d(                  _               "ko "=d_,Q`  ,_  "  "b,
+ Ql         .         `"qo,._          "tQo,_`""bo ;tb,    `"b,
+(qQ         |L           ~"QQQgggc,_.,dObc,opooO  `"~~";.   __,7,
+`qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
+ `qp        `Q["tQQQo,_                          ,pl{QOP"'   7AFR`
+   `         `tb  '""tQQQg,_             p" "b   `       .;-.`Vl'
+              "Yb      `"tQOOo,__    _,edb    ` .__   /`/'|  |b;=;.__
+                            `"tQQQOOOOP""        `"\QV;qQObob"`-._`\_~~-._
+                                 """"    ._        /   | |oP"\_   ~\ ~\_  ~\
+                                         `~"\ic,qggddOOP"|  |  ~\   `\  ~-._
+                                           ,qP`"""|"   | `\ `;   `\   `\
+                                _        _,p"     |    |   `\`;    |    |
+                                 "boo,._dP"       `\_  `\    `\|   `\   ;
+                                  `"7tY~'            `\  `\    `|_   |
+                                                           `~\  |
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>make code grabber from pandora / blog / qbbr.io</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="blog, linux, debian, hacking, programming, iot">
+    <meta name="description" content="a personal blog about linux, hacking and programming">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="bash">
+    <meta name="author" content="qbbr">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/qbbr-theme-switcher.js"></script>
+    <link rel="stylesheet" href="/css/highlight.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">qbbr<span>.io</span></a> <b class="s1">/</b> <b class="s2">~</b><a href="/blog/">blog</a></h1>
+    </header>
+    <main role="main">
+        <!-- content base.html -->
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            <h2 itemprop="headline"><a itemprop="url" href="/blog/2022/09/07/make-code-grabber-from-pandora.html"><b>#</b> <span itemprop="name">make code grabber from pandora</span></a></h2>
+            <div class="tags">
+                <b>§ tags:</b> <a href="/blog/tags/hack.html">hack</a><a href="/blog/tags/hardware.html">hardware</a><a href="/blog/tags/code.html">code</a><a href="/blog/tags/grabber.html">grabber</a>
+            </div>
+            <div class="date">
+                <h2><time itemprop="datePublished" content="2022-09-07" datetime="2022-09-07">07/09/2022</time></h2>
+            </div>
+            <div class="post" itemprop="articleBody">
+                <!-- content post.html -->
+                <p><a href="/img/blog/code-grabber/1.jpg" class="img img-half"><img src="/img/blog/code-grabber/1.jpg" alt="qbbr-make-code-grabber-1"></a><!-- nofig --><a href="/img/blog/code-grabber/2.jpg" class="img img-half"><img src="/img/blog/code-grabber/2.jpg" alt="qbbr-make-code-grabber-2"></a><!-- nofig --></p>
+                <h3 id="need">need</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.pandora-alarm.ru/catalog/other/breloki/brelok_lcd_605_dlya_pandora_dxl_3970_pro.html">Pandora D-605</a> (keychain)
+                    </li>
+                    <li>
+                        <a href="https://www.segger.com/products/debug-probes/j-link/">SEGGER JLINK/JTAG</a> (programmer)
+                    </li>
+                    <li>
+                        <a href="https://www.segger.com/products/debug-probes/j-link/technology/flash-download/">JFLASH JLINK 6.12a</a> (soft)
+                    </li>
+                    <li>firmware (see in darknet)</li>
+                    <li>hands not in <code>/dev/ass</code></li>
+                    <li>f*cking m$ windows (im using win7 32bit)</li>
+                </ul>
+                <h3 id="pinout-jtag-interface-to-keychain">pinout JTAG interface to keychain</h3>
+                <p><a href="/img/blog/code-grabber/3.jpg" class="img img-half"><img src="/img/blog/code-grabber/3.jpg" alt="qbbr-make-code-grabber-3"></a><!-- nofig --><a href="/img/blog/code-grabber/4.jpg" class="img img-half"><img src="/img/blog/code-grabber/4.jpg" alt="qbbr-make-code-grabber-4"></a><!-- nofig --><a href="/img/blog/code-grabber/5.jpg" class="img top-fix"><img src="/img/blog/code-grabber/5.jpg" alt="qbbr-make-code-grabber-5"></a><!-- nofig --></p>
+                <ul>
+                    <li><em>keychain</em> - 6pins interface</li>
+                    <li><em>JTAG</em> - 20pin interface</li>
+                </ul>
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th>keychain PINs</th>
+                            <th></th>
+                            <th>JTAG PINs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd">
+                            <td>1</td>
+                            <td>GND</td>
+                            <td>18, 20</td>
+                        </tr>
+                        <tr class="even">
+                            <td>2</td>
+                            <td>VCC</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="odd">
+                            <td>3</td>
+                            <td>RESET</td>
+                            <td>15</td>
+                        </tr>
+                        <tr class="even">
+                            <td>4</td>
+                            <td>CLK/TCK</td>
+                            <td>9</td>
+                        </tr>
+                        <tr class="odd">
+                            <td>5</td>
+                            <td>DIO/TMS</td>
+                            <td>7</td>
+                        </tr>
+                        <tr class="even">
+                            <td>6</td>
+                            <td>SWO/TDO</td>
+                            <td>13</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 id="flashing-device">flashing device</h3>
+                <p>!!! do not forget take out the battery from keychain.</p>
+                <ol type="1">
+                    <li>connect keychain to programmer</li>
+                    <li>connect SEGGER programmer to PC and wait to initialise device/driver</li>
+                    <li>connect <strong>mini-USB</strong> on keychain and wait (red led must is on), hold button 1 on keychain (for shutdown) and wait for PC initialise (beep new device)</li>
+                    <li>start JFLASH soft, set cpu is <strong>EFM32LG995F256</strong> (32 bit / 48 Mhz) and <strong>SWD</strong> speed to <strong>4000</strong>
+                        <ol type="1">
+                            <li>unlock chip</li>
+                            <li>erase chip</li>
+                            <li>flash <code>.bin</code> firmware</li>
+                            <li>lock chip</li>
+                        </ol>
+                    </li>
+                    <li>prank gone right xD</li>
+                </ol>
+                <h3 id="enjoy">enjoy</h3>
+                <p><a href="/img/blog/code-grabber/6.jpg" class="img"><img src="/img/blog/code-grabber/6.jpg" alt="qbbr-make-code-grabber-6"></a><!-- nofig --></p>
+                <p>only just for fun ^_^</p><!-- /content post.html -->
+            </div>
+        </article><!-- /content base.html -->
+    </main>
+    <footer>
+        <div>
+            <small><a href="https://raw.github.com/qbbr/source2.qbbr.github.io/master/posts/2022-09-07-make-code-grabber-from-pandora.md" rel="external">post source</a></small>
+        </div><!--noindex-->
+        <div>
+            <small><a href="javascript:;" id="theme-switcher-btn" class="theme-switcher-btn"></a></small>
+        </div><!--/noindex-->
+        <div>
+            <small>generated by <a href="https://github.com/qbbr/source2.qbbr.github.io/blob/master/build#L1" rel="external">bash script</a> (<time>1662526017</time>)</small>
+        </div>
+        <div>
+            <small>© 2022 <a href="/">qbbr.io</a></small>
+        </div><a class="peace-no-war" href="https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md" rel="external"><small><span class="peace">Peace,</span><span class="no-war">No War</span></small></a>
+    </footer>
+    <script>
+            new QbbrThemeSwitcher(document.getElementById('theme-switcher-btn'));
+    </script> 
+    <script>
+
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-42421652-1', 'qbbr.io');
+            ga('send', 'pageview');
+    </script>
+</body>
+</html>
